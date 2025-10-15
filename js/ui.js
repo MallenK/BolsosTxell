@@ -45,12 +45,20 @@ export function renderHome(){
 
   new Swiper('.hero-swiper',{
     slidesPerView: 1,
-    observer: true,
-    observeParents: true,
     loop: true,
-    autoplay: { delay: 3500 },
-    pagination: { el: '.swiper-pagination', clickable: true }
+    autoplay: { delay: 3500, disableOnInteraction: false },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    // Ajustes finos para evitar widths raros en móvil
+    watchOverflow: true,
+    centeredSlides: true,
+    spaceBetween: 0,
+    observeParents: true,
+    observer: true,
+    breakpoints: {
+      768: { centeredSlides: false }
+    }
   });
+
 }
 
 export function renderCatalog(){
