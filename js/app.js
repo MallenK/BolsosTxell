@@ -29,14 +29,14 @@ function initHeader(){
 }
 
 function initUX(){
-  // Lenis smooth scroll
-  const lenis = new Lenis();
-  function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
-
-  // Icons
+  if (typeof Lenis !== 'undefined') {
+    const lenis = new Lenis();
+    function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  }
   lucide.createIcons();
 }
+
 
 (async function boot(){
   await loadData();
