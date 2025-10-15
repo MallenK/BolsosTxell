@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>cro_txet — Bolsos hechos a mano</title>
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#7AA7FF',
+            accent: '#9EE0FF',
+            mint: '#B9F2E5',
+            lavender: '#C8C4FF',
+            ink: '#0F172A',
+            bg: '#F6F9FF'
+          },
+          fontFamily: {
+            sans: ['Poppins', 'system-ui', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(16,24,40,.08)'
+          },
+          borderRadius: { xl2: '1rem' }
+        }
+      }
+    };
+  </script>
+
+  <!-- Shoelace (Web Components) -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
+
+  <!-- Swiper + LightGallery -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.2/css/lightgallery-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.2/lightgallery.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.2/plugins/zoom/lg-zoom.umd.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger + Lenis -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.35/bundled/lenis.min.js"></script>
+
+  <!-- i18next -->
+  <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.454.0/dist/umd/lucide.js"></script>
+
+  <link rel="stylesheet" href="./assets/css/base.css" />
+</head>
+<body class="bg-bg text-ink font-sans">
+  <a href="#/catalogo" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white rounded px-3 py-2">Saltar al catálogo</a>
+
+  <!-- Header -->
+  <header id="site-header" class="sticky top-0 z-40 backdrop-blur bg-bg/80 border-b border-black/5">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#/" class="flex items-center gap-2">
+        <img src="./assets/img/logo.svg" alt="cro_txet" class="h-8 w-8" />
+        <span class="font-serif text-xl">cro_txet</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="#/" class="hover:text-primary" data-i18n="nav.home">Inicio</a>
+        <a href="#/catalogo" class="hover:text-primary" data-i18n="nav.catalog">Catálogo</a>
+        <a href="#/sobre" class="hover:text-primary" data-i18n="nav.about">Sobre</a>
+        <a href="#/contacto" class="hover:text-primary" data-i18n="nav.contact">Contacto</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <sl-select size="small" value="es" id="lang-select" class="w-24">
+          <sl-option value="es">ES</sl-option>
+          <sl-option value="ca">CA</sl-option>
+        </sl-select>
+        <a id="whats-cta" href="#" class="hidden md:inline-block rounded-full bg-primary text-white px-3 py-2 text-sm shadow-soft" data-i18n="cta.whatsapp">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- App Root -->
+  <main id="app" class="min-h-[70vh]"></main>
+
+  <!-- Footer -->
+  <footer class="mt-16 border-t border-black/5">
+    <div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-6">
+      <div>
+        <h4 class="font-serif text-lg">cro_txet</h4>
+        <p class="text-sm opacity-80 mt-2" data-i18n="footer.copy">Bolsos de crochet con “animal painting” hechos a mano.</p>
+      </div>
+      <div>
+        <h5 class="font-semibold mb-2" data-i18n="footer.links">Enlaces</h5>
+        <ul class="space-y-1 text-sm">
+          <li><a href="#/legal/aviso" class="hover:text-primary">Aviso legal</a></li>
+          <li><a href="#/legal/privacidad" class="hover:text-primary">Privacidad</a></li>
+          <li><a href="#/legal/cookies" class="hover:text-primary">Cookies</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-semibold mb-2" data-i18n="footer.contact">Contacto</h5>
+        <p class="text-sm">hola@cro-txet.example</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Templates (se rellenan desde JS) -->
+  <template id="tpl-home"></template>
+  <template id="tpl-catalogo"></template>
+  <template id="tpl-producto"></template>
+  <template id="tpl-sobre"></template>
+  <template id="tpl-contacto"></template>
+  <template id="tpl-legal"></template>
+
+  <!-- App scripts -->
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
