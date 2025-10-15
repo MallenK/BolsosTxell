@@ -5,8 +5,6 @@ import { loadI18n } from './i18n.js';
 async function loadData(){
   const resES = await fetch('./data/products.es.json');
   store.products = await resES.json();
-
-  // opcional CA extendida: se podría mapear nombres/desc si hay más items
   try {
     const resCA = await fetch('./data/products.ca.json');
     store.productsCA = await resCA.json();
@@ -19,13 +17,20 @@ function initHeader(){
   sel.addEventListener('sl-change', async (e)=>{
     store.setLang(e.target.value);
     await loadI18n();
-    // re-render ruta actual
     window.dispatchEvent(new Event('hashchange'));
   });
 
-  // WhatsApp header link
   const wa = document.getElementById('whats-cta');
   wa.href = 'https://wa.me/34600000000?text=Hola,%20quiero%20informaci%C3%B3n';
+
+  // Menú móvil
+  const btn = document.getElementById('btn-menu');
+  const drawer = document.getElementById('mobile-drawer');
+  btn?.addEventListener('click', ()=> drawer?.show());
+  drawer?.addEventListener('sl-after-show', ()=>{
+    // cerrar al navegar
+    drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>drawer.hide()));
+  });
 }
 
 function initUX(){
@@ -34,9 +39,8 @@ function initUX(){
     function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   }
-  lucide.createIcons();
+  if (window.lucide?.createIcons) window.lucide.createIcons();
 }
-
 
 (async function boot(){
   await loadData();
