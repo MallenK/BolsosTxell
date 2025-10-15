@@ -8,10 +8,10 @@ function mount(html){ byId('app').innerHTML = html; window.scrollTo(0,0); }
 export function renderHome(){
   const values = ['Hecho a mano','Materiales sostenibles','Pedidos a medida'];
   mount(`
-    <section class="max-w-6xl mx-auto px-4 pt-10 pb-20">
+    <section class="max-w-6xl mx-auto px-4 pt-8 pb-16">
       <div class="grid md:grid-cols-2 gap-8 items-center">
         <div>
-          <h1 class="font-serif text-4xl md:text-5xl leading-tight mb-4">Bolsos de crochet con <span class="text-primary">animal painting</span></h1>
+          <h1 class="font-serif mb-4">Bolsos de crochet con <span class="text-primary">animal painting</span></h1>
           <p class="opacity-80 mb-6">Tonos fríos pastel. Catálogo con contacto para encargar.</p>
           <a href="#/catalogo" class="inline-block bg-primary text-white px-5 py-3 rounded-full shadow-soft">Ver catálogo</a>
         </div>
@@ -19,17 +19,22 @@ export function renderHome(){
           <div class="swiper hero-swiper rounded-xl2 overflow-hidden">
             <div class="swiper-wrapper">
               ${(store.products.slice(0,3)).map(p=>`
-                <div class="swiper-slide"><img src="${p.fotos[0]}" alt="${p.nombre}"/></div>
+                <div class="swiper-slide aspect-4-3">
+                  <img src="${p.fotos[0]}" alt="${p.nombre}" class="w-full h-full object-cover"
+                       sizes="(min-width:1024px) 50vw, 90vw">
+                </div>
               `).join('')}
             </div>
             <div class="swiper-pagination"></div>
           </div>
         </div>
       </div>
-      <ul class="mt-10 flex flex-wrap gap-3">
+
+      <ul class="mt-8 flex flex-wrap gap-3">
         ${values.map(v=>`<li class="chip">${v}</li>`).join('')}
       </ul>
-      <h2 class="font-serif text-2xl mt-12 mb-4">Novedades</h2>
+
+      <h2 class="font-serif mt-10 mb-4">Novedades</h2>
       <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         ${store.products.slice(0,8).map(card).join('')}
       </div>
@@ -40,17 +45,17 @@ export function renderHome(){
 
 export function renderCatalog(){
   mount(`
-    <section class="max-w-6xl mx-auto px-4 pt-10 pb-20">
-      <div class="flex items-center justify-between gap-4 mb-6">
+    <section class="max-w-6xl mx-auto px-4 pt-8 pb-16">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
         <h1 class="font-serif text-3xl">Catálogo</h1>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <select id="f-cat" class="chip">
             <option value="all">Todas</option>
             <option>Barrel</option><option>Clutch</option><option>Frame</option><option>Flap</option>
           </select>
           <input id="f-q" class="chip" placeholder="Buscar..." />
-          <input id="f-min" type="number" min="50" max="150" value="${store.filters.min}" class="chip w-20"/>
-          <input id="f-max" type="number" min="50" max="150" value="${store.filters.max}" class="chip w-20"/>
+          <input id="f-min" type="number" min="50" max="150" value="${store.filters.min}" class="chip w-24"/>
+          <input id="f-max" type="number" min="50" max="150" value="${store.filters.max}" class="chip w-24"/>
           <button id="f-apply" class="chip bg-primary text-white">Aplicar</button>
         </div>
       </div>
@@ -90,10 +95,14 @@ export function renderProduct(hash){
   if(!p){ mount(`<section class="max-w-6xl mx-auto px-4 py-16"><p>No encontrado.</p></section>`); return; }
 
   mount(`
-    <section class="max-w-6xl mx-auto px-4 pt-10 pb-20 grid md:grid-cols-2 gap-10">
+    <section class="max-w-6xl mx-auto px-4 pt-8 pb-16 grid md:grid-cols-2 gap-10">
       <div class="card p-2">
         <div id="gallery" class="rounded-xl2 overflow-hidden">
-          ${p.fotos.map((src,i)=>`<a href="${src}"><img src="${src}" alt="${p.nombre} ${i+1}"/></a>`).join('')}
+          ${p.fotos.map((src,i)=>`
+            <a href="${src}" class="block aspect-4-3">
+              <img src="${src}" alt="${p.nombre} ${i+1}" class="w-full h-full object-cover"
+                   sizes="(min-width:1024px) 50vw, 100vw">
+            </a>`).join('')}
         </div>
       </div>
       <div>
@@ -103,16 +112,16 @@ export function renderProduct(hash){
         <p class="mb-3"><strong>Animal painting:</strong> ${p.animal}</p>
         <p class="mb-3"><strong>Materiales:</strong> ${p.materiales.join(', ')}</p>
         <p class="mb-3"><strong>Medidas:</strong> ${p.medidas.ancho}×${p.medidas.alto}×${p.medidas.fondo} cm — <strong>Peso:</strong> ${p.peso} g</p>
-        <div class="flex gap-2 mb-6">
+        <div class="flex gap-2 mb-6 flex-wrap">
           ${p.colores.map(c=>`<span class="chip">${c}</span>`).join('')}
         </div>
-        <div class="flex gap-3">
+        <div class="flex gap-3 flex-wrap">
           <a href="${waLink(p.nombre)}" class="rounded-full bg-primary text-white px-4 py-2">WhatsApp</a>
           <sl-button variant="default" onclick="document.querySelector('#contact-sheet').show()">Enviar consulta</sl-button>
         </div>
 
         <h3 class="font-serif text-xl mt-10 mb-3">Relacionados</h3>
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
           ${store.products.filter(x=>x.categoria===p.categoria && x.id!==p.id).slice(0,4).map(card).join('')}
         </div>
       </div>
@@ -130,16 +139,15 @@ export function renderProduct(hash){
 
   lightGallery(document.getElementById('gallery'), { plugins:[lgZoom], speed: 300 });
 
-  // simple form handler
   const form = document.getElementById('contact-form');
   form?.addEventListener('submit', (e)=>{ e.preventDefault(); alert('Enviado (demo).'); });
 }
 
 export function renderAbout(){
   mount(`
-    <section class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-10">
+    <section class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-10">
       <div>
-        <h1 class="font-serif text-3xl mb-4">Sobre el taller</h1>
+        <h1 class="font-serif mb-4">Sobre el taller</h1>
         <p class="opacity-80">Creamos bolsos a mano combinando crochet y pintura de animales. Producción por encargo, materiales sostenibles y acabados cuidados.</p>
         <ul class="mt-6 space-y-2">
           <li class="chip">Algodón reciclado</li>
@@ -148,7 +156,8 @@ export function renderAbout(){
         </ul>
       </div>
       <div class="card p-2">
-        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop" alt="Taller" />
+        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop"
+             alt="Taller" class="w-full h-full object-cover aspect-4-3" sizes="(min-width:1024px) 50vw, 100vw" />
       </div>
     </section>
   `);
@@ -156,15 +165,17 @@ export function renderAbout(){
 
 export function renderContact(){
   mount(`
-    <section class="max-w-2xl mx-auto px-4 py-16">
-      <h1 class="font-serif text-3xl mb-6">Contacto</h1>
+    <section class="max-w-2xl mx-auto px-4 py-12">
+      <h1 class="font-serif mb-6">Contacto</h1>
       <form class="card p-5 space-y-4">
         <sl-input required placeholder="Nombre"></sl-input>
         <sl-input required type="email" placeholder="Email"></sl-input>
         <sl-input placeholder="Teléfono"></sl-input>
         <sl-textarea placeholder="Mensaje"></sl-textarea>
-        <sl-button variant="primary">Enviar</sl-button>
-        <a href="#" id="wa-btn" class="inline-block rounded-full bg-primary text-white px-4 py-2">WhatsApp</a>
+        <div class="flex items-center gap-3 flex-wrap">
+          <sl-button variant="primary">Enviar</sl-button>
+          <a href="#" id="wa-btn" class="inline-block rounded-full bg-primary text-white px-4 py-2">WhatsApp</a>
+        </div>
       </form>
     </section>
   `);
@@ -175,18 +186,21 @@ export function renderContact(){
 export function renderLegal(hash){
   const page = hash.split('/').pop();
   mount(`
-    <section class="max-w-3xl mx-auto px-4 py-16">
-      <h1 class="font-serif text-3xl mb-4">${page?.toUpperCase()}</h1>
+    <section class="max-w-3xl mx-auto px-4 py-12">
+      <h1 class="font-serif mb-4">${page?.toUpperCase()}</h1>
       <p class="opacity-80">Texto legal de ejemplo para ${page}.</p>
     </section>
   `);
 }
 
-// helpers
 function card(p){
   return `
   <a href="#/producto/${p.slug}" class="block card overflow-hidden hover:shadow-lg transition">
-    <div class="aspect-[4/3] overflow-hidden"><img class="w-full h-full object-cover" src="${p.fotos[0]}" alt="${p.nombre}"></div>
+    <div class="aspect-4-3 overflow-hidden">
+      <img class="w-full h-full object-cover"
+           src="${p.fotos[0]}" alt="${p.nombre}"
+           sizes="(min-width:1280px) 20vw, (min-width:1024px) 25vw, (min-width:640px) 45vw, 90vw">
+    </div>
     <div class="p-3">
       <h3 class="font-semibold">${p.nombre}</h3>
       <p class="text-sm opacity-70">€${p.precioDesde}</p>
@@ -196,4 +210,4 @@ function card(p){
     </div>
   </a>`;
 }
-function attachCardEvents(){ /* no-op placeholder for future */ }
+function attachCardEvents(){ /* placeholder */ }
