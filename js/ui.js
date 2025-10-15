@@ -18,10 +18,12 @@ export function renderHome(){
         <div class="card p-2">
           <div class="swiper hero-swiper rounded-xl2 overflow-hidden">
             <div class="swiper-wrapper">
-              ${(store.products.slice(0,3)).map(p=>`
-                <div class="swiper-slide aspect-4-3">
-                  <img src="${p.fotos[0]}" alt="${p.nombre}" class="w-full h-full object-cover"
-                       sizes="(min-width:1024px) 50vw, 90vw">
+              ${store.products.slice(0,3).map(p=>`
+                <div class="swiper-slide">
+                  <div class="slide-box">
+                    <img src="${p.fotos[0]}" alt="${p.nombre}" loading="eager"
+                         sizes="(min-width:1024px) 50vw, 100vw">
+                  </div>
                 </div>
               `).join('')}
             </div>
@@ -40,7 +42,15 @@ export function renderHome(){
       </div>
     </section>
   `);
-  new Swiper('.hero-swiper',{pagination:{el:'.swiper-pagination'},autoplay:{delay:3000},loop:true});
+
+  new Swiper('.hero-swiper',{
+    slidesPerView: 1,
+    observer: true,
+    observeParents: true,
+    loop: true,
+    autoplay: { delay: 3500 },
+    pagination: { el: '.swiper-pagination', clickable: true }
+  });
 }
 
 export function renderCatalog(){
