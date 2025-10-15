@@ -42,6 +42,12 @@ function initUX(){
     requestAnimationFrame(raf);
   }
   if (window.lucide?.createIcons) window.lucide.createIcons();
+  window.addEventListener('orientationchange', () => {
+    setTimeout(()=> document.querySelectorAll('.hero-swiper')?.forEach(el=>{
+      el.swiper?.update();
+    }), 250);
+  });
+
 }
 
 (async function boot(){
