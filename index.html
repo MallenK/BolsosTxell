@@ -71,21 +71,45 @@
         <img src="./assets/img/logo.svg" alt="cro_txet" class="h-8 w-8" />
         <span class="font-serif text-xl">cro_txet</span>
       </a>
+  
+      <!-- Desktop nav -->
       <nav class="hidden md:flex items-center gap-6">
         <a href="#/" class="hover:text-primary" data-i18n="nav.home">Inicio</a>
         <a href="#/catalogo" class="hover:text-primary" data-i18n="nav.catalog">Catálogo</a>
         <a href="#/sobre" class="hover:text-primary" data-i18n="nav.about">Sobre</a>
         <a href="#/contacto" class="hover:text-primary" data-i18n="nav.contact">Contacto</a>
       </nav>
+  
       <div class="flex items-center gap-3">
         <sl-select size="small" value="es" id="lang-select" class="w-24">
           <sl-option value="es">ES</sl-option>
           <sl-option value="ca">CA</sl-option>
         </sl-select>
+  
+        <!-- CTA desktop -->
         <a id="whats-cta" href="#" class="hidden md:inline-block rounded-full bg-primary text-white px-3 py-2 text-sm shadow-soft" data-i18n="cta.whatsapp">WhatsApp</a>
+  
+        <!-- Botón menú móvil -->
+        <button id="btn-menu" class="md:hidden inline-flex items-center justify-center rounded-lg p-2 border">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <span class="sr-only">Abrir menú</span>
+        </button>
       </div>
     </div>
   </header>
+  
+  <!-- Drawer móvil -->
+  <sl-drawer placement="start" id="mobile-drawer" label="Menú">
+    <nav class="flex flex-col gap-4 text-lg">
+      <a href="#/" class="hover:text-primary" data-i18n="nav.home">Inicio</a>
+      <a href="#/catalogo" class="hover:text-primary" data-i18n="nav.catalog">Catálogo</a>
+      <a href="#/sobre" class="hover:text-primary" data-i18n="nav.about">Sobre</a>
+      <a href="#/contacto" class="hover:text-primary" data-i18n="nav.contact">Contacto</a>
+    </nav>
+  </sl-drawer>
+
 
   <!-- App Root -->
   <main id="app" class="min-h-[70vh]"></main>
