@@ -1,6 +1,7 @@
 import { store } from './store.js';
 import { initRouter } from './router.js';
 import { loadI18n } from './i18n.js';
+import { sanitizeProductImages } from './images.js';
 
 async function loadData(){
   const resES = await fetch('./data/products.es.json');
@@ -9,6 +10,9 @@ async function loadData(){
     const resCA = await fetch('./data/products.ca.json');
     store.productsCA = await resCA.json();
   } catch {}
+
+  // valida y repara URLs de imágenes
+  await sanitizeProductImages(store.products);
 }
 
 function initHeader(){
@@ -23,12 +27,10 @@ function initHeader(){
   const wa = document.getElementById('whats-cta');
   wa.href = 'https://wa.me/34600000000?text=Hola,%20quiero%20informaci%C3%B3n';
 
-  // Menú móvil
   const btn = document.getElementById('btn-menu');
   const drawer = document.getElementById('mobile-drawer');
   btn?.addEventListener('click', ()=> drawer?.show());
   drawer?.addEventListener('sl-after-show', ()=>{
-    // cerrar al navegar
     drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>drawer.hide()));
   });
 }
