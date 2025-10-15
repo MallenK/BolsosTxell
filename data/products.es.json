@@ -1,0 +1,132 @@
+[
+  {
+    "id": "barrel-aurora",
+    "slug": "barrel-aurora",
+    "nombre": "Barrel Aurora",
+    "categoria": "Barrel",
+    "precioDesde": 120,
+    "colores": ["hielo","lavanda","menta"],
+    "animal": "golondrina",
+    "materiales": ["algodón reciclado","forro lino","pintura textil"],
+    "medidas": {"ancho": 28, "alto": 20, "fondo": 12},
+    "peso": 430,
+    "tags": ["hecho-a-mano","vegano"],
+    "fotos": [
+      "https://images.unsplash.com/photo-1544551763-7ef4200b1c5b?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518441902113-c1d3b1c7b9d1?q=80&w=1600&auto=format&fit=crop"
+    ]
+  },
+  {
+    "id": "clutch-nix",
+    "slug": "clutch-nix",
+    "nombre": "Clutch Nix",
+    "categoria": "Clutch",
+    "precioDesde": 65,
+    "colores": ["azul-niebla","menta"],
+    "animal": "zorro ártico",
+    "materiales": ["algodón orgánico","forro algodón"],
+    "medidas": {"ancho": 24, "alto": 14, "fondo": 3},
+    "peso": 180,
+    "tags": ["ligero"],
+    "fotos": [
+      "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1549187774-b4e9b0445b41?q=80&w=1600&auto=format&fit=crop"
+    ]
+  },
+  {
+    "id": "frame-iskra",
+    "slug": "frame-iskra",
+    "nombre": "Frame Iskra",
+    "categoria": "Frame",
+    "precioDesde": 95,
+    "colores": ["lavanda","perla"],
+    "animal": "lechuza",
+    "materiales": ["mezcla algodón-lino","marco metálico"],
+    "medidas": {"ancho": 26, "alto": 18, "fondo": 7},
+    "peso": 320,
+    "tags": ["marco","clásico"],
+    "fotos": [
+      "https://images.unsplash.com/photo-1544441892-30a1b96b1905?q=80&w=1600&auto=format&fit=crop"
+    ]
+  },
+  {
+    "id": "flap-boreal",
+    "slug": "flap-boreal",
+    "nombre": "Flap Boreal",
+    "categoria": "Flap",
+    "precioDesde": 110,
+    "colores": ["azul hielo","gris perla"],
+    "animal": "lobo polar",
+    "materiales": ["algodón reciclado","imán oculto"],
+    "medidas": {"ancho": 27, "alto": 17, "fondo": 6},
+    "peso": 350,
+    "tags": ["tapa","urbano"],
+    "fotos": [
+      "https://images.unsplash.com/photo-1520975922284-9e0ce8271d72?q=80&w=1600&auto=format&fit=crop"
+    ]
+  },
+  {
+    "id": "barrel-fjord",
+    "slug": "barrel-fjord",
+    "nombre": "Barrel Fjord",
+    "categoria": "Barrel",
+    "precioDesde": 130,
+    "colores": ["menta","acero"],
+    "animal": "foca",
+    "materiales": ["algodón reciclado","asas cuerda"],
+    "medidas": {"ancho": 30, "alto": 22, "fondo": 14},
+    "peso": 480,
+    "tags": ["weekender"],
+    "fotos": [
+      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1600&auto=format&fit=crop"
+    ]
+  },
+  {
+    "id": "clutch-aurora",
+    "slug": "clutch-aurora",
+    "nombre": "Clutch Aurora",
+    "categoria": "Clutch",
+    "precioDesde": 70,
+    "colores": ["lavanda","hielo"],
+    "animal": "golondrina",
+    "materiales": ["algodón orgánico"],
+    "medidas": {"ancho": 25, "alto": 13, "fondo": 3},
+    "peso": 170,
+    "tags": ["fiesta"],
+    "fotos": [
+      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1600&auto=format&fit=crop"
+    ]
+  },
+  {
+    "id": "frame-nord",
+    "slug": "frame-nord",
+    "nombre": "Frame Nord",
+    "categoria": "Frame",
+    "precioDesde": 100,
+    "colores": ["perla","azul humo"],
+    "animal": "alce",
+    "materiales": ["algodón-lino","marco níquel"],
+    "medidas": {"ancho": 26, "alto": 17, "fondo": 6},
+    "peso": 340,
+    "tags": ["marco"],
+    "fotos": [
+      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop"
+    ]
+  },
+  {
+    "id": "flap-glaze",
+    "slug": "flap-glaze",
+    "nombre": "Flap Glaze",
+    "categoria": "Flap",
+    "precioDesde": 115,
+    "colores": ["azul hielo","menta"],
+    "animal": "pinguino",
+    "materiales": ["algodón reciclado","forro impermeable"],
+    "medidas": {"ancho": 28, "alto": 18, "fondo": 7},
+    "peso": 360,
+    "tags": ["diaria"],
+    "fotos": [
+      "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop"
+    ]
+  }
+]
