@@ -1,0 +1,16 @@
+{
+  "nav": { "home": "Inicio", "catalog": "Catálogo", "about": "Sobre", "contact": "Contacto" },
+  "hero": {
+    "title": "Bolsos de crochet con animal painting",
+    "subtitle": "Piezas únicas, tonos fríos pastel. Catálogo con contacto para pedido."
+  },
+  "cta": { "catalog": "Ver catálogo", "whatsapp": "WhatsApp" },
+  "values": ["Hecho a mano", "Materiales sostenibles", "Pedidos a medida"],
+  "home": { "new": "Novedades", "categories": "Categorías" },
+  "catalog": { "title": "Catálogo", "filters": "Filtros", "price": "Precio", "order": "Ordenar", "category": "Categoría", "apply": "Aplicar" },
+  "product": { "from": "Desde", "details": "Detalles", "materials": "Materiales", "size": "Medidas", "weight": "Peso", "animal": "Animal painting", "ask": "Consultar por WhatsApp", "care": "Cuidados" },
+  "about": { "title": "Sobre el taller", "story": "Creamos bolsos a mano combinando crochet y pintura de animales sobre tejido." },
+  "contact": { "title": "Contacto", "formTitle": "Envíanos tu consulta" },
+  "footer": { "copy": "Bolsos de crochet con “animal painting” hechos a mano.", "links": "Enlaces", "contact": "Contacto" },
+  "legal": { "privacy": "Política de Privacidad", "cookies": "Política de Cookies", "notice": "Aviso Legal" }
+}
