@@ -1,3 +1,4 @@
+
 import { store } from './store.js';
 import { applyFilters } from './filters.js';
 import { waLink } from './whatsapp.js';
@@ -51,18 +52,20 @@ export function renderHome(){
   const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/placeholder.svg';
 
   mount(`
-    <!-- HERO pantalla completa -->
-    <section class="relative hero-full">
+    <!-- HERO pantalla completa fijo -->
+    <section class="hero-full pin-on-scroll">
       <img class="hero-img" src="${heroImg}" alt="Cro and Txet hero">
       <div class="overlay"></div>
-      <div class="relative z-10 text-center px-4">
-        <h1 class="font-serif text-5xl md:text-6xl mb-3">Crochet refinado en tonos pastel</h1>
-        <p class="mx-auto max-w-2xl opacity-90 mb-6">Bolsos hechos a mano con “animal painting”. Elegancia serena, acabados cuidados.</p>
-        <a href="#/catalogo" class="inline-block rounded-full bg-primary text-white px-6 py-3 shadow-soft">Ver catálogo</a>
+      <div class="hero-content grid place-items-center min-h-[100svh] px-4 text-center">
+        <div class="max-w-3xl">
+          <h1 class="font-serif text-5xl md:text-6xl mb-3">Crochet refinado en tonos pastel</h1>
+          <p class="mx-auto max-w-2xl opacity-90 mb-6">Bolsos hechos a mano con “animal painting”. Elegancia serena, acabados cuidados.</p>
+          <a href="#/catalogo" class="inline-block rounded-full bg-primary text-white px-6 py-3 shadow-soft">Ver catálogo</a>
+        </div>
       </div>
     </section>
 
-    <!-- Intro -->
+    <!-- Introducción -->
     <section class="max-w-3xl mx-auto px-4 py-10 text-center">
       <p class="text-lg opacity-80">Fondo blanco, acentos salmón pastel y tipografía elegante para la identidad de Cro and Txet.</p>
     </section>
@@ -99,11 +102,10 @@ export function renderHome(){
   `);
 
   document.querySelectorAll('[data-cat]').forEach(btn=>{
-    btn.addEventListener('click', ()=> {
-      sessionStorage.setItem('prefCat', btn.getAttribute('data-cat'));
-    });
+    btn.addEventListener('click', ()=> sessionStorage.setItem('prefCat', btn.getAttribute('data-cat')));
   });
 }
+
 
 export function renderCatalog(){
   mount(`
