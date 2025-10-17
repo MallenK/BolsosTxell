@@ -9,6 +9,7 @@ export function renderHome(){
   const values = ['Hecho a mano','Materiales sostenibles','Pedidos a medida'];
   mount(`
     <section class="max-w-6xl mx-auto px-4 pt-8 pb-16">
+      <h1>VERSIÓ 2</h1>
       <div class="grid md:grid-cols-2 gap-8 items-center">
         <div>
           <h1 class="font-serif mb-4">Bolsos de crochet con <span class="text-primary">animal painting</span></h1>
