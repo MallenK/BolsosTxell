@@ -1,31 +1,31 @@
 {
-  "nav": { "home": "Inicio", "catalog": "Catálogo", "about": "Sobre", "contact": "Contacto" },
+  "nav": { "home": "Inici", "catalog": "Catàleg", "about": "Sobre", "contact": "Contacte" },
   "hero": {
-    "title": "Crochet refinado en tonos pastel",
-    "subtitle": "Bolsos hechos a mano con “animal painting”. Elegancia serena, acabados cuidados."
+    "title": "Ganxet refinat en tons pastís",
+    "subtitle": "Bosses fetes a mà amb “animal painting”. Elegància serena i acabats cuidats."
   },
-  "intro": { "text": "Fondo blanco, acentos salmón pastel y tipografía elegante para la identidad de Cro and Txet." },
-  "cta": { "catalog": "Ver catálogo", "whatsapp": "WhatsApp", "viewCategory": "Ver {{cat}}" },
-  "gallery": { "title": "Galería" },
+  "intro": { "text": "Fons blanc, accents de salmó pastís i tipografia elegant per a la identitat de Cro and Txet." },
+  "cta": { "catalog": "Veure catàleg", "whatsapp": "WhatsApp", "viewCategory": "Veure {{cat}}" },
+  "gallery": { "title": "Galeria" },
   "instagram": {
-    "title": "Síguenos en Instagram",
+    "title": "Segueix-nos a Instagram",
     "handle": "@cro_and_txet",
     "url": "https://instagram.com/cro_and_txet",
-    "open": "Abrir Instagram"
+    "open": "Obrir Instagram"
   },
   "cats": {
-    "Barrel": { "title": "Bolsos Barrel", "copy": "Cilíndricos, capacidad y presencia." },
-    "Clutch": { "title": "Clutch", "copy": "Minimal para eventos y noche." },
-    "Frame":  { "title": "Frame",  "copy": "Cierre de marco, aire clásico." },
-    "Flap":   { "title": "Flap",   "copy": "Tapa frontal, uso diario." },
-    "BarrelWeekender": { "title": "Barrel Weekender", "copy": "Finde y escapadas ligeras." },
-    "ClutchAurora":    { "title": "Clutch Aurora",    "copy": "Color sutil, toque elegante." }
+    "Barrel": { "title": "Bosses Barrel", "copy": "Cilíndriques, capacitat i presència." },
+    "Clutch": { "title": "Clutch", "copy": "Minimal per a esdeveniments i nit." },
+    "Frame":  { "title": "Frame",  "copy": "Tancament de marc, aire clàssic." },
+    "Flap":   { "title": "Flap",   "copy": "Tapa frontal, ús diari." },
+    "BarrelWeekender": { "title": "Barrel Weekender", "copy": "Escapades lleugeres de cap de setmana." },
+    "ClutchAurora":    { "title": "Clutch Aurora",    "copy": "Color subtil, toc elegant." }
   },
   "contact": {
-    "title": "Contacto",
-    "intro": "Escríbenos y cuéntanos qué bolso te interesa. Responderemos con plazos y opciones.",
-    "form": { "name": "Nombre", "email": "Email", "phone": "Teléfono", "msg": "Mensaje", "send": "Enviar" }
+    "title": "Contacte",
+    "intro": "Escriu-nos i explica’ns quina bossa t’interessa. Respondrem amb terminis i opcions.",
+    "form": { "name": "Nom", "email": "Email", "phone": "Telèfon", "msg": "Missatge", "send": "Enviar" }
   },
-  "footer": { "copy": "Bolsos de crochet con “animal painting” hechos a mano.", "links": "Enlaces", "contact": "Contacto" },
-  "legal": { "privacy": "Política de Privacidad", "cookies": "Política de Cookies", "notice": "Aviso Legal" }
+  "footer": { "copy": "Bosses de ganxet amb “animal painting” fetes a mà.", "links": "Enllaços", "contact": "Contacte" },
+  "legal": { "privacy": "Política de Privacitat", "cookies": "Política de Cookies", "notice": "Avís Legal" }
 }
