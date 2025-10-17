@@ -21,7 +21,6 @@ function altRows(items){
     const img = p?.fotos?.[0] || './assets/img/placeholder.svg';
     const leftImg = i % 2 === 0;
     return `
-    <h1>VERSIÓ 2</h1>
       <div class="grid md:grid-cols-2 gap-6 items-center">
         ${leftImg ? `
           <div class="card overflow-hidden">
