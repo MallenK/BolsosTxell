@@ -24,7 +24,7 @@ img{ display:block; max-width:100%; height:auto }
   background:linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.30) 100%);
 }
 .hero-full .hero-content h1,
-.hero-full .hero-content p { color:#fff; }
+.hero-full .hero-content p { color:white; }
 
 .hero-full .hero-content{
   position:relative; z-index:10; color:#111827;
