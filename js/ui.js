@@ -56,7 +56,7 @@ export function renderHome(){
     <section class="hero-full pin-on-scroll">
       <img class="hero-img" src="${heroImg}" alt="Cro and Txet hero">
       <div class="overlay"></div>
-      <div class="hero-content grid place-items-center min-h-[100svh] px-4 text-center">
+      <div class="hero-content grid place-items-center min-h-[100svh] px-4 text-center" style="color: white;">
         <div class="max-w-3xl">
           <h1 class="font-serif text-5xl md:text-6xl mb-3 text-white">${t('hero.title')}</h1>
           <p class="mx-auto max-w-2xl mb-6 text-white/90">${t('hero.subtitle')}</p>
