@@ -1,16 +1,31 @@
 {
-  "nav": { "home": "Inici", "catalog": "Catàleg", "about": "Sobre", "contact": "Contacte" },
+  "nav": { "home": "Inicio", "catalog": "Catálogo", "about": "Sobre", "contact": "Contacto" },
   "hero": {
-    "title": "Bosses de ganxet amb animal painting",
-    "subtitle": "Peces úniques, tons freds pastís. Catàleg amb contacte per encàrrec."
+    "title": "Crochet refinado en tonos pastel",
+    "subtitle": "Bolsos hechos a mano con “animal painting”. Elegancia serena, acabados cuidados."
   },
-  "cta": { "catalog": "Veure catàleg", "whatsapp": "WhatsApp" },
-  "values": ["Fet a mà", "Materials sostenibles", "Comandes a mida"],
-  "home": { "new": "Novetats", "categories": "Categories" },
-  "catalog": { "title": "Catàleg", "filters": "Filtres", "price": "Preu", "order": "Ordenar", "category": "Categoria", "apply": "Aplicar" },
-  "product": { "from": "Des de", "details": "Detalls", "materials": "Materials", "size": "Mesures", "weight": "Pes", "animal": "Animal painting", "ask": "Consultar per WhatsApp", "care": "Cures" },
-  "about": { "title": "Sobre el taller", "story": "Creem bosses a mà combinant ganxet i pintura d’animals sobre teixit." },
-  "contact": { "title": "Contacte", "formTitle": "Envia’ns la teva consulta" },
-  "footer": { "copy": "Bosses de ganxet amb “animal painting” fetes a mà.", "links": "Enllaços", "contact": "Contacte" },
-  "legal": { "privacy": "Política de Privacitat", "cookies": "Política de Cookies", "notice": "Avís Legal" }
+  "intro": { "text": "Fondo blanco, acentos salmón pastel y tipografía elegante para la identidad de Cro and Txet." },
+  "cta": { "catalog": "Ver catálogo", "whatsapp": "WhatsApp", "viewCategory": "Ver {{cat}}" },
+  "gallery": { "title": "Galería" },
+  "instagram": {
+    "title": "Síguenos en Instagram",
+    "handle": "@cro_and_txet",
+    "url": "https://instagram.com/cro_and_txet",
+    "open": "Abrir Instagram"
+  },
+  "cats": {
+    "Barrel": { "title": "Bolsos Barrel", "copy": "Cilíndricos, capacidad y presencia." },
+    "Clutch": { "title": "Clutch", "copy": "Minimal para eventos y noche." },
+    "Frame":  { "title": "Frame",  "copy": "Cierre de marco, aire clásico." },
+    "Flap":   { "title": "Flap",   "copy": "Tapa frontal, uso diario." },
+    "BarrelWeekender": { "title": "Barrel Weekender", "copy": "Finde y escapadas ligeras." },
+    "ClutchAurora":    { "title": "Clutch Aurora",    "copy": "Color sutil, toque elegante." }
+  },
+  "contact": {
+    "title": "Contacto",
+    "intro": "Escríbenos y cuéntanos qué bolso te interesa. Responderemos con plazos y opciones.",
+    "form": { "name": "Nombre", "email": "Email", "phone": "Teléfono", "msg": "Mensaje", "send": "Enviar" }
+  },
+  "footer": { "copy": "Bolsos de crochet con “animal painting” hechos a mano.", "links": "Enlaces", "contact": "Contacto" },
+  "legal": { "privacy": "Política de Privacidad", "cookies": "Política de Cookies", "notice": "Aviso Legal" }
 }
