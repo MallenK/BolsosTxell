@@ -91,7 +91,7 @@ export function renderHome(){
       <div class="card p-8">
         <h3 class="font-serif text-2xl mb-2">${t('instagram.title','Síguenos en Instagram')}</h3>
         <p class="opacity-80 mb-4">${t('instagram.handle','@cro_and_txet')}</p>
-        <a class="inline-block rounded-full bg-ink text-white px-5 py-2"
+        <a class="inline-block rounded-full bg-primary text-white px-5 py-2 hover:opacity-90 transition"
            href="${t('instagram.url','https://instagram.com/cro_and_txet')}" target="_blank" rel="noopener">
            ${t('instagram.open','Abrir Instagram')}
         </a>
@@ -238,7 +238,7 @@ export function renderContact(){
       <h1 class="font-serif mb-4">${t('contact.title','Contacto')}</h1>
       <p class="opacity-80 mb-6">${t('contact.intro','Escríbenos y cuéntanos qué bolso te interesa.')}</p>
       <div class="mb-6">
-        <a class="inline-block rounded-full bg-ink text-white px-5 py-2"
+        <a class="inline-block rounded-full bg-primary text-white px-5 py-2 hover:opacity-90 transition"
            href="${t('instagram.url','https://instagram.com/cro_and_txet')}" target="_blank" rel="noopener">
            ${t('instagram.handle','@cro_and_txet')}
         </a>
