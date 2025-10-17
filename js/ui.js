@@ -6,24 +6,27 @@ function byId(id){ return document.getElementById(id); }
 function mount(html){ byId('app').innerHTML = html; window.scrollTo(0,0); }
 
 const CATS = [
-  { key: 'Barrel', title: 'Bolsos Barrel', copy: 'Cilíndricos, capacidad y presencia.', imgIdx: 0 },
-  { key: 'Clutch', title: 'Clutch', copy: 'Minimal para eventos y noche.', imgIdx: 1 },
-  { key: 'Frame',  title: 'Frame',  copy: 'Cierre de marco, aire clásico.', imgIdx: 2 },
-  { key: 'Flap',   title: 'Flap',   copy: 'Tapa frontal, uso diario.', imgIdx: 3 },
-  { key: 'Barrel', title: 'Barrel Weekender', copy: 'Finde y escapadas ligeras.', imgIdx: 4 },
-  { key: 'Clutch', title: 'Clutch Aurora', copy: 'Color sutil, toque elegante.', imgIdx: 5 }
+  { key: 'Barrel', title: 'Bolsos Barrel', copy: 'Cilíndricos, capacidad y presencia.' },
+  { key: 'Clutch', title: 'Clutch', copy: 'Minimal para eventos y noche.' },
+  { key: 'Frame',  title: 'Frame',  copy: 'Cierre de marco, aire clásico.' },
+  { key: 'Flap',   title: 'Flap',   copy: 'Tapa frontal, uso diario.' },
+  { key: 'Barrel', title: 'Barrel Weekender', copy: 'Finde y escapadas ligeras.' },
+  { key: 'Clutch', title: 'Clutch Aurora', copy: 'Color sutil, toque elegante.' }
 ];
 
+/* Sección alterna 2x3: imagen y texto con CTA a categoría */
 function altRows(items){
   return items.map((it,i)=>{
-    // producto de esa categoría para tomar imagen
     const p = store.products.find(x=>x.categoria===it.key) || store.products[i % store.products.length];
     const img = p?.fotos?.[0] || './assets/img/placeholder.svg';
     const leftImg = i % 2 === 0;
     return `
+    <h1>VERSIÓ 2</h1>
       <div class="grid md:grid-cols-2 gap-6 items-center">
         ${leftImg ? `
-          <div class="card overflow-hidden"><img class="w-full h-full object-cover aspect-4-3" src="${img}" alt="${it.title}"></div>
+          <div class="card overflow-hidden">
+            <img class="w-full h-full object-cover aspect-4-3" src="${img}" alt="${it.title}">
+          </div>
           <div>
             <h3 class="font-serif text-2xl mb-2">${it.title}</h3>
             <p class="opacity-80 mb-4">${it.copy}</p>
@@ -46,12 +49,12 @@ function altRows(items){
   }).join('');
 }
 
+/* HOME: hero full-screen + intro + 2x3 alterno + galería + Instagram */
 export function renderHome(){
-  // HERO full screen
   const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/placeholder.svg';
 
   mount(`
-    <!-- HERO pantalla completa -->
+    <!-- HERO a pantalla completa, fondo blanco, tipografía elegante -->
     <section class="relative hero-full">
       <img class="hero-img" src="${heroImg}" alt="cro_txet hero">
       <div class="overlay"></div>
@@ -62,18 +65,17 @@ export function renderHome(){
       </div>
     </section>
 
-    <!-- Intro corta -->
+    <!-- Introducción breve -->
     <section class="max-w-3xl mx-auto px-4 py-10 text-center">
-      <p class="text-lg opacity-80">Cada pieza se teje con hilo de algodón y se ilustra a mano con motivos animales.
-      Paleta fría y toques salmón pastel para un resultado sobrio y elegante.</p>
+      <p class="text-lg opacity-80">Fondo blanco, acentos salmón pastel y tipografía Cormorant Garamond para una estética limpia y elegante.</p>
     </section>
 
-    <!-- Grid 2×3 alterno -->
+    <!-- 2×3 alterno -->
     <section class="max-w-6xl mx-auto px-4 pb-12 space-y-10">
       ${altRows(CATS.slice(0,6))}
     </section>
 
-    <!-- Galería existente: 8 novedades -->
+    <!-- Galería (novedades) -->
     <section class="max-w-6xl mx-auto px-4 pb-14">
       <h2 class="font-serif text-3xl mb-4">Galería</h2>
       <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -88,7 +90,7 @@ export function renderHome(){
       </div>
     </section>
 
-    <!-- Instagram CTA -->
+    <!-- Instagram -->
     <section class="max-w-6xl mx-auto px-4 pb-16 text-center">
       <div class="card p-8">
         <h3 class="font-serif text-2xl mb-2">Síguenos en Instagram</h3>
@@ -99,7 +101,7 @@ export function renderHome(){
     </section>
   `);
 
-  // Botones de categoría → prefijan filtro y navegan
+  // Prefijar categoría al pulsar CTA
   document.querySelectorAll('[data-cat]').forEach(btn=>{
     btn.addEventListener('click', ()=> {
       sessionStorage.setItem('prefCat', btn.getAttribute('data-cat'));
@@ -107,25 +109,7 @@ export function renderHome(){
   });
 }
 
-
-  new Swiper('.hero-swiper',{
-    slidesPerView: 1,
-    loop: true,
-    autoplay: { delay: 3500, disableOnInteraction: false },
-    pagination: { el: '.swiper-pagination', clickable: true },
-    // Ajustes finos para evitar widths raros en móvil
-    watchOverflow: true,
-    centeredSlides: true,
-    spaceBetween: 0,
-    observeParents: true,
-    observer: true,
-    breakpoints: {
-      768: { centeredSlides: false }
-    }
-  });
-
-}
-
+/* CATÁLOGO (sin cambios funcionales, aplica estética nueva) */
 export function renderCatalog(){
   mount(`
     <section class="max-w-6xl mx-auto px-4 pt-8 pb-16">
@@ -148,6 +132,7 @@ export function renderCatalog(){
       </div>
     </section>
   `);
+
   const grid = document.getElementById('grid');
   let page = 1;
   const pageSize = 8;
@@ -159,12 +144,11 @@ export function renderCatalog(){
     if (slice.length >= list.length) byId('load-more').classList.add('hidden');
     attachCardEvents();
   };
+
   const pref = sessionStorage.getItem('prefCat');
-  if (pref){
-    store.filters.category = pref;
-    sessionStorage.removeItem('prefCat');
-  }
+  if (pref){ store.filters.category = pref; sessionStorage.removeItem('prefCat'); }
   byId('f-cat').value = store.filters.category;
+
   byId('f-apply').onclick = () => {
     store.filters = {
       category: byId('f-cat').value,
@@ -174,10 +158,12 @@ export function renderCatalog(){
     };
     page = 1; draw();
   };
+
   byId('load-more').onclick = () => { page++; draw(); };
   draw();
 }
 
+/* PRODUCTO (sin cambios UX relevantes) */
 export function renderProduct(hash){
   const slug = hash.split('/').pop();
   const p = store.products.find(x=>x.slug===slug);
@@ -232,6 +218,7 @@ export function renderProduct(hash){
   form?.addEventListener('submit', (e)=>{ e.preventDefault(); alert('Enviado (demo).'); });
 }
 
+/* SOBRE y CONTACTO sin cambios funcionales, mantienen estética elegante */
 export function renderAbout(){
   mount(`
     <section class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-10">
@@ -282,6 +269,7 @@ export function renderLegal(hash){
   `);
 }
 
+/* Card reutilizable para grids */
 function card(p){
   return `
   <a href="#/producto/${p.slug}" class="block card overflow-hidden hover:shadow-lg transition">
