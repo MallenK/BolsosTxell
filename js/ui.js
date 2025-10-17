@@ -5,43 +5,108 @@ import { waLink } from './whatsapp.js';
 function byId(id){ return document.getElementById(id); }
 function mount(html){ byId('app').innerHTML = html; window.scrollTo(0,0); }
 
-export function renderHome(){
-  const values = ['Hecho a mano','Materiales sostenibles','Pedidos a medida'];
-  mount(`
-    <section class="max-w-6xl mx-auto px-4 pt-8 pb-16">
-      <div class="grid md:grid-cols-2 gap-8 items-center">
-        <div>
-          <h1 class="font-serif mb-4">Bolsos de crochet con <span class="text-primary">animal painting</span></h1>
-          <p class="opacity-80 mb-6">Tonos fríos pastel. Catálogo con contacto para encargar.</p>
-          <a href="#/catalogo" class="inline-block bg-primary text-white px-5 py-3 rounded-full shadow-soft">Ver catálogo</a>
-        </div>
-        <div class="card p-2">
-          <div class="swiper hero-swiper rounded-xl2 overflow-hidden">
-            <div class="swiper-wrapper">
-              ${store.products.slice(0,3).map(p=>`
-                <div class="swiper-slide">
-                  <div class="slide-box">
-                    <img src="${p.fotos[0]}" alt="${p.nombre}" loading="eager"
-                         sizes="(min-width:1024px) 50vw, 100vw">
-                  </div>
-                </div>
-              `).join('')}
-            </div>
-            <div class="swiper-pagination"></div>
+const CATS = [
+  { key: 'Barrel', title: 'Bolsos Barrel', copy: 'Cilíndricos, capacidad y presencia.', imgIdx: 0 },
+  { key: 'Clutch', title: 'Clutch', copy: 'Minimal para eventos y noche.', imgIdx: 1 },
+  { key: 'Frame',  title: 'Frame',  copy: 'Cierre de marco, aire clásico.', imgIdx: 2 },
+  { key: 'Flap',   title: 'Flap',   copy: 'Tapa frontal, uso diario.', imgIdx: 3 },
+  { key: 'Barrel', title: 'Barrel Weekender', copy: 'Finde y escapadas ligeras.', imgIdx: 4 },
+  { key: 'Clutch', title: 'Clutch Aurora', copy: 'Color sutil, toque elegante.', imgIdx: 5 }
+];
+
+function altRows(items){
+  return items.map((it,i)=>{
+    // producto de esa categoría para tomar imagen
+    const p = store.products.find(x=>x.categoria===it.key) || store.products[i % store.products.length];
+    const img = p?.fotos?.[0] || './assets/img/placeholder.svg';
+    const leftImg = i % 2 === 0;
+    return `
+      <div class="grid md:grid-cols-2 gap-6 items-center">
+        ${leftImg ? `
+          <div class="card overflow-hidden"><img class="w-full h-full object-cover aspect-4-3" src="${img}" alt="${it.title}"></div>
+          <div>
+            <h3 class="font-serif text-2xl mb-2">${it.title}</h3>
+            <p class="opacity-80 mb-4">${it.copy}</p>
+            <a href="#/catalogo" class="inline-block px-4 py-2 rounded-full bg-primary text-white"
+               data-cat="${it.key}">Ver ${it.key}</a>
           </div>
-        </div>
+        ` : `
+          <div class="order-2 md:order-1">
+            <h3 class="font-serif text-2xl mb-2">${it.title}</h3>
+            <p class="opacity-80 mb-4">${it.copy}</p>
+            <a href="#/catalogo" class="inline-block px-4 py-2 rounded-full bg-primary text-white"
+               data-cat="${it.key}">Ver ${it.key}</a>
+          </div>
+          <div class="order-1 md:order-2 card overflow-hidden">
+            <img class="w-full h-full object-cover aspect-4-3" src="${img}" alt="${it.title}">
+          </div>
+        `}
       </div>
+    `;
+  }).join('');
+}
 
-      <ul class="mt-8 flex flex-wrap gap-3">
-        ${values.map(v=>`<li class="chip">${v}</li>`).join('')}
-      </ul>
+export function renderHome(){
+  // HERO full screen
+  const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/placeholder.svg';
 
-      <h2 class="font-serif mt-10 mb-4">Novedades</h2>
+  mount(`
+    <!-- HERO pantalla completa -->
+    <section class="relative hero-full">
+      <img class="hero-img" src="${heroImg}" alt="cro_txet hero">
+      <div class="overlay"></div>
+      <div class="relative z-10 text-center px-4">
+        <h1 class="font-serif text-5xl md:text-6xl mb-3">Crochet refinado en tonos pastel</h1>
+        <p class="mx-auto max-w-2xl opacity-90 mb-6">Bolsos hechos a mano con “animal painting”. Elegancia serena, acabados cuidados.</p>
+        <a href="#/catalogo" class="inline-block rounded-full bg-primary text-white px-6 py-3 shadow-soft">Ver catálogo</a>
+      </div>
+    </section>
+
+    <!-- Intro corta -->
+    <section class="max-w-3xl mx-auto px-4 py-10 text-center">
+      <p class="text-lg opacity-80">Cada pieza se teje con hilo de algodón y se ilustra a mano con motivos animales.
+      Paleta fría y toques salmón pastel para un resultado sobrio y elegante.</p>
+    </section>
+
+    <!-- Grid 2×3 alterno -->
+    <section class="max-w-6xl mx-auto px-4 pb-12 space-y-10">
+      ${altRows(CATS.slice(0,6))}
+    </section>
+
+    <!-- Galería existente: 8 novedades -->
+    <section class="max-w-6xl mx-auto px-4 pb-14">
+      <h2 class="font-serif text-3xl mb-4">Galería</h2>
       <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        ${store.products.slice(0,8).map(card).join('')}
+        ${store.products.slice(0,8).map(p=>`
+          <a href="#/producto/${p.slug}" class="block card overflow-hidden hover:shadow-lg">
+            <img class="w-full h-full object-cover aspect-4-3" src="${p.fotos[0]}" alt="${p.nombre}">
+            <div class="p-3">
+              <h3 class="font-semibold">${p.nombre}</h3>
+              <p class="text-sm opacity-70">€${p.precioDesde}</p>
+            </div>
+          </a>`).join('')}
+      </div>
+    </section>
+
+    <!-- Instagram CTA -->
+    <section class="max-w-6xl mx-auto px-4 pb-16 text-center">
+      <div class="card p-8">
+        <h3 class="font-serif text-2xl mb-2">Síguenos en Instagram</h3>
+        <p class="opacity-80 mb-4">@cro_txet</p>
+        <a class="inline-block rounded-full bg-ink text-white px-5 py-2"
+           href="https://instagram.com/cro_txet" target="_blank" rel="noopener">Abrir Instagram</a>
       </div>
     </section>
   `);
+
+  // Botones de categoría → prefijan filtro y navegan
+  document.querySelectorAll('[data-cat]').forEach(btn=>{
+    btn.addEventListener('click', ()=> {
+      sessionStorage.setItem('prefCat', btn.getAttribute('data-cat'));
+    });
+  });
+}
+
 
   new Swiper('.hero-swiper',{
     slidesPerView: 1,
@@ -94,6 +159,12 @@ export function renderCatalog(){
     if (slice.length >= list.length) byId('load-more').classList.add('hidden');
     attachCardEvents();
   };
+  const pref = sessionStorage.getItem('prefCat');
+  if (pref){
+    store.filters.category = pref;
+    sessionStorage.removeItem('prefCat');
+  }
+  byId('f-cat').value = store.filters.category;
   byId('f-apply').onclick = () => {
     store.filters = {
       category: byId('f-cat').value,
