@@ -8,13 +8,21 @@ img{ display:block; max-width:100%; height:auto }
 .aspect-4-3{ aspect-ratio:4/3 }
 .object-cover{ object-fit:cover }
 
-/* HERO pantalla completa, sin desbordes en móvil */
-.hero-full{ min-height:100vh; display:grid; place-items:center; overflow:hidden }
-.hero-full .hero-img{ width:100%; height:100%; object-fit:cover }
-.hero-full .overlay{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.0), rgba(255,255,255,.55) 70%, #fff 100%) }
-
-/* Swiper hero estable en móvil */
-.hero-swiper{ width:100%; overflow:hidden }
-.hero-swiper .swiper-slide{ width:100% !important; }
-.hero-swiper .slide-box{ width:100%; aspect-ratio:16/9; max-height:min(82vh,720px); }
-@media (max-width:480px){ .hero-swiper .slide-box{ aspect-ratio:3/4; max-height:min(78vh,560px); } }
+/* HERO pantalla completa fijo + overlay */
+.hero-full{ position:relative; min-height:100svh; overflow:hidden; background:#000 }
+.hero-full .hero-img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none;
+}
+.hero-full .overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.35) 40%, rgba(255,255,255,.6) 100%);
+}
+.hero-full .hero-content{
+  position:relative; z-index:10; color:#111827;
+}
+.hero-full .hero-content h1,
+.hero-full .hero-content p{ color:#111827 }
+@media (prefers-color-scheme: dark){
+  .hero-full .hero-content h1,
+  .hero-full .hero-content p{ color:#111827 }
+}
