@@ -63,8 +63,8 @@ export function renderHome(){
       <div class="overlay"></div>
       <div class="hero-content grid place-items-center min-h-[100svh] px-4 text-center">
         <div class="max-w-3xl">
-          <h1 class="font-serif text-5xl md:text-6xl mb-3">Crochet refinado en tonos pastel</h1>
-          <p class="mx-auto max-w-2xl opacity-90 mb-6">Bolsos hechos a mano con “animal painting”. Elegancia serena, acabados cuidados.</p>
+          <h1 class="font-serif text-5xl md:text-6xl mb-3 text-white">Crochet refinado en tonos pastel</h1>
+          <p class="mx-auto max-w-2xl mb-6 text-white/90">Bolsos hechos a mano con “animal painting”. Elegancia serena, acabados cuidados.</p>
           <a href="#/catalogo" class="inline-block rounded-full bg-primary text-white px-6 py-3 shadow-soft">Ver catálogo</a>
         </div>
       </div>
