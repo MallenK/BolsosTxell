@@ -41,14 +41,24 @@ function initUX(){
     function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
   }
+  if (window.gsap && window.ScrollTrigger){
+    gsap.registerPlugin(ScrollTrigger);
+    document.querySelectorAll('.pin-on-scroll').forEach(el=>{
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top top',
+        end: '+=150%',   // duración del pin; ajusta si quieres más/menos “fijo”
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1
+      });
+    });
+    // Recalcular en cambios de orientación
+    window.addEventListener('orientationchange', ()=> setTimeout(()=> ScrollTrigger.refresh(), 300));
+  }
   if (window.lucide?.createIcons) window.lucide.createIcons();
-  window.addEventListener('orientationchange', () => {
-    setTimeout(()=> document.querySelectorAll('.hero-swiper')?.forEach(el=>{
-      el.swiper?.update();
-    }), 250);
-  });
-
 }
+
 
 (async function boot(){
   await loadData();
