@@ -16,37 +16,42 @@ const CATS = [
 ];
 
 function altRows(items){
-  return items.map((it,i)=>{
-    const p = store.products.find(x=>x.categoria===it.key) || store.products[i % store.products.length];
+  return items.slice(0,6).map((it,i)=>{
+    const p   = store.products.find(x=>x.categoria===it.key) || store.products[i % store.products.length];
     const img = p?.fotos?.[0] || './assets/img/placeholder.svg';
     const leftImg = i % 2 === 0;
+
+    const ImageBlock = `
+      <div class="overflow-hidden w-full h-full">
+        <img
+          src="${img}"
+          alt="${it.title}"
+          class="block w-full h-full object-cover md:aspect-4-3"
+          loading="lazy"
+          sizes="(min-width:1024px) 45vw, 100vw">
+      </div>`;
+
+    const TextBlock = `
+      <div class="w-full h-full flex items-center justify-center text-center md:aspect-4-3">
+        <div class="px-4">
+          <h3 class="font-serif text-2xl mb-2">${it.title}</h3>
+          <p class="opacity-80 mb-4">${it.copy}</p>
+          <a href="#/catalogo"
+             class="inline-block px-4 py-2 rounded-full bg-primary text-white"
+             data-cat="${it.key}">Ver ${it.key}</a>
+        </div>
+      </div>`;
+
     return `
-      <div class="grid md:grid-cols-2 gap-6 items-center">
-        ${leftImg ? `
-          <div class="card overflow-hidden">
-            <img class="w-full h-full object-cover aspect-4-3" src="${img}" alt="${it.title}">
-          </div>
-          <div>
-            <h3 class="font-serif text-2xl mb-2">${it.title}</h3>
-            <p class="opacity-80 mb-4">${it.copy}</p>
-            <a href="#/catalogo" class="inline-block px-4 py-2 rounded-full bg-primary text-white"
-               data-cat="${it.key}">Ver ${it.key}</a>
-          </div>
-        ` : `
-          <div class="order-2 md:order-1">
-            <h3 class="font-serif text-2xl mb-2">${it.title}</h3>
-            <p class="opacity-80 mb-4">${it.copy}</p>
-            <a href="#/catalogo" class="inline-block px-4 py-2 rounded-full bg-primary text-white"
-               data-cat="${it.key}">Ver ${it.key}</a>
-          </div>
-          <div class="order-1 md:order-2 card overflow-hidden">
-            <img class="w-full h-full object-cover aspect-4-3" src="${img}" alt="${it.title}">
-          </div>
-        `}
-      </div>
-    `;
+      <div class="grid md:grid-cols-2 gap-0 items-stretch">
+        ${leftImg
+          ? `${ImageBlock}${TextBlock}`
+          : `<div class="order-2 md:order-1">${TextBlock}</div>
+             <div class="order-1 md:order-2">${ImageBlock}</div>`}
+      </div>`;
   }).join('');
 }
+
 
 export function renderHome(){
   const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/placeholder.svg';
@@ -110,7 +115,7 @@ export function renderHome(){
 export function renderCatalog(){
   mount(`
     <section class="max-w-6xl mx-auto px-4 pt-8 pb-16">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
         <h1 class="font-serif text-3xl">Catálogo</h1>
         <div class="flex flex-wrap items-center gap-2">
           <select id="f-cat" class="chip">
