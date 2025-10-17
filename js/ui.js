@@ -22,7 +22,7 @@ function altRows(items){
     const leftImg = i % 2 === 0;
 
     const ImageBlock = `
-      <div class="overflow-hidden w-full h-full">
+      <div class="overflow-hidden w-full h-full" style="border-radius: 10px;">
         <img
           src="${img}"
           alt="${it.title}"
@@ -43,7 +43,7 @@ function altRows(items){
       </div>`;
 
     return `
-      <div class="grid md:grid-cols-2 gap-0 items-stretch">
+      <div class="grid md:grid-cols-2 gap-0 items-stretch" style="margin-top: 0px;">
         ${leftImg
           ? `${ImageBlock}${TextBlock}`
           : `<div class="order-2 md:order-1">${TextBlock}</div>
