@@ -8,6 +8,11 @@ img{ display:block; max-width:100%; height:auto }
 .aspect-4-3{ aspect-ratio:4/3 }
 .object-cover{ object-fit:cover }
 
+/* /assets/css/base.css */
+.btn-primary{ background:theme(colors.primary); color:#fff }
+.btn-primary:focus{ outline:2px solid rgba(0,0,0,.1); outline-offset:2px }
+
+
 /* HERO pantalla completa fijo + overlay */
 .hero-full{ position:relative; min-height:100svh; overflow:hidden; background:#000 }
 .hero-full .hero-img{
