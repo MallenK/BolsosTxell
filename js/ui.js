@@ -14,7 +14,6 @@ const CATS = [
   { key: 'Clutch', title: 'Clutch Aurora', copy: 'Color sutil, toque elegante.' }
 ];
 
-/* Sección alterna 2x3: imagen y texto con CTA a categoría */
 function altRows(items){
   return items.map((it,i)=>{
     const p = store.products.find(x=>x.categoria===it.key) || store.products[i % store.products.length];
@@ -48,14 +47,13 @@ function altRows(items){
   }).join('');
 }
 
-/* HOME: hero full-screen + intro + 2x3 alterno + galería + Instagram */
 export function renderHome(){
   const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/placeholder.svg';
 
   mount(`
-    <!-- HERO a pantalla completa, fondo blanco, tipografía elegante -->
+    <!-- HERO pantalla completa -->
     <section class="relative hero-full">
-      <img class="hero-img" src="${heroImg}" alt="cro_txet hero">
+      <img class="hero-img" src="${heroImg}" alt="Cro and Txet hero">
       <div class="overlay"></div>
       <div class="relative z-10 text-center px-4">
         <h1 class="font-serif text-5xl md:text-6xl mb-3">Crochet refinado en tonos pastel</h1>
@@ -64,9 +62,9 @@ export function renderHome(){
       </div>
     </section>
 
-    <!-- Introducción breve -->
+    <!-- Intro -->
     <section class="max-w-3xl mx-auto px-4 py-10 text-center">
-      <p class="text-lg opacity-80">Fondo blanco, acentos salmón pastel y tipografía Cormorant Garamond para una estética limpia y elegante.</p>
+      <p class="text-lg opacity-80">Fondo blanco, acentos salmón pastel y tipografía elegante para la identidad de Cro and Txet.</p>
     </section>
 
     <!-- 2×3 alterno -->
@@ -74,7 +72,7 @@ export function renderHome(){
       ${altRows(CATS.slice(0,6))}
     </section>
 
-    <!-- Galería (novedades) -->
+    <!-- Galería -->
     <section class="max-w-6xl mx-auto px-4 pb-14">
       <h2 class="font-serif text-3xl mb-4">Galería</h2>
       <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -93,14 +91,13 @@ export function renderHome(){
     <section class="max-w-6xl mx-auto px-4 pb-16 text-center">
       <div class="card p-8">
         <h3 class="font-serif text-2xl mb-2">Síguenos en Instagram</h3>
-        <p class="opacity-80 mb-4">@cro_txet</p>
+        <p class="opacity-80 mb-4">@cro_and_txet</p>
         <a class="inline-block rounded-full bg-ink text-white px-5 py-2"
-           href="https://instagram.com/cro_txet" target="_blank" rel="noopener">Abrir Instagram</a>
+           href="https://instagram.com/cro_and_txet" target="_blank" rel="noopener">Abrir Instagram</a>
       </div>
     </section>
   `);
 
-  // Prefijar categoría al pulsar CTA
   document.querySelectorAll('[data-cat]').forEach(btn=>{
     btn.addEventListener('click', ()=> {
       sessionStorage.setItem('prefCat', btn.getAttribute('data-cat'));
@@ -108,7 +105,6 @@ export function renderHome(){
   });
 }
 
-/* CATÁLOGO (sin cambios funcionales, aplica estética nueva) */
 export function renderCatalog(){
   mount(`
     <section class="max-w-6xl mx-auto px-4 pt-8 pb-16">
@@ -162,7 +158,6 @@ export function renderCatalog(){
   draw();
 }
 
-/* PRODUCTO (sin cambios UX relevantes) */
 export function renderProduct(hash){
   const slug = hash.split('/').pop();
   const p = store.products.find(x=>x.slug===slug);
@@ -217,12 +212,11 @@ export function renderProduct(hash){
   form?.addEventListener('submit', (e)=>{ e.preventDefault(); alert('Enviado (demo).'); });
 }
 
-/* SOBRE y CONTACTO sin cambios funcionales, mantienen estética elegante */
 export function renderAbout(){
   mount(`
     <section class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-10">
       <div>
-        <h1 class="font-serif mb-4">Sobre el taller</h1>
+        <h1 class="font-serif mb-4">Sobre Cro and Txet</h1>
         <p class="opacity-80">Creamos bolsos a mano combinando crochet y pintura de animales. Producción por encargo, materiales sostenibles y acabados cuidados.</p>
         <ul class="mt-6 space-y-2">
           <li class="chip">Algodón reciclado</li>
@@ -232,7 +226,7 @@ export function renderAbout(){
       </div>
       <div class="card p-2">
         <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop"
-             alt="Taller" class="w-full h-full object-cover aspect-4-3" sizes="(min-width:1024px) 50vw, 100vw" />
+             alt="Taller Cro and Txet" class="w-full h-full object-cover aspect-4-3" sizes="(min-width:1024px) 50vw, 100vw" />
       </div>
     </section>
   `);
@@ -263,12 +257,11 @@ export function renderLegal(hash){
   mount(`
     <section class="max-w-3xl mx-auto px-4 py-12">
       <h1 class="font-serif mb-4">${page?.toUpperCase()}</h1>
-      <p class="opacity-80">Texto legal de ejemplo para ${page}.</p>
+      <p class="opacity-80">Texto legal de ejemplo para Cro and Txet — ${page}.</p>
     </section>
   `);
 }
 
-/* Card reutilizable para grids */
 function card(p){
   return `
   <a href="#/producto/${p.slug}" class="block card overflow-hidden hover:shadow-lg transition">
