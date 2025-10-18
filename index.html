@@ -5,36 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>cro_txet — Bolsos hechos a mano</title>
 
-  <!-- Tipografías -->
+  <!-- Tipografías elegantes -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- Tailwind (CDN) -->
+  <!-- Tailwind (config nueva) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            primary: '#7AA7FF',
-            accent: '#9EE0FF',
-            mint: '#B9F2E5',
-            lavender: '#C8C4FF',
-            ink: '#0F172A',
-            bg: '#F6F9FF'
+            primary: '#F7A8A0',   /* salmón pastel */
+            primarySoft: '#FDD5CF',
+            accent: '#FFE9E6',
+            ink: '#111827',
+            bg: '#FFFFFF'
           },
           fontFamily: {
-            sans: ['Poppins', 'system-ui', 'sans-serif'],
-            serif: ['Playfair Display', 'serif']
+            serif: ['Playfair Display','serif'],
+            sans: ['Inter','system-ui','sans-serif']
           },
-          boxShadow: {
-            soft: '0 10px 30px rgba(16,24,40,.08)'
-          },
+          boxShadow: { soft: '0 10px 30px rgba(17,24,39,.08)' },
           borderRadius: { xl2: '1rem' }
         }
       }
     };
   </script>
+
 
   <!-- Shoelace (Web Components) -->
   <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace.js"></script>

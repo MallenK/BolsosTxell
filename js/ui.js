@@ -1,12 +1,57 @@
 import { store } from './store.js';
 import { applyFilters } from './filters.js';
 import { waLink } from './whatsapp.js';
+import { t } from './i18n.js';
 
 function byId(id){ return document.getElementById(id); }
 function mount(html){ byId('app').innerHTML = html; window.scrollTo(0,0); }
 
+// CATS ahora se localiza desde copy.* (títulos y textos)
+const CATS = [
+  { k: 'Barrel' },
+  { k: 'Clutch' },
+  { k: 'Frame' },
+  { k: 'Flap' },
+  { k: 'BarrelWeekender' },
+  { k: 'ClutchAurora' }
+];
+
+function altRows(items){
+  return items.slice(0,6).map((it,i)=>{
+    const p   = store.products.find(x=>x.categoria=== (it.k.includes('Barrel')?'Barrel':it.k.includes('Clutch')?'Clutch':it.k.includes('Frame')?'Frame':'Flap'))
+             || store.products[i % store.products.length];
+    const img = p?.fotos?.[0] || './assets/img/placeholder.svg';
+    const title = t(`cats.${it.k}.title`, it.k);
+    const copy  = t(`cats.${it.k}.copy`, '');
+    const leftImg = i % 2 === 0;
+
+    const ImageBlock = `
+      <div class="overflow-hidden w-full h-full">
+        <img src="${img}" alt="${title}" class="block w-full h-full object-cover md:aspect-4-3" loading="lazy"
+             sizes="(min-width:1024px) 45vw, 100vw">
+      </div>`;
+
+    const TextBlock = `
+      <div class="w-full h-full flex items-center justify-center text-center md:aspect-4-3">
+        <div class="px-4">
+          <h3 class="font-serif text-2xl mb-2">${title}</h3>
+          <p class="opacity-80 mb-4">${copy}</p>
+          <a href="#/catalogo" class="inline-block px-4 py-2 rounded-full bg-primary text-white" data-cat="${it.k}">
+            ${t('cta.viewCategory','Ver {{cat}}').replace('{{cat}}', title)}
+          </a>
+        </div>
+      </div>`;
+
+    return `
+      <div class="grid md:grid-cols-2 gap-0 items-stretch">
+        ${leftImg ? `${ImageBlock}${TextBlock}`
+                  : `<div class="order-2 md:order-1">${TextBlock}</div><div class="order-1 md:order-2">${ImageBlock}</div>`}
+      </div>`;
+  }).join('');
+}
+
 export function renderHome(){
-  const values = ['Hecho a mano','Materiales sostenibles','Pedidos a medida'];
+  const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/placeholder.svg';
   mount(`
     <section class="max-w-6xl mx-auto px-4 pt-8 pb-16">
       <h1>VERSIÓ 2</h1>
@@ -32,40 +77,52 @@ export function renderHome(){
           </div>
         </div>
       </div>
+    </section>
 
-      <ul class="mt-8 flex flex-wrap gap-3">
-        ${values.map(v=>`<li class="chip">${v}</li>`).join('')}
-      </ul>
+    <section class="max-w-3xl mx-auto px-4 py-10 text-center">
+      <p class="text-lg opacity-80">${t('intro.text')}</p>
+    </section>
 
-      <h2 class="font-serif mt-10 mb-4">Novedades</h2>
+    <section class="max-w-6xl mx-auto px-4 pb-12 space-y-10">
+      ${altRows(CATS)}
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 pb-14">
+      <h2 class="font-serif text-3xl mb-4">${t('gallery.title','Galería')}</h2>
       <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        ${store.products.slice(0,8).map(card).join('')}
+        ${store.products.slice(0,8).map(p=>`
+          <a href="#/producto/${p.slug}" class="block card overflow-hidden hover:shadow-lg">
+            <img class="w-full h-full object-cover aspect-4-3" src="${p.fotos[0]}" alt="${p.nombre}">
+            <div class="p-3">
+              <h3 class="font-semibold">${p.nombre}</h3>
+              <p class="text-sm opacity-70">€${p.precioDesde}</p>
+            </div>
+          </a>`).join('')}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 pb-16 text-center">
+      <div class="card p-8">
+        <h3 class="font-serif text-2xl mb-2">${t('instagram.title','Síguenos en Instagram')}</h3>
+        <p class="opacity-80 mb-4">${t('instagram.handle','@cro_and_txet')}</p>
+        <a class="inline-block rounded-full bg-primary text-white px-5 py-2 hover:opacity-90 transition"
+           href="${t('instagram.url','https://instagram.com/cro_and_txet')}" target="_blank" rel="noopener">
+           ${t('instagram.open','Abrir Instagram')}
+        </a>
       </div>
     </section>
   `);
 
-  new Swiper('.hero-swiper',{
-    slidesPerView: 1,
-    loop: true,
-    autoplay: { delay: 3500, disableOnInteraction: false },
-    pagination: { el: '.swiper-pagination', clickable: true },
-    // Ajustes finos para evitar widths raros en móvil
-    watchOverflow: true,
-    centeredSlides: true,
-    spaceBetween: 0,
-    observeParents: true,
-    observer: true,
-    breakpoints: {
-      768: { centeredSlides: false }
-    }
+  document.querySelectorAll('[data-cat]').forEach(btn=>{
+    btn.addEventListener('click', ()=> sessionStorage.setItem('prefCat', btn.getAttribute('data-cat')));
   });
-
 }
+
 
 export function renderCatalog(){
   mount(`
     <section class="max-w-6xl mx-auto px-4 pt-8 pb-16">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
         <h1 class="font-serif text-3xl">Catálogo</h1>
         <div class="flex flex-wrap items-center gap-2">
           <select id="f-cat" class="chip">
@@ -84,6 +141,7 @@ export function renderCatalog(){
       </div>
     </section>
   `);
+
   const grid = document.getElementById('grid');
   let page = 1;
   const pageSize = 8;
@@ -95,6 +153,11 @@ export function renderCatalog(){
     if (slice.length >= list.length) byId('load-more').classList.add('hidden');
     attachCardEvents();
   };
+
+  const pref = sessionStorage.getItem('prefCat');
+  if (pref){ store.filters.category = pref; sessionStorage.removeItem('prefCat'); }
+  byId('f-cat').value = store.filters.category;
+
   byId('f-apply').onclick = () => {
     store.filters = {
       category: byId('f-cat').value,
@@ -104,6 +167,7 @@ export function renderCatalog(){
     };
     page = 1; draw();
   };
+
   byId('load-more').onclick = () => { page++; draw(); };
   draw();
 }
@@ -166,7 +230,7 @@ export function renderAbout(){
   mount(`
     <section class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-10">
       <div>
-        <h1 class="font-serif mb-4">Sobre el taller</h1>
+        <h1 class="font-serif mb-4">Sobre Cro and Txet</h1>
         <p class="opacity-80">Creamos bolsos a mano combinando crochet y pintura de animales. Producción por encargo, materiales sostenibles y acabados cuidados.</p>
         <ul class="mt-6 space-y-2">
           <li class="chip">Algodón reciclado</li>
@@ -176,7 +240,7 @@ export function renderAbout(){
       </div>
       <div class="card p-2">
         <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop"
-             alt="Taller" class="w-full h-full object-cover aspect-4-3" sizes="(min-width:1024px) 50vw, 100vw" />
+             alt="Taller Cro and Txet" class="w-full h-full object-cover aspect-4-3" sizes="(min-width:1024px) 50vw, 100vw" />
       </div>
     </section>
   `);
@@ -184,15 +248,22 @@ export function renderAbout(){
 
 export function renderContact(){
   mount(`
-    <section class="max-w-2xl mx-auto px-4 py-12">
-      <h1 class="font-serif mb-6">Contacto</h1>
-      <form class="card p-5 space-y-4">
-        <sl-input required placeholder="Nombre"></sl-input>
-        <sl-input required type="email" placeholder="Email"></sl-input>
-        <sl-input placeholder="Teléfono"></sl-input>
-        <sl-textarea placeholder="Mensaje"></sl-textarea>
-        <div class="flex items-center gap-3 flex-wrap">
-          <sl-button variant="primary">Enviar</sl-button>
+    <section class="max-w-2xl mx-auto px-4 py-12 text-center">
+      <h1 class="font-serif mb-4">${t('contact.title','Contacto')}</h1>
+      <p class="opacity-80 mb-6">${t('contact.intro','Escríbenos y cuéntanos qué bolso te interesa.')}</p>
+      <div class="mb-6">
+        <a class="inline-block rounded-full bg-primary text-white px-5 py-2 hover:opacity-90 transition"
+           href="${t('instagram.url','https://instagram.com/cro_and_txet')}" target="_blank" rel="noopener">
+           ${t('instagram.handle','@cro_and_txet')}
+        </a>
+      </div>
+      <form class="card p-5 space-y-4 text-left">
+        <sl-input required placeholder="${t('contact.form.name','Nombre')}"></sl-input>
+        <sl-input required type="email" placeholder="${t('contact.form.email','Email')}"></sl-input>
+        <sl-input placeholder="${t('contact.form.phone','Teléfono')}"></sl-input>
+        <sl-textarea placeholder="${t('contact.form.msg','Mensaje')}"></sl-textarea>
+        <div class="flex items-center gap-3 flex-wrap justify-center">
+          <sl-button variant="primary">${t('contact.form.send','Enviar')}</sl-button>
           <a href="#" id="wa-btn" class="inline-block rounded-full bg-primary text-white px-4 py-2">WhatsApp</a>
         </div>
       </form>
@@ -207,7 +278,7 @@ export function renderLegal(hash){
   mount(`
     <section class="max-w-3xl mx-auto px-4 py-12">
       <h1 class="font-serif mb-4">${page?.toUpperCase()}</h1>
-      <p class="opacity-80">Texto legal de ejemplo para ${page}.</p>
+      <p class="opacity-80">Texto legal de ejemplo para Cro and Txet — ${page}.</p>
     </section>
   `);
 }

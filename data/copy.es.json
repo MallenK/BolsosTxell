@@ -1,16 +1,31 @@
 {
   "nav": { "home": "Inicio", "catalog": "Catálogo", "about": "Sobre", "contact": "Contacto" },
   "hero": {
-    "title": "Bolsos de crochet con animal painting",
-    "subtitle": "Piezas únicas, tonos fríos pastel. Catálogo con contacto para pedido."
+    "title": "Crochet refinado en tonos pastel",
+    "subtitle": "Bolsos hechos a mano con “animal painting”. Elegancia serena, acabados cuidados."
   },
-  "cta": { "catalog": "Ver catálogo", "whatsapp": "WhatsApp" },
-  "values": ["Hecho a mano", "Materiales sostenibles", "Pedidos a medida"],
-  "home": { "new": "Novedades", "categories": "Categorías" },
-  "catalog": { "title": "Catálogo", "filters": "Filtros", "price": "Precio", "order": "Ordenar", "category": "Categoría", "apply": "Aplicar" },
-  "product": { "from": "Desde", "details": "Detalles", "materials": "Materiales", "size": "Medidas", "weight": "Peso", "animal": "Animal painting", "ask": "Consultar por WhatsApp", "care": "Cuidados" },
-  "about": { "title": "Sobre el taller", "story": "Creamos bolsos a mano combinando crochet y pintura de animales sobre tejido." },
-  "contact": { "title": "Contacto", "formTitle": "Envíanos tu consulta" },
+  "intro": { "text": "Fondo blanco, acentos salmón pastel y tipografía elegante para la identidad de Cro and Txet." },
+  "cta": { "catalog": "Ver catálogo", "whatsapp": "WhatsApp", "viewCategory": "Ver {{cat}}" },
+  "gallery": { "title": "Galería" },
+  "instagram": {
+    "title": "Síguenos en Instagram",
+    "handle": "@cro_and_txet",
+    "url": "https://instagram.com/cro_and_txet",
+    "open": "Abrir Instagram"
+  },
+  "cats": {
+    "Barrel": { "title": "Bolsos Barrel", "copy": "Cilíndricos, capacidad y presencia." },
+    "Clutch": { "title": "Clutch", "copy": "Minimal para eventos y noche." },
+    "Frame":  { "title": "Frame",  "copy": "Cierre de marco, aire clásico." },
+    "Flap":   { "title": "Flap",   "copy": "Tapa frontal, uso diario." },
+    "BarrelWeekender": { "title": "Barrel Weekender", "copy": "Finde y escapadas ligeras." },
+    "ClutchAurora":    { "title": "Clutch Aurora",    "copy": "Color sutil, toque elegante." }
+  },
+  "contact": {
+    "title": "Contacto",
+    "intro": "Escríbenos y cuéntanos qué bolso te interesa. Responderemos con plazos y opciones.",
+    "form": { "name": "Nombre", "email": "Email", "phone": "Teléfono", "msg": "Mensaje", "send": "Enviar" }
+  },
   "footer": { "copy": "Bolsos de crochet con “animal painting” hechos a mano.", "links": "Enlaces", "contact": "Contacto" },
   "legal": { "privacy": "Política de Privacidad", "cookies": "Política de Cookies", "notice": "Aviso Legal" }
 }

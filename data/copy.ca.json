@@ -1,16 +1,31 @@
 {
   "nav": { "home": "Inici", "catalog": "Catàleg", "about": "Sobre", "contact": "Contacte" },
   "hero": {
-    "title": "Bosses de ganxet amb animal painting",
-    "subtitle": "Peces úniques, tons freds pastís. Catàleg amb contacte per encàrrec."
+    "title": "Ganxet refinat en tons pastís",
+    "subtitle": "Bosses fetes a mà amb “animal painting”. Elegància serena i acabats cuidats."
   },
-  "cta": { "catalog": "Veure catàleg", "whatsapp": "WhatsApp" },
-  "values": ["Fet a mà", "Materials sostenibles", "Comandes a mida"],
-  "home": { "new": "Novetats", "categories": "Categories" },
-  "catalog": { "title": "Catàleg", "filters": "Filtres", "price": "Preu", "order": "Ordenar", "category": "Categoria", "apply": "Aplicar" },
-  "product": { "from": "Des de", "details": "Detalls", "materials": "Materials", "size": "Mesures", "weight": "Pes", "animal": "Animal painting", "ask": "Consultar per WhatsApp", "care": "Cures" },
-  "about": { "title": "Sobre el taller", "story": "Creem bosses a mà combinant ganxet i pintura d’animals sobre teixit." },
-  "contact": { "title": "Contacte", "formTitle": "Envia’ns la teva consulta" },
+  "intro": { "text": "Fons blanc, accents de salmó pastís i tipografia elegant per a la identitat de Cro and Txet." },
+  "cta": { "catalog": "Veure catàleg", "whatsapp": "WhatsApp", "viewCategory": "Veure {{cat}}" },
+  "gallery": { "title": "Galeria" },
+  "instagram": {
+    "title": "Segueix-nos a Instagram",
+    "handle": "@cro_and_txet",
+    "url": "https://instagram.com/cro_and_txet",
+    "open": "Obrir Instagram"
+  },
+  "cats": {
+    "Barrel": { "title": "Bosses Barrel", "copy": "Cilíndriques, capacitat i presència." },
+    "Clutch": { "title": "Clutch", "copy": "Minimal per a esdeveniments i nit." },
+    "Frame":  { "title": "Frame",  "copy": "Tancament de marc, aire clàssic." },
+    "Flap":   { "title": "Flap",   "copy": "Tapa frontal, ús diari." },
+    "BarrelWeekender": { "title": "Barrel Weekender", "copy": "Escapades lleugeres de cap de setmana." },
+    "ClutchAurora":    { "title": "Clutch Aurora",    "copy": "Color subtil, toc elegant." }
+  },
+  "contact": {
+    "title": "Contacte",
+    "intro": "Escriu-nos i explica’ns quina bossa t’interessa. Respondrem amb terminis i opcions.",
+    "form": { "name": "Nom", "email": "Email", "phone": "Telèfon", "msg": "Missatge", "send": "Enviar" }
+  },
   "footer": { "copy": "Bosses de ganxet amb “animal painting” fetes a mà.", "links": "Enllaços", "contact": "Contacte" },
   "legal": { "privacy": "Política de Privacitat", "cookies": "Política de Cookies", "notice": "Avís Legal" }
 }
