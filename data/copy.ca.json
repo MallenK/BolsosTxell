@@ -4,7 +4,9 @@
     "title": "Ganxet refinat en tons pastís",
     "subtitle": "Bosses fetes a mà amb “animal painting”. Elegància serena i acabats cuidats."
   },
-  "intro": { "text": "Fons blanc, accents de salmó pastís i tipografia elegant per a la identitat de Cro and Txet." },
+  "intro": {
+    "text": "A Cro & Txet dissenyem i confeccionem bosses de ganxet fetes a mà, peça a peça, combinant tècniques tèxtils amb il·lustració “animal painting”. Treballem sota comanda perquè cada peça sigui única: pots personalitzar colors, mides, tipus d’ansa i detalls d’acabat. Prioritzem materials de qualitat i una producció responsable. Explora el catàleg, inspira’t amb els models disponibles i encarrega la teva bossa perquè s’adapti al teu estil i al teu dia a dia."
+  },
   "cta": { "catalog": "Veure catàleg", "whatsapp": "WhatsApp", "viewCategory": "Veure {{cat}}" },
   "gallery": { "title": "Galeria" },
   "instagram": {
