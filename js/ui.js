@@ -86,7 +86,7 @@ export function renderHome(){
     <section class="max-w-6xl mx-auto px-4 pb-28">
       <h2 class="font-serif text-3xl mb-6">${t('gallery.title','Galería')}</h2>
       <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        ${store.products.slice(0,8).map(p=>`
+        ${store.products.slice(0,6).map(p=>`
           <a href="#/producto/${p.slug}" class="block card overflow-hidden hover:shadow-lg transition">
             <img class="w-full h-full object-cover aspect-4-3" src="${p.fotos[0]}" alt="${p.nombre}">
             <div class="p-3">
