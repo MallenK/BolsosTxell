@@ -54,7 +54,7 @@ export function renderHome(){
   const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/placeholder.svg';
   mount(`
     <section class="max-w-6xl mx-auto px-4 pt-16 pb-24">
-      <h1 class="text-white">VERSIÓ 2</h1>
+      <h1 class="text-white">VERSIÓ 3</h1>
       <div class="grid md:grid-cols-2 gap-10 items-center">
         <div class="text-white">
           <h1 class="font-serif mb-4 text-white">Bolsos de crochet con <span class="text-primary">animal painting</span></h1>
