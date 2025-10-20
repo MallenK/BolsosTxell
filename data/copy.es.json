@@ -4,7 +4,9 @@
     "title": "Crochet refinado en tonos pastel",
     "subtitle": "Bolsos hechos a mano con “animal painting”. Elegancia serena, acabados cuidados."
   },
-  "intro": { "text": "Fondo blanco, acentos salmón pastel y tipografía elegante para la identidad de Cro and Txet." },
+  "intro": {
+    "text": "En Cro & Txet diseñamos y confeccionamos bolsos de croché hechos a mano, pieza a pieza, combinando técnicas textiles con ilustración “animal painting”. Trabajamos por encargo para que cada pieza sea única: puedes personalizar colores, tamaños, tipo de asa y detalles de acabado. Priorizamos materiales de calidad y una producción responsable. Explora el catálogo, inspírate con los modelos disponibles y encarga el tuyo para que encaje con tu estilo y tu día a día."
+  },
   "cta": { "catalog": "Ver catálogo", "whatsapp": "WhatsApp", "viewCategory": "Ver {{cat}}" },
   "gallery": { "title": "Galería" },
   "instagram": {
