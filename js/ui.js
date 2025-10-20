@@ -53,28 +53,17 @@ function altRows(items){
 export function renderHome(){
   const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/placeholder.svg';
   mount(`
-    <section class="max-w-6xl mx-auto px-4 pt-16 pb-24">
-      <h1 class="text-white">VERSIÓ 3</h1>
-      <div class="grid md:grid-cols-2 gap-10 items-center">
-        <div class="text-white">
-          <h1 class="font-serif mb-4 text-white">Bolsos de crochet con <span class="text-primary">animal painting</span></h1>
-          <p class="mb-6 text-white">Tonos fríos pastel. Catálogo con contacto para encargar.</p>
-          <a href="#/catalogo" class="inline-block bg-primary text-white px-5 py-3 rounded-full shadow-soft">Ver catálogo</a>
-        </div>
-        <div class="card p-2">
-          <div class="swiper hero-swiper rounded-xl2 overflow-hidden">
-            <div class="swiper-wrapper">
-              ${store.products.slice(0,3).map(p=>`
-                <div class="swiper-slide">
-                  <div class="slide-box">
-                    <img src="${p.fotos[0]}" alt="${p.nombre}" loading="eager"
-                         sizes="(min-width:1024px) 50vw, 100vw">
-                  </div>
-                </div>
-              `).join('')}
-            </div>
-            <div class="swiper-pagination"></div>
-          </div>
+    <section class="hero-full pin-on-scroll">
+      <img class="hero-img" src="${heroImg}" alt="Cro and Txet hero">
+      <div class="overlay"></div>
+      <div class="hero-content grid place-items-center min-h-[100svh] px-4 text-center">
+        <div class="max-w-3xl">
+          <h1 class="text-white">VERSIÓ 3</h1>
+          <h2 class="font-serif text-5xl md:text-6xl mb-3 text-white">${t('hero.title')}</h2>
+          <p class="mx-auto max-w-2xl mb-6 text-white">${t('hero.subtitle')}</p>
+          <a href="#/catalogo" class="inline-block rounded-full bg-primary text-white px-6 py-3 shadow-soft">
+            ${t('cta.catalog')}
+          </a>
         </div>
       </div>
     </section>
@@ -115,6 +104,7 @@ export function renderHome(){
     btn.addEventListener('click', ()=> sessionStorage.setItem('prefCat', btn.getAttribute('data-cat')));
   });
 }
+
 
 export function renderCatalog(){
   mount(`
