@@ -33,9 +33,9 @@ function altRows(items){
 
     const TextBlock = `
       <div class="w-full h-full flex items-center justify-center text-center md:aspect-4-3">
-        <div class="px-4">
-          <h3 class="font-serif text-2xl mb-2">${title}</h3>
-          <p class="opacity-80 mb-4">${copy}</p>
+        <div class="px-4 text-white">
+          <h3 class="font-serif text-2xl mb-2 text-white">${title}</h3>
+          <p class="mb-4 text-white">${copy}</p>
           <a href="#/catalogo" class="inline-block px-4 py-2 rounded-full bg-primary text-white" data-cat="${it.k}">
             ${t('cta.viewCategory','Ver {{cat}}').replace('{{cat}}', title)}
           </a>
@@ -53,12 +53,12 @@ function altRows(items){
 export function renderHome(){
   const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/placeholder.svg';
   mount(`
-    <section class="max-w-6xl mx-auto px-4 pt-8 pb-16">
-      <h1>VERSIÓ 2</h1>
-      <div class="grid md:grid-cols-2 gap-8 items-center">
-        <div>
-          <h1 class="font-serif mb-4">Bolsos de crochet con <span class="text-primary">animal painting</span></h1>
-          <p class="opacity-80 mb-6">Tonos fríos pastel. Catálogo con contacto para encargar.</p>
+    <section class="max-w-6xl mx-auto px-4 pt-16 pb-24">
+      <h1 class="text-white">VERSIÓ 2</h1>
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="text-white">
+          <h1 class="font-serif mb-4 text-white">Bolsos de crochet con <span class="text-primary">animal painting</span></h1>
+          <p class="mb-6 text-white">Tonos fríos pastel. Catálogo con contacto para encargar.</p>
           <a href="#/catalogo" class="inline-block bg-primary text-white px-5 py-3 rounded-full shadow-soft">Ver catálogo</a>
         </div>
         <div class="card p-2">
@@ -79,33 +79,31 @@ export function renderHome(){
       </div>
     </section>
 
-    <section class="max-w-3xl mx-auto px-4 py-10 text-center">
-      <p class="text-lg opacity-80">${t('intro.text')}</p>
-    </section>
+    <!-- Sección intro eliminada a petición -->
 
-    <section class="max-w-6xl mx-auto px-4 pb-12 space-y-10">
+    <section class="max-w-6xl mx-auto px-4 pb-24 space-y-16">
       ${altRows(CATS)}
     </section>
 
-    <section class="max-w-6xl mx-auto px-4 pb-14">
-      <h2 class="font-serif text-3xl mb-4">${t('gallery.title','Galería')}</h2>
-      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <section class="max-w-6xl mx-auto px-4 pb-24">
+      <h2 class="font-serif text-3xl mb-6 text-white">${t('gallery.title','Galería')}</h2>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         ${store.products.slice(0,8).map(p=>`
           <a href="#/producto/${p.slug}" class="block card overflow-hidden hover:shadow-lg">
             <img class="w-full h-full object-cover aspect-4-3" src="${p.fotos[0]}" alt="${p.nombre}">
-            <div class="p-3">
-              <h3 class="font-semibold">${p.nombre}</h3>
-              <p class="text-sm opacity-70">€${p.precioDesde}</p>
+            <div class="p-3 text-white">
+              <h3 class="font-semibold text-white">${p.nombre}</h3>
+              <p class="text-sm text-white">€${p.precioDesde}</p>
             </div>
           </a>`).join('')}
       </div>
     </section>
 
-    <section class="max-w-6xl mx-auto px-4 pb-16 text-center">
-      <div class="card p-8">
-        <h3 class="font-serif text-2xl mb-2">${t('instagram.title','Síguenos en Instagram')}</h3>
-        <p class="opacity-80 mb-4">${t('instagram.handle','@cro_and_txet')}</p>
-        <a class="inline-block rounded-full bg-primary text-white px-5 py-2 hover:opacity-90 transition"
+    <section class="max-w-6xl mx-auto px-4 pb-24 text-center">
+      <div class="card p-10">
+        <h3 class="font-serif text-2xl mb-2 text-white">${t('instagram.title','Síguenos en Instagram')}</h3>
+        <p class="mb-4 text-white">${t('instagram.handle','@cro_and_txet')}</p>
+        <a class="inline-block rounded-full bg-primary text-white px-5 py-2"
            href="${t('instagram.url','https://instagram.com/cro_and_txet')}" target="_blank" rel="noopener">
            ${t('instagram.open','Abrir Instagram')}
         </a>
@@ -117,7 +115,6 @@ export function renderHome(){
     btn.addEventListener('click', ()=> sessionStorage.setItem('prefCat', btn.getAttribute('data-cat')));
   });
 }
-
 
 export function renderCatalog(){
   mount(`
@@ -190,7 +187,7 @@ export function renderProduct(hash){
       </div>
       <div>
         <h1 class="font-serif text-3xl mb-2">${p.nombre}</h1>
-        <p class="text-lg mb-4"><span class="opacity-70">Desde</span> <strong>€${p.precioDesde}</strong></p>
+        <p class="text-lg mb-4"><span>Desde</span> <strong>€${p.precioDesde}</strong></p>
         <p class="mb-3"><strong>Categoría:</strong> ${p.categoria}</p>
         <p class="mb-3"><strong>Animal painting:</strong> ${p.animal}</p>
         <p class="mb-3"><strong>Materiales:</strong> ${p.materiales.join(', ')}</p>
@@ -231,7 +228,7 @@ export function renderAbout(){
     <section class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-10">
       <div>
         <h1 class="font-serif mb-4">Sobre Cro and Txet</h1>
-        <p class="opacity-80">Creamos bolsos a mano combinando crochet y pintura de animales. Producción por encargo, materiales sostenibles y acabados cuidados.</p>
+        <p>Creamos bolsos a mano combinando crochet y pintura de animales. Producción por encargo, materiales sostenibles y acabados cuidados.</p>
         <ul class="mt-6 space-y-2">
           <li class="chip">Algodón reciclado</li>
           <li class="chip">Pintura textil</li>
@@ -250,9 +247,9 @@ export function renderContact(){
   mount(`
     <section class="max-w-2xl mx-auto px-4 py-12 text-center">
       <h1 class="font-serif mb-4">${t('contact.title','Contacto')}</h1>
-      <p class="opacity-80 mb-6">${t('contact.intro','Escríbenos y cuéntanos qué bolso te interesa.')}</p>
+      <p class="mb-6">${t('contact.intro','Escríbenos y cuéntanos qué bolso te interesa.')}</p>
       <div class="mb-6">
-        <a class="inline-block rounded-full bg-primary text-white px-5 py-2 hover:opacity-90 transition"
+        <a class="inline-block rounded-full bg-primary text-white px-5 py-2"
            href="${t('instagram.url','https://instagram.com/cro_and_txet')}" target="_blank" rel="noopener">
            ${t('instagram.handle','@cro_and_txet')}
         </a>
@@ -278,7 +275,7 @@ export function renderLegal(hash){
   mount(`
     <section class="max-w-3xl mx-auto px-4 py-12">
       <h1 class="font-serif mb-4">${page?.toUpperCase()}</h1>
-      <p class="opacity-80">Texto legal de ejemplo para Cro and Txet — ${page}.</p>
+      <p>Texto legal de ejemplo para Cro and Txet — ${page}.</p>
     </section>
   `);
 }
@@ -293,7 +290,7 @@ function card(p){
     </div>
     <div class="p-3">
       <h3 class="font-semibold">${p.nombre}</h3>
-      <p class="text-sm opacity-70">€${p.precioDesde}</p>
+      <p class="text-sm">€${p.precioDesde}</p>
       <div class="mt-2 flex gap-2 flex-wrap">
         ${p.colores.slice(0,3).map(c=>`<span class="chip">${c}</span>`).join('')}
       </div>
