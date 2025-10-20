@@ -78,7 +78,7 @@ export function renderHome(){
     </section>
 
     <!-- Categorías con más separación inferior -->
-    <section class="max-w-6xl mx-auto px-4 pb-28 space-y-16">
+    <section class="max-w-6xl mx-auto px-4 pb-28 space-y-16 w-75">
       ${altRows(CATS)}
     </section>
 
