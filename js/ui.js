@@ -33,7 +33,7 @@ function altRows(items){
 
     const TextBlock = `
       <div class="w-full h-full flex items-center justify-center text-center md:aspect-4-3">
-        <div class="px-4 text-white">
+        <div class="px-4">
           <h3 class="font-serif text-2xl mb-2 text-white">${title}</h3>
           <p class="mb-4 text-white">${copy}</p>
           <a href="#/catalogo" class="inline-block px-4 py-2 rounded-full bg-primary text-white" data-cat="${it.k}">
