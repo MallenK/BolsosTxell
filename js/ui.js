@@ -31,11 +31,12 @@ function altRows(items){
              sizes="(min-width:1024px) 45vw, 100vw">
       </div>`;
 
+    // NOTA: textos en negro (sin text-white)
     const TextBlock = `
       <div class="w-full h-full flex items-center justify-center text-center md:aspect-4-3">
         <div class="px-4">
-          <h3 class="font-serif text-2xl mb-2 text-white">${title}</h3>
-          <p class="mb-4 text-white">${copy}</p>
+          <h3 class="font-serif text-2xl mb-2">${title}</h3>
+          <p class="mb-4">${copy}</p>
           <a href="#/catalogo" class="inline-block px-4 py-2 rounded-full bg-primary text-white" data-cat="${it.k}">
             ${t('cta.viewCategory','Ver {{cat}}').replace('{{cat}}', title)}
           </a>
@@ -53,7 +54,7 @@ function altRows(items){
 export function renderHome(){
   const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/placeholder.svg';
   mount(`
-    <!-- HERO a pantalla completa con texto blanco superpuesto -->
+    <!-- HERO a pantalla completa: SOLO aquí el texto va en blanco -->
     <section class="hero-full pin-on-scroll">
       <img class="hero-img" src="${heroImg}" alt="Cro and Txet hero">
       <div class="overlay"></div>
@@ -69,22 +70,24 @@ export function renderHome(){
       </div>
     </section>
 
-    <!-- Nuevo: texto de presentación en negro -->
-    <section class="max-w-3xl mx-auto px-4 pt-12 pb-16 text-center">
-      <p>${t('intro.text','Creamos bolsos a mano con crochet y “animal painting”. Descubre el catálogo y encarga el tuyo.')}</p>
+    <!-- Presentación: textos en negro y más aire -->
+    <section class="max-w-3xl mx-auto px-4 pt-16 pb-20 text-center">
+      <p>
+        ${t('intro.text', 'En Cro & Txet diseñamos y confeccionamos bolsos de croché hechos a mano, pieza a pieza, combinando técnicas textiles con ilustración “animal painting”. Trabajamos por encargo para que cada bolso sea único: puedes elegir colores, tamaño, tipo de asa y detalles de acabado. Nuestro enfoque es artesanal, con materiales de calidad y producción responsable. Descubre nuestra colección, inspírate con los modelos disponibles y personaliza el tuyo para que encaje con tu estilo y tu día a día.')}
+      </p>
     </section>
 
-    <!-- Categorías -->
-    <section class="max-w-6xl mx-auto px-4 pb-24 space-y-16">
+    <!-- Categorías con más separación inferior -->
+    <section class="max-w-6xl mx-auto px-4 pb-28 space-y-16">
       ${altRows(CATS)}
     </section>
 
     <!-- Galería -->
-    <section class="max-w-6xl mx-auto px-4 pb-24">
+    <section class="max-w-6xl mx-auto px-4 pb-28">
       <h2 class="font-serif text-3xl mb-6">${t('gallery.title','Galería')}</h2>
       <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         ${store.products.slice(0,8).map(p=>`
-          <a href="#/producto/${p.slug}" class="block card overflow-hidden hover:shadow-lg">
+          <a href="#/producto/${p.slug}" class="block card overflow-hidden hover:shadow-lg transition">
             <img class="w-full h-full object-cover aspect-4-3" src="${p.fotos[0]}" alt="${p.nombre}">
             <div class="p-3">
               <h3 class="font-semibold">${p.nombre}</h3>
@@ -95,7 +98,7 @@ export function renderHome(){
     </section>
 
     <!-- Instagram -->
-    <section class="max-w-6xl mx-auto px-4 pb-24 text-center">
+    <section class="max-w-6xl mx-auto px-4 pb-28 text-center">
       <div class="card p-10">
         <h3 class="font-serif text-2xl mb-2">${t('instagram.title','Síguenos en Instagram')}</h3>
         <p class="mb-4">${t('instagram.handle','@cro_and_txet')}</p>
@@ -111,8 +114,6 @@ export function renderHome(){
     btn.addEventListener('click', ()=> sessionStorage.setItem('prefCat', btn.getAttribute('data-cat')));
   });
 }
-
-
 
 export function renderCatalog(){
   mount(`
@@ -209,7 +210,7 @@ export function renderProduct(hash){
       <form class="space-y-3" id="contact-form">
         <sl-input name="name" placeholder="Nombre"></sl-input>
         <sl-input name="email" type="email" placeholder="Email"></sl-input>
-        <sl-textarea name="msg" placeholder="Mensaje"></sl-textarea>
+        <sl-textarea name="msg" placeholder="Mensaje"></sltextarea>
         <sl-button type="primary" submit>Enviar</sl-button>
       </form>
     </sl-dialog>
