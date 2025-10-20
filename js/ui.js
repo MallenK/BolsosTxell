@@ -55,20 +55,7 @@ export function renderHome(){
   const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/placeholder.svg';
   mount(`
     <!-- HERO a pantalla completa: SOLO aquí el texto va en blanco -->
-    <section class="hero-full pin-on-scroll">
-      <img class="hero-img" src="${heroImg}" alt="Cro and Txet hero">
-      <div class="overlay"></div>
-      <div class="hero-content grid place-items-center min-h-[100svh] px-4 text-center">
-        <div class="max-w-3xl">
-          <h1 class="text-white">VERSIÓ 3</h1>
-          <h2 class="font-serif text-5xl md:text-6xl mb-3 text-white">${t('hero.title')}</h2>
-          <p class="mx-auto max-w-2xl mb-6 text-white">${t('hero.subtitle')}</p>
-          <a href="#/catalogo" class="inline-block rounded-full bg-primary text-white px-6 py-3 shadow-soft">
-            ${t('cta.catalog')}
-          </a>
-        </div>
-      </div>
-    </section>
+
 
     <!-- Presentación: textos en negro y más aire -->
     <section class="max-w-3xl mx-auto px-4 pt-16 pb-20 text-center">
