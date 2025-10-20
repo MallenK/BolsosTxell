@@ -1,8 +1,10 @@
 :root{ --card-bg: rgba(255,255,255,0.8); --glass: blur(8px) saturate(120%); }
 body{ background:#FFFFFF; color:#111827; font-family:Inter,system-ui,sans-serif; }
 h1,h2,h3{ font-family:"Cormorant Garamond",serif; letter-spacing:.2px; }
-.card{ background:var(--card-bg); backdrop-filter:var(--glass); -webkit-backdrop-filter:var(--glass);
-  border:1px solid rgba(17,24,39,.06); border-radius:14px; box-shadow:0 10px 30px rgba(17,24,39,.06); }
+.card{
+  background:var(--card-bg); backdrop-filter:var(--glass); -webkit-backdrop-filter:var(--glass);
+  border:1px solid rgba(17,24,39,.06); border-radius:14px; box-shadow:0 10px 30px rgba(17,24,39,.06);
+}
 .chip{ font-size:.875rem; padding:.35rem .7rem; border:1px solid rgba(0,0,0,.08); border-radius:999px; background:#fff }
 img{ display:block; max-width:100%; height:auto }
 .aspect-4-3{ aspect-ratio:4/3 }
@@ -12,26 +14,19 @@ img{ display:block; max-width:100%; height:auto }
 .btn-primary{ background:theme(colors.primary); color:#fff }
 .btn-primary:focus{ outline:2px solid rgba(0,0,0,.1); outline-offset:2px }
 
-
 /* HERO pantalla completa fijo + overlay */
 .hero-full{ position:relative; min-height:100svh; overflow:hidden; background:#000 }
 .hero-full .hero-img{
   position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none;
 }
-/* Hero: texto blanco y overlay más oscuro para contraste */
+/* Overlay más oscuro para contraste */
 .hero-full .overlay{
   position:absolute; inset:0;
   background:linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.30) 100%);
 }
+/* Texto del hero siempre blanco, sin opacidades */
+.hero-full .hero-content{ position:relative; z-index:10; color:#fff; }
 .hero-full .hero-content h1,
-.hero-full .hero-content p { color:white; }
+.hero-full .hero-content p { color:#fff; }
 
-.hero-full .hero-content{
-  position:relative; z-index:10; color:#111827;
-}
-.hero-full .hero-content h1,
-.hero-full .hero-content p{ color:#111827 }
-@media (prefers-color-scheme: dark){
-  .hero-full .hero-content h1,
-  .hero-full .hero-content p{ color:#111827 }
-}
+/* Elimina reglas previas que forzaban #111827 en hero */
