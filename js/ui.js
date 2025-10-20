@@ -53,28 +53,14 @@ function altRows(items){
 export function renderHome(){
   const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/placeholder.svg';
   mount(`
-    <section class="max-w-6xl mx-auto px-4 pt-8 pb-16">
-      <h1>VERSIÓ 2</h1>
-      <div class="grid md:grid-cols-2 gap-8 items-center">
-        <div>
-          <h1 class="font-serif mb-4">Bolsos de crochet con <span class="text-primary">animal painting</span></h1>
-          <p class="opacity-80 mb-6">Tonos fríos pastel. Catálogo con contacto para encargar.</p>
-          <a href="#/catalogo" class="inline-block bg-primary text-white px-5 py-3 rounded-full shadow-soft">Ver catálogo</a>
-        </div>
-        <div class="card p-2">
-          <div class="swiper hero-swiper rounded-xl2 overflow-hidden">
-            <div class="swiper-wrapper">
-              ${store.products.slice(0,3).map(p=>`
-                <div class="swiper-slide">
-                  <div class="slide-box">
-                    <img src="${p.fotos[0]}" alt="${p.nombre}" loading="eager"
-                         sizes="(min-width:1024px) 50vw, 100vw">
-                  </div>
-                </div>
-              `).join('')}
-            </div>
-            <div class="swiper-pagination"></div>
-          </div>
+    <section class="hero-full pin-on-scroll">
+      <img class="hero-img" src="${heroImg}" alt="Cro and Txet hero">
+      <div class="overlay"></div>
+      <div class="hero-content grid place-items-center min-h-[100svh] px-4 text-center">
+        <div class="max-w-3xl">
+          <h1 class="font-serif text-5xl md:text-6xl mb-3 text-white">${t('hero.title')}</h1>
+          <p class="mx-auto max-w-2xl mb-6 text-white/90">${t('hero.subtitle')}</p>
+          <a href="#/catalogo" class="inline-block rounded-full bg-primary text-white px-6 py-3 shadow-soft">${t('cta.catalog')}</a>
         </div>
       </div>
     </section>
@@ -105,7 +91,7 @@ export function renderHome(){
       <div class="card p-8">
         <h3 class="font-serif text-2xl mb-2">${t('instagram.title','Síguenos en Instagram')}</h3>
         <p class="opacity-80 mb-4">${t('instagram.handle','@cro_and_txet')}</p>
-        <a class="inline-block rounded-full bg-primary text-white px-5 py-2 hover:opacity-90 transition"
+        <a class="inline-block rounded-full bg-ink text-white px-5 py-2"
            href="${t('instagram.url','https://instagram.com/cro_and_txet')}" target="_blank" rel="noopener">
            ${t('instagram.open','Abrir Instagram')}
         </a>
@@ -117,7 +103,6 @@ export function renderHome(){
     btn.addEventListener('click', ()=> sessionStorage.setItem('prefCat', btn.getAttribute('data-cat')));
   });
 }
-
 
 export function renderCatalog(){
   mount(`
