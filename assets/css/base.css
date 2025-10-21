@@ -67,6 +67,11 @@ h3{ font-size:clamp(1.4rem, 2vw, 1.8rem) }
   padding-inline: 25%;
 }
 
+/* ===== Sección Galería ===== */
+.section-gallery {
+  padding-inline: 25%;
+}
+
 
 /* ===== Tarjetas / chips ===== */
 .card{
@@ -136,6 +141,11 @@ img{ display:block; max-width:100%; height:auto }
 
   .section-catalog {
     padding-inline: 2rem;
+  }
+
+  /* ===== Sección Galería ===== */
+  .section-gallery {
+    padding-inline: 25%;
   }
 }
 
