@@ -70,37 +70,36 @@ export function renderHome(){
       </div>
     </section>
 
-    <!-- Presentación: tipografía elegante y contenido ampliado -->
+    <!-- Presentació del projecte -->
     <section class="intro max-w-3xl mx-auto px-4 pt-20 pb-24 text-center w-75-desktop">
-      <h2 class="intro-title text-4xl md:text-5xl mb-4 font-script">Cro & Txet, bolsos de croché a medida</h2>
+      <h2 class="intro-title text-4xl md:text-5xl mb-4 font-script">
+        ${t('intro.title')}
+      </h2>
     
       <p class="lead mx-auto max-w-2xl">
-        Diseñamos y confeccionamos bolsos de <strong>croché</strong> de manera artesanal, pieza a pieza.
-        Cada pedido es único: puedes <strong>personalizar</strong> colores, tamaño, tipo de asa y remates.
-        Trabajamos con <strong>materiales de calidad</strong> y un proceso responsable para lograr
-        una pieza que acompañe tu día a día con elegancia serena.
+        ${t('intro.lead')}
       </p>
     
       <div class="grid md:grid-cols-3 gap-6 mt-10 text-left">
         <div class="card p-5">
-          <h3 class="font-script text-2xl mb-2">Hecho a mano</h3>
-          <p>Acabados cuidados y control de cada puntada para un resultado duradero.</p>
+          <h3 class="font-script text-2xl mb-2">${t('intro.points.handmade.title')}</h3>
+          <p>${t('intro.points.handmade.copy')}</p>
         </div>
         <div class="card p-5">
-          <h3 class="font-script text-2xl mb-2">100% personalizable</h3>
-          <p>Elige paleta, medidas y detalles. Tu bolso, tu estilo.</p>
+          <h3 class="font-script text-2xl mb-2">${t('intro.points.custom.title')}</h3>
+          <p>${t('intro.points.custom.copy')}</p>
         </div>
         <div class="card p-5">
-          <h3 class="font-script text-2xl mb-2">Materiales responsables</h3>
-          <p>Fibras seleccionadas y pintura textil para nuestro “animal painting”.</p>
+          <h3 class="font-script text-2xl mb-2">${t('intro.points.materials.title')}</h3>
+          <p>${t('intro.points.materials.copy')}</p>
         </div>
       </div>
     
       <p class="mt-10 mx-auto max-w-2xl">
-        Explora el catálogo para inspirarte y <strong>encarga el tuyo</strong>. Si necesitas asesoría,
-        te guiamos en la elección de combinaciones y proporciones ideales.
+        ${t('intro.closing')}
       </p>
     </section>
+
 
 
     <!-- Categorías con más separación inferior -->
