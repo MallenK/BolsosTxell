@@ -123,11 +123,11 @@ export function renderHome(){
 
     <!-- Galería -->
     <section class="section-gallery pb-28">
-      <h2 class="font-serif text-3xl mb-6">${t('gallery.title','Galería')}</h2>
-      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <h2 class="sr-only">${t('gallery.title','Galería')}</h2>
+      <div class="gallery-grid grid grid-cols-1 md:grid-cols-3 gap-8">
         ${store.products.slice(0,6).map(p=>`
-          <a href="#/producto/${p.slug}" class="block card overflow-hidden hover:shadow-lg transition">
-            <img class="w-full h-full object-cover aspect-4-3" src="${p.fotos[0]}" alt="${p.nombre}">
+          <a href="#/producto/${p.slug}" class="gallery-card block card overflow-hidden hover:shadow-lg transition">
+            <img class="img-zoom w-full h-full object-cover aspect-4-3" src="${p.fotos[0]}" alt="${p.nombre}">
             <div class="p-3">
               <h3 class="font-semibold">${p.nombre}</h3>
               <p class="text-sm">€${p.precioDesde}</p>
@@ -135,6 +135,7 @@ export function renderHome(){
           </a>`).join('')}
       </div>
     </section>
+
   `);
 
   document.querySelectorAll('[data-cat]').forEach(btn=>{
