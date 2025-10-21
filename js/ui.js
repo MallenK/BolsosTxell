@@ -141,9 +141,11 @@ export function renderHome(){
   });
 }
 
+
+
 export function renderCatalog(){
   mount(`
-    <section class="max-w-6xl mx-auto px-4 pt-8 pb-16">
+    <section class="section-catalog pt-8 pb-16">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
         <h1 class="font-serif text-3xl">Catálogo</h1>
         <div class="flex flex-wrap items-center gap-2">
@@ -157,27 +159,27 @@ export function renderCatalog(){
           <button id="f-apply" class="chip bg-primary text-white">Aplicar</button>
         </div>
       </div>
-      <div id="grid" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
-      <div class="text-center mt-8">
-        <button id="load-more" class="px-4 py-2 rounded-full border">Load more</button>
-      </div>
+
+      <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </section>
   `);
 
   const grid = document.getElementById('grid');
+  const pageSize = 9; // 3x3 visibles
   let page = 1;
-  const pageSize = 8;
 
   const draw = () => {
     const list = applyFilters(structuredClone(store.products));
-    const slice = list.slice(0, page*pageSize);
+    const slice = list.slice(0, page * pageSize);
     grid.innerHTML = slice.map(card).join('');
-    if (slice.length >= list.length) byId('load-more').classList.add('hidden');
     attachCardEvents();
   };
 
   const pref = sessionStorage.getItem('prefCat');
-  if (pref){ store.filters.category = pref; sessionStorage.removeItem('prefCat'); }
+  if (pref){
+    store.filters.category = pref;
+    sessionStorage.removeItem('prefCat');
+  }
   byId('f-cat').value = store.filters.category;
 
   byId('f-apply').onclick = () => {
@@ -187,12 +189,13 @@ export function renderCatalog(){
       max: Number(byId('f-max').value || 150),
       q: (byId('f-q').value || '').toLowerCase()
     };
-    page = 1; draw();
+    page = 1;
+    draw();
   };
 
-  byId('load-more').onclick = () => { page++; draw(); };
   draw();
 }
+
 
 export function renderProduct(hash){
   const slug = hash.split('/').pop();
