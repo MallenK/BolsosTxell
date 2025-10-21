@@ -120,6 +120,35 @@ img{ display:block; max-width:100%; height:auto }
   *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important }
 }
 
+
+
+
+/* Sección producto con padding 25% en desktop */
+.section-product{ padding-inline:2rem; }
+@media (min-width:1024px){ .section-product{ padding-inline:25%; } }
+
+/* Columna derecha fija en desktop */
+.sticky-desktop{ position:static; top:auto; }
+@media (min-width:1024px){ .sticky-desktop{ position:sticky; top:6rem; } }
+
+/* Especificaciones limpias */
+.specs{ display:grid; gap:.5rem; }
+.specs dt{ font-weight:600; }
+.specs dd{ margin:0 }
+
+/* Miniaturas elegantes */
+.thumbs img{ display:block; width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:10px; }
+.btn-thumb{ padding:0; border:0; background:transparent; cursor:pointer; outline-offset:2px }
+.btn-thumb.is-active img{ outline:2px solid rgba(0,0,0,.2) }
+
+/* Precio con aire */
+.price strong{ font-size:1.15em }
+
+
+
+
+
+
 /* ===== Breakpoints ===== */
 
 /* >= 640px (tablet pequeño) */
