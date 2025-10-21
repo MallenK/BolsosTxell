@@ -109,9 +109,9 @@ export function renderHome(){
 
 
     <!-- Galería -->
-    <section class="max-w-6xl mx-auto px-4 pb-28">
+    <section class="section-gallery pb-28">
       <h2 class="font-serif text-3xl mb-6">${t('gallery.title','Galería')}</h2>
-      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
         ${store.products.slice(0,6).map(p=>`
           <a href="#/producto/${p.slug}" class="block card overflow-hidden hover:shadow-lg transition">
             <img class="w-full h-full object-cover aspect-4-3" src="${p.fotos[0]}" alt="${p.nombre}">
@@ -122,6 +122,7 @@ export function renderHome(){
           </a>`).join('')}
       </div>
     </section>
+
 
     <!-- Instagram -->
     <section class="max-w-6xl mx-auto px-4 pb-28 text-center">
@@ -147,7 +148,6 @@ export function renderCatalog(){
   mount(`
     <section class="section-catalog pt-8 pb-16">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-        <h1 class="font-serif text-3xl">Catálogo</h1>
         <div class="flex flex-wrap items-center gap-2">
           <select id="f-cat" class="chip">
             <option value="all">Todas</option>
