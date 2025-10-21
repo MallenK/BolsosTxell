@@ -205,35 +205,47 @@ export function renderCatalog(){
 export function renderProduct(hash){
   const slug = hash.split('/').pop();
   const p = store.products.find(x=>x.slug===slug);
-  if(!p){ mount(`<section class="max-w-6xl mx-auto px-4 py-16"><p>No encontrado.</p></section>`); return; }
+  if(!p){ mount(`<section class="section-product pt-12 pb-24"><p>No encontrado.</p></section>`); return; }
 
+  const mainId = 'product-main';
   mount(`
-    <section class="max-w-6xl mx-auto px-4 pt-8 pb-16 grid md:grid-cols-2 gap-10">
-      <div class="card p-2">
-        <div id="gallery" class="rounded-xl2 overflow-hidden">
+    <section class="section-product pt-12 pb-24 grid md:grid-cols-[1.1fr_0.9fr] gap-12">
+      <!-- Galería -->
+      <div>
+        <a href="${p.fotos[0]}" id="lg-entry" class="block aspect-4-3 overflow-hidden rounded-[14px]">
+          <img id="${mainId}" src="${p.fotos[0]}" alt="${p.nombre}" class="w-full h-full object-cover">
+        </a>
+        <div class="thumbs grid grid-cols-4 gap-3 mt-4">
           ${p.fotos.map((src,i)=>`
-            <a href="${src}" class="block aspect-4-3">
-              <img src="${src}" alt="${p.nombre} ${i+1}" class="w-full h-full object-cover"
-                   sizes="(min-width:1024px) 50vw, 100vw">
-            </a>`).join('')}
+            <button class="thumb btn-thumb ${i===0?'is-active':''}" data-src="${src}" aria-label="Foto ${i+1}">
+              <img src="${src}" alt="${p.nombre} ${i+1}">
+            </button>`).join('')}
         </div>
       </div>
-      <div>
-        <h1 class="font-serif text-3xl mb-2">${p.nombre}</h1>
-        <p class="text-lg mb-4"><span>Desde</span> <strong>€${p.precioDesde}</strong></p>
-        <p class="mb-3"><strong>Categoría:</strong> ${p.categoria}</p>
-        <p class="mb-3"><strong>Animal painting:</strong> ${p.animal}</p>
-        <p class="mb-3"><strong>Materiales:</strong> ${p.materiales.join(', ')}</p>
-        <p class="mb-3"><strong>Medidas:</strong> ${p.medidas.ancho}×${p.medidas.alto}×${p.medidas.fondo} cm — <strong>Peso:</strong> ${p.peso} g</p>
+
+      <!-- Detalles -->
+      <div class="sticky-desktop">
+        <h1 class="text-3xl mb-2">${p.nombre}</h1>
+        <div class="price text-lg mb-5"><span>Desde</span> <strong>€${p.precioDesde}</strong></div>
+
+        <dl class="specs mb-5">
+          <div><dt>Categoría</dt><dd>${p.categoria}</dd></div>
+          <div><dt>Animal painting</dt><dd>${p.animal}</dd></div>
+          <div><dt>Materiales</dt><dd>${p.materiales.join(', ')}</dd></div>
+          <div><dt>Medidas</dt><dd>${p.medidas.ancho}×${p.medidas.alto}×${p.medidas.fondo} cm</dd></div>
+          <div><dt>Peso</dt><dd>${p.peso} g</dd></div>
+        </dl>
+
         <div class="flex gap-2 mb-6 flex-wrap">
           ${p.colores.map(c=>`<span class="chip">${c}</span>`).join('')}
         </div>
-        <div class="flex gap-3 flex-wrap">
-          <a href="${waLink(p.nombre)}" class="rounded-full bg-primary text-white px-4 py-2">WhatsApp</a>
+
+        <div class="flex gap-3 flex-wrap mb-10">
+          <a href="${waLink(p.nombre)}" class="btn-primary px-5 py-2 rounded-full">WhatsApp</a>
           <sl-button variant="default" onclick="document.querySelector('#contact-sheet').show()">Enviar consulta</sl-button>
         </div>
 
-        <h3 class="font-serif text-xl mt-10 mb-3">Relacionados</h3>
+        <h3 class="text-xl mb-3">Relacionados</h3>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
           ${store.products.filter(x=>x.categoria===p.categoria && x.id!==p.id).slice(0,4).map(card).join('')}
         </div>
@@ -250,11 +262,22 @@ export function renderProduct(hash){
     </sl-dialog>
   `);
 
-  lightGallery(document.getElementById('gallery'), { plugins:[lgZoom], speed: 300 });
+  // Lightbox y miniaturas
+  const lg = lightGallery(document.getElementById('lg-entry'), { plugins:[lgZoom], speed:300, dynamic:false });
+  document.querySelectorAll('.btn-thumb').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const src = btn.getAttribute('data-src');
+      const img = document.getElementById(mainId);
+      img.src = src; img.parentElement.href = src;
+      document.querySelectorAll('.btn-thumb').forEach(b=>b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+    });
+  });
 
   const form = document.getElementById('contact-form');
   form?.addEventListener('submit', (e)=>{ e.preventDefault(); alert('Enviado (demo).'); });
 }
+
 
 export function renderAbout(){
   mount(`
