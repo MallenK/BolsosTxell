@@ -56,6 +56,11 @@ h3{ font-size:clamp(1.4rem, 2vw, 1.8rem) }
   border-radius:var(--radius); box-shadow:var(--shadow);
 }
 
+/* ===== Sección de categorías ===== */
+.section-cats {
+  padding-inline: 25%;
+}
+
 /* ===== Tarjetas / chips ===== */
 .card{
   background:var(--card-bg); backdrop-filter:var(--glass); -webkit-backdrop-filter:var(--glass);
@@ -115,6 +120,12 @@ img{ display:block; max-width:100%; height:auto }
   :root{ --gap: clamp(1.25rem, 1.5vw, 2.25rem) }
   .container{ max-width:80rem }
   h1{ font-size:3.6rem }
+}
+
+@media (max-width:1024px){
+  .section-cats {
+    padding-inline: 2rem; /* más estrecho en móvil/tablet */
+  }
 }
 
 /* <= 480px (móvil estrecho) */
