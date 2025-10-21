@@ -109,16 +109,20 @@ export function renderHome(){
 
 
     <!-- Instagram -->
-    <section class="max-w-6xl mx-auto px-4 pb-28 text-center">
-      <div class="card p-10">
+    <section class="max-w-6xl mx-auto pb-28 text-center">
+      <div class="card card-instagram p-10">
         <h3 class="font-serif text-2xl mb-2">${t('instagram.title','Síguenos en Instagram')}</h3>
         <p class="mb-4">${t('instagram.handle','@cro_and_txet')}</p>
+        <p class="mb-6 text-base">
+          ${t('instagram.desc','Síguenos para descubrir nuevas piezas, ver procesos de creación y contactar de forma más directa. Instagram es la manera más fácil de comunicarte con nosotros y mantenerte al tanto de las novedades.')}
+        </p>
         <a class="inline-block rounded-full bg-primary text-white px-5 py-2"
            href="${t('instagram.url','https://instagram.com/cro_and_txet')}" target="_blank" rel="noopener">
            ${t('instagram.open','Abrir Instagram')}
         </a>
       </div>
     </section>
+
 
 
     <!-- Galería -->
