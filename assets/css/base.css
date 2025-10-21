@@ -61,6 +61,13 @@ h3{ font-size:clamp(1.4rem, 2vw, 1.8rem) }
   padding-inline: 25%;
 }
 
+
+/* ===== Sección Catálogo ===== */
+.section-catalog {
+  padding-inline: 25%;
+}
+
+
 /* ===== Tarjetas / chips ===== */
 .card{
   background:var(--card-bg); backdrop-filter:var(--glass); -webkit-backdrop-filter:var(--glass);
@@ -125,6 +132,10 @@ img{ display:block; max-width:100%; height:auto }
 @media (max-width:1024px){
   .section-cats {
     padding-inline: 2rem; /* más estrecho en móvil/tablet */
+  }
+
+  .section-catalog {
+    padding-inline: 2rem;
   }
 }
 
