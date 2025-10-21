@@ -67,6 +67,13 @@ h3{ font-size:clamp(1.4rem, 2vw, 1.8rem) }
   padding-inline: 25%;
 }
 
+/* ===== Sección Instagram ===== */
+.card-instagram {
+  border-radius: 0; /* sin esquinas redondeadas */
+  box-shadow: 0 10px 20px rgba(17,24,39,.10); /* sombra solo eje Y */
+}
+
+
 /* ===== Sección Galería ===== */
 .section-gallery {
   padding-inline: 25%;
