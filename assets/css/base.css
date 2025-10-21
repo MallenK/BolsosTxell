@@ -1,6 +1,14 @@
 :root{ --card-bg: rgba(255,255,255,0.8); --glass: blur(8px) saturate(120%); }
-body{ background:#FFFFFF; color:#111827; font-family:Inter,system-ui,sans-serif; }
-h1,h2,h3{ font-family:"Cormorant Garamond",serif; letter-spacing:.2px; }
+body {
+  font-family: 'Jost', sans-serif;
+  color: #111;
+  background: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Dancing Script', cursive;
+  letter-spacing: 0.5px;
+}
 .card{
   background:var(--card-bg); backdrop-filter:var(--glass); -webkit-backdrop-filter:var(--glass);
   border:1px solid rgba(17,24,39,.06); border-radius:14px; box-shadow:0 10px 30px rgba(17,24,39,.06);
