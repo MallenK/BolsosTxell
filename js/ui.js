@@ -108,6 +108,19 @@ export function renderHome(){
     </section>
 
 
+    <!-- Instagram -->
+    <section class="max-w-6xl mx-auto px-4 pb-28 text-center">
+      <div class="card p-10">
+        <h3 class="font-serif text-2xl mb-2">${t('instagram.title','Síguenos en Instagram')}</h3>
+        <p class="mb-4">${t('instagram.handle','@cro_and_txet')}</p>
+        <a class="inline-block rounded-full bg-primary text-white px-5 py-2"
+           href="${t('instagram.url','https://instagram.com/cro_and_txet')}" target="_blank" rel="noopener">
+           ${t('instagram.open','Abrir Instagram')}
+        </a>
+      </div>
+    </section>
+
+
     <!-- Galería -->
     <section class="section-gallery pb-28">
       <h2 class="font-serif text-3xl mb-6">${t('gallery.title','Galería')}</h2>
@@ -120,19 +133,6 @@ export function renderHome(){
               <p class="text-sm">€${p.precioDesde}</p>
             </div>
           </a>`).join('')}
-      </div>
-    </section>
-
-
-    <!-- Instagram -->
-    <section class="max-w-6xl mx-auto px-4 pb-28 text-center">
-      <div class="card p-10">
-        <h3 class="font-serif text-2xl mb-2">${t('instagram.title','Síguenos en Instagram')}</h3>
-        <p class="mb-4">${t('instagram.handle','@cro_and_txet')}</p>
-        <a class="inline-block rounded-full bg-primary text-white px-5 py-2"
-           href="${t('instagram.url','https://instagram.com/cro_and_txet')}" target="_blank" rel="noopener">
-           ${t('instagram.open','Abrir Instagram')}
-        </a>
       </div>
     </section>
   `);
