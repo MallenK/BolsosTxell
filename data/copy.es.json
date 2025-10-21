@@ -5,7 +5,23 @@
     "subtitle": "Bolsos hechos a mano con “animal painting”. Elegancia serena, acabados cuidados."
   },
   "intro": {
-    "text": "En Cro & Txet diseñamos y confeccionamos bolsos de croché hechos a mano, pieza a pieza, combinando técnicas textiles con ilustración “animal painting”. Trabajamos por encargo para que cada pieza sea única: puedes personalizar colores, tamaños, tipo de asa y detalles de acabado. Priorizamos materiales de calidad y una producción responsable. Explora el catálogo, inspírate con los modelos disponibles y encarga el tuyo para que encaje con tu estilo y tu día a día."
+    "title": "Cro & Txet, bolsos de croché a medida",
+    "lead": "Diseñamos y confeccionamos bolsos de croché de manera artesanal, pieza a pieza. Cada pedido es único: puedes personalizar colores, tamaño, tipo de asa y remates. Trabajamos con materiales de calidad y un proceso responsable para lograr una pieza que acompañe tu día a día con elegancia serena.",
+    "points": {
+      "handmade": {
+        "title": "Hecho a mano",
+        "copy": "Acabados cuidados y control de cada puntada para un resultado duradero."
+      },
+      "custom": {
+        "title": "100% personalizable",
+        "copy": "Elige paleta, medidas y detalles. Tu bolso, tu estilo."
+      },
+      "materials": {
+        "title": "Materiales responsables",
+        "copy": "Fibras seleccionadas y pintura textil para nuestro “animal painting”."
+      }
+    },
+    "closing": "Explora el catálogo para inspirarte y encarga el tuyo. Si necesitas asesoría, te guiamos en la elección de combinaciones y proporciones ideales."
   },
   "cta": { "catalog": "Ver catálogo", "whatsapp": "WhatsApp", "viewCategory": "Ver {{cat}}" },
   "gallery": { "title": "Galería" },
