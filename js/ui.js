@@ -203,87 +203,55 @@ export function renderCatalog(){
 
 
 export function renderProduct(hash){
-  const slug = hash.split('/').pop();
-  const p = store.products.find(x=>x.slug===slug);
-  if(!p){ mount(`<section class="section-product"><p>No encontrado.</p></section>`); return; }
+const slug = hash.split('/').pop();
+const p = store.products.find(x=>x.slug===slug);
+if(!p){ mount(`<section class="max-w-6xl mx-auto px-4 py-16">
+  <p>No encontrado.</p>
+</section>`); return; }
 
-  const mainId = 'prod-main';
-  mount(`
-    <section class="section-product">
-      <!-- Grid 2 columnas en desktop -->
-      <div class="prod-grid">
-        <!-- Columna izquierda: imagen principal + miniaturas -->
-        <div>
-          <a id="lg-entry" href="${p.fotos[0]}" class="block aspect-4-3 overflow-hidden">
-            <img id="${mainId}" src="${p.fotos[0]}" alt="${p.nombre}" class="w-full h-full object-cover">
-          </a>
+mount(`
+<section class="max-w-6xl mx-auto px-4 pt-8 pb-16 grid md:grid-cols-2 gap-10">
+  <div class="card p-2">
+    <div id="gallery" class="rounded-xl2 overflow-hidden">
+      ${p.fotos.map((src,i)=>`
+      <a href="${src}" class="block aspect-4-3">
+        <img src="${src}" alt="${p.nombre} ${i+1}" class="w-full h-full object-cover" sizes="(min-width:1024px) 50vw, 100vw">
+      </a>`).join('')}
+    </div>
+  </div>
+  <div>
+    <h1 class="font-serif text-3xl mb-2">${p.nombre}</h1>
+    <p class="text-lg mb-4"><span>Desde</span> <strong>€${p.precioDesde}</strong></p>
+    <p class="mb-3"><strong>Categoría:</strong> ${p.categoria}</p>
+    <div class="flex gap-2 mb-6 flex-wrap">
+      ${p.colores.map(c=>`<span class="chip">${c}</span>`).join('')}
+    </div>
+    <div class="flex gap-3 flex-wrap">
+      <a href="${waLink(p.nombre)}" class="rounded-full bg-primary text-white px-4 py-2">WhatsApp</a>
+      <sl-button variant="default" onclick="document.querySelector('#contact-sheet').show()">Enviar consulta</sl-button>
+    </div>
 
-          <div class="thumbs mt-3" role="list" aria-label="Imágenes del producto">
-            ${p.fotos.map((src,i)=>`
-              <button class="thumb ${i===0?'is-active':''}" data-src="${src}" role="listitem" aria-label="Imagen ${i+1}">
-                <img src="${src}" alt="${p.nombre} ${i+1}">
-              </button>
-            `).join('')}
-          </div>
-        </div>
+    <h3 class="font-serif text-xl mt-10 mb-3">Relacionados</h3>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+      ${store.products.filter(x=>x.categoria===p.categoria && x.id!==p.id).slice(0,4).map(card).join('')}
+    </div>
+  </div>
+</section>
 
-        <!-- Columna derecha: nombre, breve descripción, categorías -->
-        <aside>
-          <h1 class="text-3xl mb-2">${p.nombre}</h1>
-          <p class="text-base mb-4">${(p.descripcion||t('product.desc',''))}</p>
-          <div class="price text-lg mb-6"><span>Desde</span> <strong>€${p.precioDesde}</strong></div>
+<sl-dialog label="Consulta" id="contact-sheet">
+  <form class="space-y-3" id="contact-form">
+    <sl-input name="name" placeholder="Nombre"></sl-input>
+    <sl-input name="email" type="email" placeholder="Email"></sl-input>
+    <sl-textarea name="msg" placeholder="Mensaje"></sltextarea>
+      <sl-button type="primary" submit>Enviar</sl-button>
+  </form>
+</sl-dialog>
+`);
 
-          <!-- Categoría en chip (formato solicitado) -->
-          <div class="cats mb-10">
-            <span class="chip">${p.categoria}</span>
-          </div>
+lightGallery(document.getElementById('gallery'), { plugins:[lgZoom], speed: 300 });
 
-          <!-- CTAs solo en el panel en desktop se mantienen arriba; bloque general va abajo fuera de columnas -->
-        </aside>
-      </div>
-
-      <!-- Relacionados: fuera de las 2 columnas, debajo -->
-      <section class="related mt-12">
-        <h2 class="text-xl mb-4">Relacionados</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-          ${store.products.filter(x=>x.categoria===p.categoria && x.id!==p.id).slice(0,4).map(card).join('')}
-        </div>
-      </section>
-
-      <!-- Cuadro de contacto: fuera de las columnas, al final -->
-      <section class="contact-box mt-12">
-        <div class="cta">
-          <a href="${waLink(p.nombre)}" class="btn-primary">WhatsApp</a>
-          <sl-button variant="default" onclick="document.querySelector('#contact-sheet').show()" size="medium">Enviar consulta</sl-button>
-        </div>
-        <p class="contact-note">Escríbenos por WhatsApp para respuesta rápida o envía una consulta si prefieres email.</p>
-      </section>
-
-      <sl-dialog label="Consulta" id="contact-sheet">
-        <form class="space-y-3" id="contact-form">
-          <sl-input name="name" placeholder="Nombre" required></sl-input>
-          <sl-input name="email" type="email" placeholder="Email" required></sl-input>
-          <sl-textarea name="msg" placeholder="Mensaje"></sl-textarea>
-          <sl-button type="primary" submit>Enviar</sl-button>
-        </form>
-      </sl-dialog>
-    </section>
-  `);
-
-  // Lightbox + miniaturas
-  lightGallery(document.getElementById('lg-entry'), { plugins:[lgZoom], speed:300 });
-  document.querySelectorAll('.thumb').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const src = btn.getAttribute('data-src');
-      const img = document.getElementById(mainId);
-      img.src = src; document.getElementById('lg-entry').href = src;
-      document.querySelectorAll('.thumb').forEach(b=>b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-    });
-  });
-
-  const form = document.getElementById('contact-form');
-  form?.addEventListener('submit', e=>{ e.preventDefault(); alert('Enviado (demo).'); });
+const form = document.getElementById('contact-form');
+form?.addEventListener('submit', (e)=>{ e.preventDefault(); alert('Enviado (demo).'); });
 }
 
 
