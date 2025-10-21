@@ -1,61 +1,123 @@
-:root{ --card-bg: rgba(255,255,255,0.8); --glass: blur(8px) saturate(120%); }
-body {
-  font-family: 'Jost', sans-serif;
-  color: #111;
-  background: #fff;
+/* ===== Base y tokens ===== */
+:root{
+  --ink:#111;
+  --bg:#fff;
+  --primary:#d97757;
+  --radius:16px;
+  --shadow:0 6px 18px rgba(17,24,39,.06);
+  --gap: clamp(1rem, 2vw, 2rem);
+  --card-bg: rgba(255,255,255,0.85);
+  --glass: blur(8px) saturate(120%);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Dancing Script', cursive;
-  letter-spacing: 0.5px;
+html{ scroll-behavior:smooth }
+body{
+  font-family:'Jost',sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-/* Tipografías: títulos y cuerpo */
-.font-script{ font-family:'Dancing Script', cursive; }
+h1,h2,h3,h4,h5,h6{
+  font-family:'Dancing Script',cursive;
+  letter-spacing:.5px;
+  line-height:1.25;
+}
+.font-script{ font-family:'Dancing Script',cursive }
 
+/* Escala fluida */
+h1{ font-size:clamp(2.2rem, 4vw, 3.4rem) }
+h2{ font-size:clamp(1.8rem, 3vw, 2.6rem) }
+h3{ font-size:clamp(1.4rem, 2vw, 1.8rem) }
 
-/* HERO pantalla completa fijo + overlay */
+/* ===== Hero ===== */
 .hero-full{ position:relative; min-height:100svh; overflow:hidden; background:#000 }
-.hero-full .hero-img{
-  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none;
-}
-/* Overlay más oscuro para contraste */
+.hero-full .hero-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none }
 .hero-full .overlay{
   position:absolute; inset:0;
   background:linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.30) 100%);
 }
-/* Texto del hero siempre blanco, sin opacidades */
-.hero-full .hero-content{ position:relative; z-index:10; color:#fff; }
+.hero-full .hero-content{ position:relative; z-index:10; color:#fff }
 .hero-full .hero-content h1,
-.hero-full .hero-content p { color:#fff; }
+.hero-full .hero-content p{ color:#fff }
 
+/* ===== Presentación ===== */
+.intro{ text-wrap:balance }
+.intro .lead{ font-size:1.125rem; line-height:1.7 }
+.intro .card{
+  background:#fff; border:1px solid rgba(17,24,39,.08);
+  border-radius:var(--radius); box-shadow:var(--shadow);
+}
 
-/* Presentación */
-.intro .lead{ font-size:1.125rem; line-height:1.7; }
-.intro .card{ background:#fff; border:1px solid rgba(17,24,39,.08); box-shadow:0 6px 18px rgba(17,24,39,.06); border-radius:16px; }
-
-
-
-
+/* ===== Tarjetas / chips ===== */
 .card{
   background:var(--card-bg); backdrop-filter:var(--glass); -webkit-backdrop-filter:var(--glass);
-  border:1px solid rgba(17,24,39,.06); border-radius:14px; box-shadow:0 10px 30px rgba(17,24,39,.06);
+  border:1px solid rgba(17,24,39,.06); border-radius:14px;
+  box-shadow:0 10px 30px rgba(17,24,39,.06);
 }
-.chip{ font-size:.875rem; padding:.35rem .7rem; border:1px solid rgba(0,0,0,.08); border-radius:999px; background:#fff }
+.card img{ transition:transform .35s ease }
+@media (hover:hover){
+  .card:hover img{ transform:scale(1.03) }
+}
+.chip{
+  font-size:.875rem; padding:.35rem .7rem;
+  border:1px solid rgba(0,0,0,.08); border-radius:999px; background:#fff
+}
+
 img{ display:block; max-width:100%; height:auto }
 .aspect-4-3{ aspect-ratio:4/3 }
 .object-cover{ object-fit:cover }
 
-/* /assets/css/base.css */
-.btn-primary{ background:theme(colors.primary); color:#fff }
+/* Botón primario */
+.btn-primary{ background:var(--primary); color:#fff }
 .btn-primary:focus{ outline:2px solid rgba(0,0,0,.1); outline-offset:2px }
 
-/* Elimina reglas previas que forzaban #111827 en hero */
+/* ===== Utilidades layout ===== */
+.section{ padding-block: clamp(3rem, 6vw, 6rem) }
+.container{ width:100%; max-width:72rem; margin-inline:auto; padding-inline:1rem }
+.w-75-desktop{ width:100% } /* se sobreescribe en >=1024px */
 
-/* Ancho 75% solo en escritorio (si no lo tienes ya) */
-@media (min-width:1024px){
-  .w-75-desktop{ width:75%; }
+/* ===== Accesibilidad / motion ===== */
+:focus-visible{ outline:2px solid rgba(0,0,0,.25); outline-offset:3px }
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important }
 }
 
+/* ===== Breakpoints ===== */
 
+/* >= 640px (tablet pequeño) */
+@media (min-width:640px){
+  .intro .lead{ font-size:1.2rem }
+}
 
+/* >= 1024px (desktop) */
+@media (min-width:1024px){
+  .w-75-desktop{ width:75%; margin-inline:auto }
+
+  /* Hero: reduce gradiente para más detalle en pantallas grandes */
+  .hero-full .overlay{
+    background:linear-gradient(180deg, rgba(0,0,0,.40) 0%, rgba(0,0,0,.40) 55%, rgba(0,0,0,.25) 100%);
+  }
+
+  /* Grid de la intro si aplicas columnas */
+  .intro .cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap) }
+}
+
+/* >= 1280px (desktop amplio) */
+@media (min-width:1280px){
+  :root{ --gap: clamp(1.25rem, 1.5vw, 2.25rem) }
+  .container{ max-width:80rem }
+  h1{ font-size:3.6rem }
+}
+
+/* <= 480px (móvil estrecho) */
+@media (max-width:480px){
+  .hero-full{ min-height:92svh }         /* quita un poco de altura en móviles con UI alta */
+  .intro .lead{ font-size:1.05rem }
+}
+
+/* ===== Limpieza de conflictos previos ===== */
+/* Asegura negro global; el blanco solo en .hero-full .hero-content */
+body, .intro, .card .p-3, .grid, section, p, h2, h3{ color:var(--ink) }
