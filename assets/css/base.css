@@ -123,43 +123,39 @@ img{ display:block; max-width:100%; height:auto }
 
 
 
-/* Layout sección producto: padding coherente y responsive */
-.section-product{ padding: 2rem 2rem 3rem }
-@media (min-width:1024px){ .section-product{ padding: 3rem 25% } }
+/* Sección producto: padding coherente (25% en desktop) */
+.section-product{ padding: 2rem 2rem 3rem; }
+@media (min-width:1024px){ .section-product{ padding: 3rem 25%; } }
 
-/* Panel de detalles claro y pegajoso en desktop */
-.sheet{ position:static }
-@media (min-width:1024px){ .sheet{ position:sticky; top:6rem } }
-.sheet .price{ margin:.25rem 0 1rem }
-.sheet .price strong{ font-size:1.25em }
+/* Grid dos columnas en desktop */
+.prod-grid{ display:grid; gap: 2rem; }
+@media (min-width:1024px){ .prod-grid{ grid-template-columns: 1.1fr 0.9fr; gap: 3rem; } }
 
-/* Tabla de especificaciones legible */
-.specs{ display:grid; gap:.6rem; margin: 0 0 1rem }
-.specs dt{ font-weight:600 }
-.specs dd{ margin:0 }
+/* Precio */
+.price strong{ font-size:1.2em; }
 
-/* Colores */
-.colors{ display:flex; flex-wrap:wrap; gap:.5rem; margin: .5rem 0 1rem }
-
-/* CTA visible y accesible */
-.cta{ display:flex; flex-wrap:wrap; gap:.75rem; margin: 1rem 0 1.25rem }
-.btn-primary{ background:var(--primary); color:#fff; padding:.7rem 1.1rem; border-radius:999px; display:inline-block }
-
-/* Galería: miniaturas usables en móvil */
-.thumbs{
-  display:grid; grid-auto-flow:column; grid-auto-columns:30%;
-  gap:.5rem; overflow-x:auto; padding-bottom:.25rem; scrollbar-width:thin;
-}
-@media (min-width:640px){
-  .thumbs{ grid-auto-columns:unset; grid-template-columns:repeat(4,1fr) }
-}
+/* Miniaturas: usables en móvil y ordenadas en desktop */
+.thumbs{ display:grid; grid-auto-flow:column; grid-auto-columns:30%; gap:.5rem; overflow-x:auto; padding-bottom:.25rem; scrollbar-width:thin; }
+@media (min-width:640px){ .thumbs{ grid-auto-columns:unset; grid-template-columns:repeat(4,1fr); } }
 .thumb{ border:0; background:transparent; padding:0; cursor:pointer }
 .thumb img{ width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:10px; transition:transform .25s }
 .thumb.is-active img{ outline:2px solid rgba(0,0,0,.25) }
 @media (hover:hover){ .thumb:hover img{ transform:scale(1.02) } }
 
-/* Imagen principal sin distracciones */
-#prod-main{ display:block; }
+/* Relacionados */
+.related h2{ font-family: var(--font-heading); }
+
+/* Contact box: nuevo diseño, sombra solo eje Y, sin radios exagerados */
+.contact-box{
+  background:#fff;
+  border:1px solid rgba(17,24,39,.08);
+  box-shadow: 0 14px 28px rgba(17,24,39,.10);
+  padding: 1.25rem 1.5rem;
+}
+.contact-box .cta{ display:flex; flex-wrap:wrap; gap:.75rem; margin-bottom:.5rem; }
+.contact-box .btn-primary{ background:var(--primary); color:#fff; padding:.7rem 1.1rem; border-radius:999px; display:inline-block; }
+.contact-note{ font-size:.95rem; }
+
 
 
 
