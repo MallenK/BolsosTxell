@@ -205,30 +205,34 @@ export function renderCatalog(){
 export function renderProduct(hash){
   const slug = hash.split('/').pop();
   const p = store.products.find(x=>x.slug===slug);
-  if(!p){ mount(`<section class="section-product pt-12 pb-24"><p>No encontrado.</p></section>`); return; }
+  if(!p){ mount(`<section class="section-product"><p>No encontrado.</p></section>`); return; }
 
-  const mainId = 'product-main';
+  const mainId = 'prod-main';
   mount(`
-    <section class="section-product pt-12 pb-24 grid md:grid-cols-[1.1fr_0.9fr] gap-12">
+    <section class="section-product grid lg:grid-cols-[1.1fr_0.9fr] gap-10">
       <!-- Galería -->
       <div>
-        <a href="${p.fotos[0]}" id="lg-entry" class="block aspect-4-3 overflow-hidden rounded-[14px]">
+        <a id="lg-entry" href="${p.fotos[0]}" class="block aspect-4-3 overflow-hidden">
           <img id="${mainId}" src="${p.fotos[0]}" alt="${p.nombre}" class="w-full h-full object-cover">
         </a>
-        <div class="thumbs grid grid-cols-4 gap-3 mt-4">
+
+        <div class="thumbs mt-3" role="list" aria-label="Miniaturas del producto">
           ${p.fotos.map((src,i)=>`
-            <button class="thumb btn-thumb ${i===0?'is-active':''}" data-src="${src}" aria-label="Foto ${i+1}">
+            <button class="thumb ${i===0?'is-active':''}" data-src="${src}" role="listitem" aria-label="Imagen ${i+1}">
               <img src="${src}" alt="${p.nombre} ${i+1}">
-            </button>`).join('')}
+            </button>
+          `).join('')}
         </div>
       </div>
 
       <!-- Detalles -->
-      <div class="sticky-desktop">
-        <h1 class="text-3xl mb-2">${p.nombre}</h1>
-        <div class="price text-lg mb-5"><span>Desde</span> <strong>€${p.precioDesde}</strong></div>
+      <aside class="sheet">
+        <header class="mb-3">
+          <h1 class="text-3xl">${p.nombre}</h1>
+          <div class="price"><span>Desde</span> <strong>€${p.precioDesde}</strong></div>
+        </header>
 
-        <dl class="specs mb-5">
+        <dl class="specs">
           <div><dt>Categoría</dt><dd>${p.categoria}</dd></div>
           <div><dt>Animal painting</dt><dd>${p.animal}</dd></div>
           <div><dt>Materiales</dt><dd>${p.materiales.join(', ')}</dd></div>
@@ -236,47 +240,48 @@ export function renderProduct(hash){
           <div><dt>Peso</dt><dd>${p.peso} g</dd></div>
         </dl>
 
-        <div class="flex gap-2 mb-6 flex-wrap">
+        <div class="colors">
           ${p.colores.map(c=>`<span class="chip">${c}</span>`).join('')}
         </div>
 
-        <div class="flex gap-3 flex-wrap mb-10">
-          <a href="${waLink(p.nombre)}" class="btn-primary px-5 py-2 rounded-full">WhatsApp</a>
+        <div class="cta">
+          <a href="${waLink(p.nombre)}" class="btn-primary">WhatsApp</a>
           <sl-button variant="default" onclick="document.querySelector('#contact-sheet').show()">Enviar consulta</sl-button>
         </div>
 
-        <h3 class="text-xl mb-3">Relacionados</h3>
+        <h2 class="text-xl mt-8 mb-2">Relacionados</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
           ${store.products.filter(x=>x.categoria===p.categoria && x.id!==p.id).slice(0,4).map(card).join('')}
         </div>
-      </div>
+      </aside>
     </section>
 
     <sl-dialog label="Consulta" id="contact-sheet">
       <form class="space-y-3" id="contact-form">
-        <sl-input name="name" placeholder="Nombre"></sl-input>
-        <sl-input name="email" type="email" placeholder="Email"></sl-input>
-        <sl-textarea name="msg" placeholder="Mensaje"></sltextarea>
+        <sl-input name="name" placeholder="Nombre" required></sl-input>
+        <sl-input name="email" type="email" placeholder="Email" required></sl-input>
+        <sl-textarea name="msg" placeholder="Mensaje"></sl-textarea>
         <sl-button type="primary" submit>Enviar</sl-button>
       </form>
     </sl-dialog>
   `);
 
-  // Lightbox y miniaturas
-  const lg = lightGallery(document.getElementById('lg-entry'), { plugins:[lgZoom], speed:300, dynamic:false });
-  document.querySelectorAll('.btn-thumb').forEach(btn=>{
+  // Lightbox + miniaturas
+  lightGallery(document.getElementById('lg-entry'), { plugins:[lgZoom], speed:300 });
+  document.querySelectorAll('.thumb').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const src = btn.getAttribute('data-src');
       const img = document.getElementById(mainId);
-      img.src = src; img.parentElement.href = src;
-      document.querySelectorAll('.btn-thumb').forEach(b=>b.classList.remove('is-active'));
+      img.src = src; document.getElementById('lg-entry').href = src;
+      document.querySelectorAll('.thumb').forEach(b=>b.classList.remove('is-active'));
       btn.classList.add('is-active');
     });
   });
 
   const form = document.getElementById('contact-form');
-  form?.addEventListener('submit', (e)=>{ e.preventDefault(); alert('Enviado (demo).'); });
+  form?.addEventListener('submit', e=>{ e.preventDefault(); alert('Enviado (demo).'); });
 }
+
 
 
 export function renderAbout(){
