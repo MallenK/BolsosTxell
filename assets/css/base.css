@@ -9,18 +9,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Dancing Script', cursive;
   letter-spacing: 0.5px;
 }
-.card{
-  background:var(--card-bg); backdrop-filter:var(--glass); -webkit-backdrop-filter:var(--glass);
-  border:1px solid rgba(17,24,39,.06); border-radius:14px; box-shadow:0 10px 30px rgba(17,24,39,.06);
-}
-.chip{ font-size:.875rem; padding:.35rem .7rem; border:1px solid rgba(0,0,0,.08); border-radius:999px; background:#fff }
-img{ display:block; max-width:100%; height:auto }
-.aspect-4-3{ aspect-ratio:4/3 }
-.object-cover{ object-fit:cover }
 
-/* /assets/css/base.css */
-.btn-primary{ background:theme(colors.primary); color:#fff }
-.btn-primary:focus{ outline:2px solid rgba(0,0,0,.1); outline-offset:2px }
+/* Tipografías: títulos y cuerpo */
+.font-script{ font-family:'Dancing Script', cursive; }
+
 
 /* HERO pantalla completa fijo + overlay */
 .hero-full{ position:relative; min-height:100svh; overflow:hidden; background:#000 }
@@ -37,4 +29,33 @@ img{ display:block; max-width:100%; height:auto }
 .hero-full .hero-content h1,
 .hero-full .hero-content p { color:#fff; }
 
+
+/* Presentación */
+.intro .lead{ font-size:1.125rem; line-height:1.7; }
+.intro .card{ background:#fff; border:1px solid rgba(17,24,39,.08); box-shadow:0 6px 18px rgba(17,24,39,.06); border-radius:16px; }
+
+
+
+
+.card{
+  background:var(--card-bg); backdrop-filter:var(--glass); -webkit-backdrop-filter:var(--glass);
+  border:1px solid rgba(17,24,39,.06); border-radius:14px; box-shadow:0 10px 30px rgba(17,24,39,.06);
+}
+.chip{ font-size:.875rem; padding:.35rem .7rem; border:1px solid rgba(0,0,0,.08); border-radius:999px; background:#fff }
+img{ display:block; max-width:100%; height:auto }
+.aspect-4-3{ aspect-ratio:4/3 }
+.object-cover{ object-fit:cover }
+
+/* /assets/css/base.css */
+.btn-primary{ background:theme(colors.primary); color:#fff }
+.btn-primary:focus{ outline:2px solid rgba(0,0,0,.1); outline-offset:2px }
+
 /* Elimina reglas previas que forzaban #111827 en hero */
+
+/* Ancho 75% solo en escritorio (si no lo tienes ya) */
+@media (min-width:1024px){
+  .w-75-desktop{ width:75%; }
+}
+
+
+
