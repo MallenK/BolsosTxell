@@ -103,9 +103,10 @@ export function renderHome(){
 
 
     <!-- Categorías con más separación inferior -->
-    <section class="max-w-6xl mx-auto px-4 pb-28 space-y-16 w-75">
+    <section class="section-cats pb-28 space-y-16">
       ${altRows(CATS)}
     </section>
+
 
     <!-- Galería -->
     <section class="max-w-6xl mx-auto px-4 pb-28">
