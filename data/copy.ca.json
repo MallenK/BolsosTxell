@@ -5,7 +5,23 @@
     "subtitle": "Bosses fetes a mà amb “animal painting”. Elegància serena i acabats cuidats."
   },
   "intro": {
-    "text": "A Cro & Txet dissenyem i confeccionem bosses de ganxet fetes a mà, peça a peça, combinant tècniques tèxtils amb il·lustració “animal painting”. Treballem sota comanda perquè cada peça sigui única: pots personalitzar colors, mides, tipus d’ansa i detalls d’acabat. Prioritzem materials de qualitat i una producció responsable. Explora el catàleg, inspira’t amb els models disponibles i encarrega la teva bossa perquè s’adapti al teu estil i al teu dia a dia."
+    "title": "Cro & Txet, bosses de ganxet a mida",
+    "lead": "Dissenyem i confeccionem bosses de ganxet de manera artesanal, peça a peça. Cada encàrrec és únic: pots personalitzar colors, mides, tipus d’ansa i acabats. Treballem amb materials de qualitat i un procés responsable per obtenir una peça que t’acompanyi cada dia amb elegància serena.",
+    "points": {
+      "handmade": {
+        "title": "Fet a mà",
+        "copy": "Acabats cuidats i control de cada puntada per a un resultat durador."
+      },
+      "custom": {
+        "title": "100% personalitzable",
+        "copy": "Tria paleta, mides i detalls. La teva bossa, el teu estil."
+      },
+      "materials": {
+        "title": "Materials responsables",
+        "copy": "Fibres seleccionades i pintura tèxtil per al nostre “animal painting”."
+      }
+    },
+    "closing": "Explora el catàleg per inspirar-te i encarrega la teva. Si ho necessites, t’assessorem en la tria de combinacions i proporcions ideals."
   },
   "cta": { "catalog": "Veure catàleg", "whatsapp": "WhatsApp", "viewCategory": "Veure {{cat}}" },
   "gallery": { "title": "Galeria" },
