@@ -70,12 +70,38 @@ export function renderHome(){
       </div>
     </section>
 
-    <!-- Presentación: textos en negro y más aire -->
-    <section class="max-w-3xl mx-auto px-4 pt-16 pb-20 text-center">
-      <p>
-        ${t('intro.text', 'En Cro & Txet diseñamos y confeccionamos bolsos de croché hechos a mano, pieza a pieza, combinando técnicas textiles con ilustración “animal painting”. Trabajamos por encargo para que cada bolso sea único: puedes elegir colores, tamaño, tipo de asa y detalles de acabado. Nuestro enfoque es artesanal, con materiales de calidad y producción responsable. Descubre nuestra colección, inspírate con los modelos disponibles y personaliza el tuyo para que encaje con tu estilo y tu día a día.')}
+    <!-- Presentación: tipografía elegante y contenido ampliado -->
+    <section class="intro max-w-3xl mx-auto px-4 pt-20 pb-24 text-center w-75-desktop">
+      <h2 class="intro-title text-4xl md:text-5xl mb-4 font-script">Cro & Txet, bolsos de croché a medida</h2>
+    
+      <p class="lead mx-auto max-w-2xl">
+        Diseñamos y confeccionamos bolsos de <strong>croché</strong> de manera artesanal, pieza a pieza.
+        Cada pedido es único: puedes <strong>personalizar</strong> colores, tamaño, tipo de asa y remates.
+        Trabajamos con <strong>materiales de calidad</strong> y un proceso responsable para lograr
+        una pieza que acompañe tu día a día con elegancia serena.
+      </p>
+    
+      <div class="grid md:grid-cols-3 gap-6 mt-10 text-left">
+        <div class="card p-5">
+          <h3 class="font-script text-2xl mb-2">Hecho a mano</h3>
+          <p>Acabados cuidados y control de cada puntada para un resultado duradero.</p>
+        </div>
+        <div class="card p-5">
+          <h3 class="font-script text-2xl mb-2">100% personalizable</h3>
+          <p>Elige paleta, medidas y detalles. Tu bolso, tu estilo.</p>
+        </div>
+        <div class="card p-5">
+          <h3 class="font-script text-2xl mb-2">Materiales responsables</h3>
+          <p>Fibras seleccionadas y pintura textil para nuestro “animal painting”.</p>
+        </div>
+      </div>
+    
+      <p class="mt-10 mx-auto max-w-2xl">
+        Explora el catálogo para inspirarte y <strong>encarga el tuyo</strong>. Si necesitas asesoría,
+        te guiamos en la elección de combinaciones y proporciones ideales.
       </p>
     </section>
+
 
     <!-- Categorías con más separación inferior -->
     <section class="max-w-6xl mx-auto px-4 pb-28 space-y-16 w-75">
