@@ -209,61 +209,65 @@ export function renderProduct(hash){
 
   const mainId = 'prod-main';
   mount(`
-    <section class="section-product grid lg:grid-cols-[1.1fr_0.9fr] gap-10">
-      <!-- Galería -->
-      <div>
-        <a id="lg-entry" href="${p.fotos[0]}" class="block aspect-4-3 overflow-hidden">
-          <img id="${mainId}" src="${p.fotos[0]}" alt="${p.nombre}" class="w-full h-full object-cover">
-        </a>
+    <section class="section-product">
+      <!-- Grid 2 columnas en desktop -->
+      <div class="prod-grid">
+        <!-- Columna izquierda: imagen principal + miniaturas -->
+        <div>
+          <a id="lg-entry" href="${p.fotos[0]}" class="block aspect-4-3 overflow-hidden">
+            <img id="${mainId}" src="${p.fotos[0]}" alt="${p.nombre}" class="w-full h-full object-cover">
+          </a>
 
-        <div class="thumbs mt-3" role="list" aria-label="Miniaturas del producto">
-          ${p.fotos.map((src,i)=>`
-            <button class="thumb ${i===0?'is-active':''}" data-src="${src}" role="listitem" aria-label="Imagen ${i+1}">
-              <img src="${src}" alt="${p.nombre} ${i+1}">
-            </button>
-          `).join('')}
+          <div class="thumbs mt-3" role="list" aria-label="Imágenes del producto">
+            ${p.fotos.map((src,i)=>`
+              <button class="thumb ${i===0?'is-active':''}" data-src="${src}" role="listitem" aria-label="Imagen ${i+1}">
+                <img src="${src}" alt="${p.nombre} ${i+1}">
+              </button>
+            `).join('')}
+          </div>
         </div>
+
+        <!-- Columna derecha: nombre, breve descripción, categorías -->
+        <aside>
+          <h1 class="text-3xl mb-2">${p.nombre}</h1>
+          <p class="text-base mb-4">${(p.descripcion||t('product.desc',''))}</p>
+          <div class="price text-lg mb-6"><span>Desde</span> <strong>€${p.precioDesde}</strong></div>
+
+          <!-- Categoría en chip (formato solicitado) -->
+          <div class="cats mb-10">
+            <span class="chip">${p.categoria}</span>
+          </div>
+
+          <!-- CTAs solo en el panel en desktop se mantienen arriba; bloque general va abajo fuera de columnas -->
+        </aside>
       </div>
 
-      <!-- Detalles -->
-      <aside class="sheet">
-        <header class="mb-3">
-          <h1 class="text-3xl">${p.nombre}</h1>
-          <div class="price"><span>Desde</span> <strong>€${p.precioDesde}</strong></div>
-        </header>
-
-        <dl class="specs">
-          <div><dt>Categoría</dt><dd>${p.categoria}</dd></div>
-          <div><dt>Animal painting</dt><dd>${p.animal}</dd></div>
-          <div><dt>Materiales</dt><dd>${p.materiales.join(', ')}</dd></div>
-          <div><dt>Medidas</dt><dd>${p.medidas.ancho}×${p.medidas.alto}×${p.medidas.fondo} cm</dd></div>
-          <div><dt>Peso</dt><dd>${p.peso} g</dd></div>
-        </dl>
-
-        <div class="colors">
-          ${p.colores.map(c=>`<span class="chip">${c}</span>`).join('')}
-        </div>
-
-        <div class="cta">
-          <a href="${waLink(p.nombre)}" class="btn-primary">WhatsApp</a>
-          <sl-button variant="default" onclick="document.querySelector('#contact-sheet').show()">Enviar consulta</sl-button>
-        </div>
-
-        <h2 class="text-xl mt-8 mb-2">Relacionados</h2>
+      <!-- Relacionados: fuera de las 2 columnas, debajo -->
+      <section class="related mt-12">
+        <h2 class="text-xl mb-4">Relacionados</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
           ${store.products.filter(x=>x.categoria===p.categoria && x.id!==p.id).slice(0,4).map(card).join('')}
         </div>
-      </aside>
-    </section>
+      </section>
 
-    <sl-dialog label="Consulta" id="contact-sheet">
-      <form class="space-y-3" id="contact-form">
-        <sl-input name="name" placeholder="Nombre" required></sl-input>
-        <sl-input name="email" type="email" placeholder="Email" required></sl-input>
-        <sl-textarea name="msg" placeholder="Mensaje"></sl-textarea>
-        <sl-button type="primary" submit>Enviar</sl-button>
-      </form>
-    </sl-dialog>
+      <!-- Cuadro de contacto: fuera de las columnas, al final -->
+      <section class="contact-box mt-12">
+        <div class="cta">
+          <a href="${waLink(p.nombre)}" class="btn-primary">WhatsApp</a>
+          <sl-button variant="default" onclick="document.querySelector('#contact-sheet').show()" size="medium">Enviar consulta</sl-button>
+        </div>
+        <p class="contact-note">Escríbenos por WhatsApp para respuesta rápida o envía una consulta si prefieres email.</p>
+      </section>
+
+      <sl-dialog label="Consulta" id="contact-sheet">
+        <form class="space-y-3" id="contact-form">
+          <sl-input name="name" placeholder="Nombre" required></sl-input>
+          <sl-input name="email" type="email" placeholder="Email" required></sl-input>
+          <sl-textarea name="msg" placeholder="Mensaje"></sl-textarea>
+          <sl-button type="primary" submit>Enviar</sl-button>
+        </form>
+      </sl-dialog>
+    </section>
   `);
 
   // Lightbox + miniaturas
