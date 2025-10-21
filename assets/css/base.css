@@ -1,5 +1,10 @@
 /* ===== Base y tokens ===== */
 :root{
+  /* Tipografías */
+  --font-body: 'Jost', sans-serif;
+  --font-heading: 'Dancing Script', cursive;
+
+  /* Colores y layout */
   --ink:#111;
   --bg:#fff;
   --primary:#d97757;
@@ -12,7 +17,7 @@
 
 html{ scroll-behavior:smooth }
 body{
-  font-family:'Jost',sans-serif;
+  font-family: var(--font-body);
   color:var(--ink);
   background:var(--bg);
   line-height:1.6;
@@ -21,11 +26,11 @@ body{
 }
 
 h1,h2,h3,h4,h5,h6{
-  font-family:'Dancing Script',cursive;
+  font-family: var(--font-heading);
   letter-spacing:.5px;
   line-height:1.25;
 }
-.font-script{ font-family:'Dancing Script',cursive }
+.font-script{ font-family: var(--font-heading) }
 
 /* Escala fluida */
 h1{ font-size:clamp(2.2rem, 4vw, 3.4rem) }
@@ -96,7 +101,7 @@ img{ display:block; max-width:100%; height:auto }
 @media (min-width:1024px){
   .w-75-desktop{ width:75%; margin-inline:auto }
 
-  /* Hero: reduce gradiente para más detalle en pantallas grandes */
+  /* Hero: gradiente más suave en grande */
   .hero-full .overlay{
     background:linear-gradient(180deg, rgba(0,0,0,.40) 0%, rgba(0,0,0,.40) 55%, rgba(0,0,0,.25) 100%);
   }
@@ -114,10 +119,10 @@ img{ display:block; max-width:100%; height:auto }
 
 /* <= 480px (móvil estrecho) */
 @media (max-width:480px){
-  .hero-full{ min-height:92svh }         /* quita un poco de altura en móviles con UI alta */
+  .hero-full{ min-height:92svh }
   .intro .lead{ font-size:1.05rem }
 }
 
-/* ===== Limpieza de conflictos previos ===== */
-/* Asegura negro global; el blanco solo en .hero-full .hero-content */
+/* ===== Limpieza ===== */
+/* Negro global fuera del hero */
 body, .intro, .card .p-3, .grid, section, p, h2, h3{ color:var(--ink) }
