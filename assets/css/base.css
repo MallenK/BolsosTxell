@@ -92,7 +92,7 @@ h3{ font-size:clamp(1.4rem, 2vw, 1.8rem) }
 .gcard{
   display:grid;
   grid-template-rows: 1fr var(--cap-h);
-  aspect-ratio: 4/3;
+  aspect-ratio: 4/4;
   transition: grid-template-rows .35s ease;
 }
 .gcard-media{ overflow:hidden; }
