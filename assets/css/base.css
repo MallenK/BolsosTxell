@@ -4,6 +4,8 @@
   --font-body: 'Jost', sans-serif;
   --font-heading: 'Dancing Script', cursive;
 
+  --cap-h: clamp(64px, 10vw, 96px);
+
   /* Colores y layout */
   --ink:#111;
   --bg:#fff;
@@ -240,7 +242,7 @@ img{ display:block; max-width:100%; height:auto }
     padding-inline: 2rem;
   }
 
-  /* ===== Sección Galería ===== */
+  /* ===== Sección Galería en responsive ===== */
   .section-gallery {
     padding-inline: 2rem;
   }
