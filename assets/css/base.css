@@ -89,7 +89,7 @@ h3{ font-size:clamp(1.4rem, 2vw, 1.8rem) }
 /* ===== Tarjetas / chips ===== */
 .card{
   background:var(--card-bg); backdrop-filter:var(--glass); -webkit-backdrop-filter:var(--glass);
-  border:1px solid rgba(17,24,39,.06); border-radius:14px;
+  border:1px solid rgba(17,24,39,.06); border-radius:0px;
   box-shadow:0 10px 30px rgba(17,24,39,.06);
 }
 .card img{ transition:transform .35s ease }
