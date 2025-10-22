@@ -84,6 +84,11 @@ h3{ font-size:clamp(1.4rem, 2vw, 1.8rem) }
 :root{ --cap-h: clamp(64px, 10vw, 96px); }
 
 .gallery-card{ padding:0; outline:0; }
+.gallery-grid{
+  display:grid;
+  grid-template-columns:1fr;      /* móvil: 1 columna */
+  gap:1.5rem;
+}
 .gcard{
   display:grid;
   grid-template-rows: 1fr var(--cap-h);
@@ -172,7 +177,12 @@ img{ display:block; max-width:100%; height:auto }
 
 /* Grid dos columnas en desktop */
 .prod-grid{ display:grid; gap: 2rem; }
-@media (min-width:1024px){ .prod-grid{ grid-template-columns: 1.1fr 0.9fr; gap: 3rem; } }
+@media (min-width:1024px){ 
+  .prod-grid{ grid-template-columns: 1.1fr 0.9fr; gap: 3rem; } 
+  .gallery-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
 
 /* Precio */
 .price strong{ font-size:1.2em; }
