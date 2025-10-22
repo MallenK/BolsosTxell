@@ -79,12 +79,53 @@ h3{ font-size:clamp(1.4rem, 2vw, 1.8rem) }
   padding-inline: 25%;
 }
 
-.sr-only{
-  position:absolute !important; width:1px; height:1px; padding:0; margin:-1px;
-  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+:root{ --cap-h: clamp(64px, 10vw, 96px); }
+
+.gallery-card{ padding:0; outline:0; }
+.gcard{
+  display:grid;
+  grid-template-rows: 1fr var(--cap-h);
+  aspect-ratio: 4/3;
+  transition: grid-template-rows .35s ease;
 }
-/* Hover zoom solo en escritorio con puntero */
-.img-zoom{ transition:transform .35s ease; }
+.gcard-media{ overflow:hidden; }
+.gcard-media img{
+  width:100%; height:100%; object-fit:cover;
+  transition: transform .35s ease;
+}
+
+/* Banda blanca con título y precio */
+.gcard-cap{
+  background:#fff;
+  border-top:1px solid rgba(17,24,39,.08);
+  padding:.75rem 1rem;
+  display:flex; align-items:center; justify-content:space-between;
+  transition: opacity .25s ease, transform .25s ease;
+}
+.gcard-cap h3{ margin:0; font-weight:600; }
+.gcard-cap p{ margin:0; font-size:.95rem; }
+
+/* Hover/focus: ocultar banda y expandir imagen */
+@media (hover:hover){
+  .gallery-card:hover .gcard{ grid-template-rows: 1fr 0; }
+  .gallery-card:hover .gcard-media img{ transform: scale(1.03); }
+  .gallery-card:hover .gcard-cap{ opacity:0; transform: translateY(6px); }
+}
+.gallery-card:focus-visible .gcard{ grid-template-rows: 1fr 0; }
+.gallery-card:focus-visible .gcard-media img{ transform: scale(1.03); }
+.gallery-card:focus-visible .gcard-cap{ opacity:0; transform: translateY(6px); }
+
+/* Motion-safe */
+@media (prefers-reduced-motion: reduce){
+  .gcard, .gcard-media img, .gcard-cap{ transition:none; }
+}
+
+
+
+
+
+
+
 
 /* ===== Tarjetas / chips ===== */
 .card{
