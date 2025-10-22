@@ -128,7 +128,7 @@ export function renderHome(){
     <!-- Galería -->
     <section class="section-gallery pb-28">
       <h2 class="sr-only">${t('gallery.title','Galería')}</h2>
-      <div class="gallery-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="gallery-grid grid grid-cols-2 gap-4">
         ${store.products.slice(0,6).map(p=>`
           <a href="#/producto/${p.slug}" class="gallery-card block card overflow-hidden transition"
              aria-label="${p.nombre} — €${p.precioDesde}">
