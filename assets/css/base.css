@@ -204,6 +204,8 @@ img{ display:block; max-width:100%; height:auto }
     padding-inline: 2rem;
   }
 
+  .gallery-card{border-radius: 0px;}
+
   .gallery-card:hover .img-zoom{ transform:scale(1.06); }
 }
 
