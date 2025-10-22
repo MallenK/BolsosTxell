@@ -223,7 +223,7 @@ img{ display:block; max-width:100%; height:auto }
   }
 
   /* Grid de la intro si aplicas columnas */
-  .intro .cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap) }
+  .intro .cards{ display:grid; grid-template-columns:repeat(2,1fr); gap:var(--gap) }
 }
 
 /* >= 1280px (desktop amplio) */
