@@ -130,13 +130,23 @@ export function renderHome(){
       <h2 class="sr-only">${t('gallery.title','Galería')}</h2>
       <div class="gallery-grid grid grid-cols-1 md:grid-cols-3 gap-8">
         ${store.products.slice(0,6).map(p=>`
-          <a href="#/producto/${p.slug}" class="gallery-card block card overflow-hidden hover:shadow-lg transition">
-            <img class="img-zoom w-full h-full object-cover aspect-4-3" src="${p.fotos[0]}" alt="${p.nombre}">
-            <div class="p-3">
-              <h3 class="font-semibold">${p.nombre}</h3>
-              <p class="text-sm">€${p.precioDesde}</p>
+          <a href="#/producto/${p.slug}" class="gallery-card block card overflow-hidden transition"
+             aria-label="${p.nombre} — €${p.precioDesde}">
+            <div class="gcard">
+              <div class="gcard-media">
+                <img class="w-full h-full object-cover"
+                     src="${p.fotos[0]}" alt="${p.nombre}"
+                     loading="lazy" decoding="async"
+                     sizes="(min-width:1280px) 20vw, (min-width:1024px) 25vw, (min-width:768px) 30vw, 90vw">
+              </div>
+              <div class="gcard-cap">
+                <h3 class="font-semibold">${p.nombre}</h3>
+                <p class="text-sm">€${p.precioDesde}</p>
+              </div>
             </div>
-          </a>`).join('')}
+          </a>
+        `).join('')}
+
       </div>
     </section>
 
