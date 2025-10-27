@@ -1,10 +1,12 @@
 const FALLBACKS = [
-  // Picsum endpoints muy estables
-  'https://picsum.photos/id/1069/1600/1200',
-  'https://picsum.photos/id/1011/1600/1200',
-  'https://picsum.photos/id/1005/1600/1200'
+  './assets/img/BolsoMarron.png',
+  './assets/img/BolsoVerd.png',
+  './assets/img/bolsoFalç1.jpeg',
+  './assets/img/bolsoFalç2.jpeg',
+  './assets/img/bolsoFalç3.jpeg'
 ];
 const LOCAL_PLACEHOLDER = './assets/img/placeholder.svg';
+
 
 function checkImage(url, timeout = 7000){
   return new Promise(resolve => {

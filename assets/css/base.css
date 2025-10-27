@@ -9,7 +9,7 @@
   /* Colores y layout */
   --ink:#111;
   --bg:#fff;
-  --primary:#d97757;
+  --primary:#645753;
   --radius:16px;
   --shadow:0 6px 18px rgba(17,24,39,.06);
   --gap: clamp(1rem, 2vw, 2rem);

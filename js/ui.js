@@ -37,7 +37,7 @@ function altRows(items){
         <div class="px-4">
           <h3 class="font-serif text-2xl mb-2">${title}</h3>
           <p class="mb-4">${copy}</p>
-          <a href="#/catalogo" class="inline-block px-4 py-2 rounded-full bg-primary text-white" data-cat="${it.k}">
+          <a href="#/catalogo" class="inline-block px-4 py-2 rounded-full bg-success text-white" data-cat="${it.k}">
             ${t('cta.viewCategory','Ver {{cat}}').replace('{{cat}}', title)}
           </a>
         </div>
@@ -60,8 +60,8 @@ export function renderHome(){
       <div class="overlay"></div>
       <div class="hero-content grid place-items-center min-h-[100svh] px-4 text-center">
         <div class="max-w-3xl">
-          <h1 class="text-white">VERSIÓ 3</h1>
-          <h2 class="font-serif text-5xl md:text-6xl mb-3 text-white">${t('hero.title')}</h2>
+          <h2 class="text-white">VERSIÓ 3</h2>
+          <h1 class="text-5xl md:text-6xl mb-3 text-white">${t('hero.title')}</h1>
           <p class="mx-auto max-w-2xl mb-6 text-white">${t('hero.subtitle')}</p>
           <a href="#/catalogo" class="inline-block rounded-full bg-primary text-white px-6 py-3 shadow-soft">
             ${t('cta.catalog')}
@@ -213,22 +213,74 @@ export function renderCatalog(){
 
 
 export function renderProduct(hash){
-const slug = hash.split('/').pop();
-const p = store.products.find(x=>x.slug===slug);
-if(!p){ mount(`<section class="max-w-6xl mx-auto px-4 py-16">
-  <p>No encontrado.</p>
-</section>`); return; }
+  const slug = hash.split('/').pop();
+  const p = store.products.find(x => x.slug === slug);
+  if(!p){
+    mount(`<section class="max-w-6xl mx-auto px-4 py-16"><p>No encontrado.</p></section>`);
+    return;
+  }
 
-mount(`
+  const PLACEHOLDER = './assets/img/placeholder.svg';
+  const principal = p.imagenPrincipal || (Array.isArray(p.fotos) && p.fotos[0]) || PLACEHOLDER;
+  const accesorias = Array.isArray(p.imagenesAccesorias) ? p.imagenesAccesorias : (Array.isArray(p.fotos) ? p.fotos.slice(1) : []);
+  const variantes = Array.isArray(p.variantesColor) ? p.variantesColor : [];
+
+  // Parse base y extensión desde la principal: ./assets/img/Bolso-Forma-1-Marron.png
+function parseBase(src){
+  // Captura todo hasta el último guion antes de la extensión
+  const m = src.match(/^(.*\/)?(.+)-([^-\/.]+)(\.[a-z0-9]+)$/i);
+  if(!m) return null;
+  // m[2] = "Bolso-Forma-1"  → mantiene el bloque intermedio
+  return { dir: m[1] || '', base: m[2], ext: m[4] };
+}
+
+  const parsed = parseBase(principal);
+  const makeSrc = (color) => parsed ? `${parsed.dir}${parsed.base}-${color}${parsed.ext}` : principal;
+
+  const videoHtml = p.video ? `
+    <a class="block aspect-4-3"
+       data-lg-size="1280-720"
+       data-video='{"source":[{"src":"${p.video}","type":"video/mp4"}],"attributes":{"preload":"metadata","controls":true}}'
+       href="${p.video}">
+      <video class="w-full h-full object-cover" preload="metadata">
+        <source src="${p.video}" type="video/mp4">
+      </video>
+    </a>` : '';
+
+  mount(`
 <section class="max-w-6xl mx-auto px-4 pt-8 pb-16 grid md:grid-cols-2 gap-10">
-  <div class="card p-2">
-    <div id="gallery" class="rounded-xl2 overflow-hidden">
-      ${p.fotos.map((src,i)=>`
-      <a href="${src}" class="block aspect-4-3">
-        <img src="${src}" alt="${p.nombre} ${i+1}" class="w-full h-full object-cover" sizes="(min-width:1024px) 50vw, 100vw">
-      </a>`).join('')}
+  <div>
+    <!-- Imagen principal -->
+    <div class="card p-2 mb-4">
+      <div id="gallery" class="rounded-xl2 overflow-hidden">
+        <a id="main-link" href="${principal}" class="block aspect-4-3">
+          <img id="main-img" src="${principal}" alt="${p.nombre}" class="w-full h-full object-cover" sizes="(min-width:1024px) 50vw, 100vw">
+        </a>
+        ${videoHtml}
+      </div>
     </div>
+
+    <!-- Selector de color desde JSON -->
+    ${variantes.length ? `
+    <div class="flex gap-2 mb-6 flex-wrap" id="color-picker">
+      ${variantes.map(c => {
+        const href = makeSrc(c);
+        return `<a href="${href}" class="chip color-btn" data-color="${c}">${c}</a>`;
+      }).join('')}
+    </div>` : ''}
+
+    <!-- Accesorias tipo “relacionados” -->
+    ${accesorias.length ? `
+    <h3 class="font-serif text-xl mb-3">Más imágenes</h3>
+    <div id="acc-gallery" class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+      ${accesorias.map((src,i)=>`
+        <a href="${src}" class="card overflow-hidden block aspect-4-3">
+          <img src="${src}" alt="${p.nombre} ${i+2}" class="w-full h-full object-cover">
+        </a>
+      `).join('')}
+    </div>` : ``}
   </div>
+
   <div>
     <h1 class="font-serif text-3xl mb-2">${p.nombre}</h1>
     <p class="text-lg mb-4"><span>Desde</span> <strong>€${p.precioDesde}</strong></p>
@@ -243,7 +295,11 @@ mount(`
 
     <h3 class="font-serif text-xl mt-10 mb-3">Relacionados</h3>
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-      ${store.products.filter(x=>x.categoria===p.categoria && x.id!==p.id).slice(0,4).map(card).join('')}
+      ${store.products
+        .filter(x=>x.categoria===p.categoria && x.id!==p.id)
+        .slice(0,4)
+        .map(card)
+        .join('')}
     </div>
   </div>
 </section>
@@ -252,17 +308,37 @@ mount(`
   <form class="space-y-3" id="contact-form">
     <sl-input name="name" placeholder="Nombre"></sl-input>
     <sl-input name="email" type="email" placeholder="Email"></sl-input>
-    <sl-textarea name="msg" placeholder="Mensaje"></sltextarea>
-      <sl-button type="primary" submit>Enviar</sl-button>
+    <sl-textarea name="msg" placeholder="Mensaje"></sl-textarea>
+    <sl-button type="primary" submit>Enviar</sl-button>
   </form>
 </sl-dialog>
-`);
+  `);
 
-lightGallery(document.getElementById('gallery'), { plugins:[lgZoom], speed: 300 });
+  // LightGallery
+  const plugins = p.video ? [lgZoom, lgVideo] : [lgZoom];
+  const g1 = document.getElementById('gallery');
+  if (g1) lightGallery(g1, { plugins, speed: 300 });
+  const g2 = document.getElementById('acc-gallery');
+  if (g2) lightGallery(g2, { plugins: [lgZoom], speed: 300 });
 
-const form = document.getElementById('contact-form');
-form?.addEventListener('submit', (e)=>{ e.preventDefault(); alert('Enviado (demo).'); });
+  // Interacción color: usa el href ya correcto y evita navegación
+  const $mainImg = document.getElementById('main-img');
+  const $mainLink = document.getElementById('main-link');
+  console.log("wosgufvibriuerbg",$mainImg, $mainLink);
+  document.getElementById('color-picker')?.addEventListener('click', (e)=>{
+    const a = e.target.closest('.color-btn');
+    if(!a) return;
+    e.preventDefault();
+    const next = a.getAttribute('href');
+    if ($mainImg) $mainImg.src = next;
+    if ($mainLink) $mainLink.href = next;
+  });
+
+  // Form
+  const form = document.getElementById('contact-form');
+  form?.addEventListener('submit', (e)=>{ e.preventDefault(); alert('Enviado (demo).'); });
 }
+
 
 
 

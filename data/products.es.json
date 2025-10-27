@@ -11,9 +11,21 @@
     "medidas": {"ancho": 28, "alto": 20, "fondo": 12},
     "peso": 430,
     "tags": ["hecho-a-mano","vegano"],
+    "imagenPrincipal": "./assets/img/Bolso-Forma-1-Marron.png",
+    "variantesColor": ["Rosa","Marron","Blanco","Negro"],
+    "imagenesAccesorias": [
+      "./assets/img/bolsoFalç1.jpeg",
+      "./assets/img/bolsoFalç2.jpeg",
+      "./assets/img/bolsoFalç3.jpeg",
+      "./assets/img/BolsoBlanc.png"
+    ],
+    "video": null,
     "fotos": [
-      "https://images.unsplash.com/photo-1544551763-7ef4200b1c5b?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1518441902113-c1d3b1c7b9d1?q=80&w=1600&auto=format&fit=crop"
+      "./assets/img/Bolso-Forma-1-Marron.png",
+      "./assets/img/bolsoFalç1.jpeg",
+      "./assets/img/bolsoFalç2.jpeg",
+      "./assets/img/bolsoFalç3.jpeg",
+      "./assets/img/BolsoBlanc.png"
     ]
   },
   {
@@ -28,9 +40,14 @@
     "medidas": {"ancho": 24, "alto": 14, "fondo": 3},
     "peso": 180,
     "tags": ["ligero"],
+    "imagenPrincipal": "./assets/img/BolsoVerd.png",
+    "imagenesAccesorias": [
+      "./assets/img/BolsoBlanc.png"
+    ],
+    "video": null,
     "fotos": [
-      "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1549187774-b4e9b0445b41?q=80&w=1600&auto=format&fit=crop"
+      "./assets/img/BolsoVerd.png",
+      "./assets/img/BolsoBlanc.png"
     ]
   },
   {
@@ -45,6 +62,9 @@
     "medidas": {"ancho": 26, "alto": 18, "fondo": 7},
     "peso": 320,
     "tags": ["marco","clásico"],
+    "imagenPrincipal": "https://images.unsplash.com/photo-1544441892-30a1b96b1905?q=80&w=1600&auto=format&fit=crop",
+    "imagenesAccesorias": [],
+    "video": null,
     "fotos": [
       "https://images.unsplash.com/photo-1544441892-30a1b96b1905?q=80&w=1600&auto=format&fit=crop"
     ]
@@ -61,6 +81,9 @@
     "medidas": {"ancho": 27, "alto": 17, "fondo": 6},
     "peso": 350,
     "tags": ["tapa","urbano"],
+    "imagenPrincipal": "https://images.unsplash.com/photo-1520975922284-9e0ce8271d72?q=80&w=1600&auto=format&fit=crop",
+    "imagenesAccesorias": [],
+    "video": null,
     "fotos": [
       "https://images.unsplash.com/photo-1520975922284-9e0ce8271d72?q=80&w=1600&auto=format&fit=crop"
     ]
@@ -77,6 +100,9 @@
     "medidas": {"ancho": 30, "alto": 22, "fondo": 14},
     "peso": 480,
     "tags": ["weekender"],
+    "imagenPrincipal": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1600&auto=format&fit=crop",
+    "imagenesAccesorias": [],
+    "video": null,
     "fotos": [
       "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1600&auto=format&fit=crop"
     ]
@@ -93,6 +119,9 @@
     "medidas": {"ancho": 25, "alto": 13, "fondo": 3},
     "peso": 170,
     "tags": ["fiesta"],
+    "imagenPrincipal": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1600&auto=format&fit=crop",
+    "imagenesAccesorias": [],
+    "video": null,
     "fotos": [
       "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1600&auto=format&fit=crop"
     ]
@@ -109,6 +138,9 @@
     "medidas": {"ancho": 26, "alto": 17, "fondo": 6},
     "peso": 340,
     "tags": ["marco"],
+    "imagenPrincipal": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop",
+    "imagenesAccesorias": [],
+    "video": null,
     "fotos": [
       "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop"
     ]
@@ -125,6 +157,9 @@
     "medidas": {"ancho": 28, "alto": 18, "fondo": 7},
     "peso": 360,
     "tags": ["diaria"],
+    "imagenPrincipal": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop",
+    "imagenesAccesorias": [],
+    "video": null,
     "fotos": [
       "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop"
     ]
