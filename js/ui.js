@@ -344,50 +344,113 @@ function parseBase(src){
 
 export function renderAbout(){
   mount(`
-    <section class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-10">
-      <div>
-        <h1 class="font-serif mb-4">Sobre Cro and Txet</h1>
-        <p>Creamos bolsos a mano combinando crochet y pintura de animales. Producción por encargo, materiales sostenibles y acabados cuidados.</p>
-        <ul class="mt-6 space-y-2">
-          <li class="chip">Algodón reciclado</li>
-          <li class="chip">Pintura textil</li>
-          <li class="chip">Hecho bajo pedido</li>
-        </ul>
+    <section class="max-w-5xl mx-auto px-4 py-12 text-center space-y-10">
+      <!-- Row 1: título + descripción breve -->
+      <header>
+        <h1 class="font-serif text-3xl mb-3">Sobre Cro and Txet</h1>
+        <p class="text-neutral-700 max-w-2xl mx-auto">
+          Bolsos hechos a mano que combinan crochet y pintura textil. Producción bajo pedido, materiales cuidados y atención al detalle.
+        </p>
+      </header>
+
+      <!-- Row 2: dos imágenes -->
+      <div class="grid sm:grid-cols-2 gap-6">
+        <figure class="rounded-2xl overflow-hidden card">
+          <img
+            src="https://images.unsplash.com/photo-1520975867597-0f1a3f0a1f5b?q=80&w=1600&auto=format&fit=crop"
+            alt="Persona trabajando con hilo de algodón en una mesa"
+            class="w-full h-full object-cover aspect-4-3"
+            loading="lazy"
+          />
+        </figure>
+        <figure class="rounded-2xl overflow-hidden card">
+          <img
+            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1600&auto=format&fit=crop"
+            alt="Primer plano de manos tejiendo a crochet"
+            class="w-full h-full object-cover aspect-4-3"
+            loading="lazy"
+          />
+        </figure>
       </div>
-      <div class="card p-2">
-        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop"
-             alt="Taller Cro and Txet" class="w-full h-full object-cover aspect-4-3" sizes="(min-width:1024px) 50vw, 100vw" />
-      </div>
+
+      <!-- Row 3: historia personal -->
+      <article class="prose max-w-3xl mx-auto text-center">
+        <h2 class="font-serif text-2xl mb-3">Por qué empezamos</h2>
+        <p class="text-neutral-800">
+          Cro and Txet nació después de una pequeña lesión que dejó una pierna temporalmente inmovilizada.
+          El reposo trajo calma y también inquietud. Para canalizarla, comenzaron los primeros puntos de crochet,
+          sin prisa y con la idea de crear algo útil y hermoso. Con el tiempo, esos ensayos se convirtieron en bolsos:
+          piezas que mezclan tejido y pintura de animales, hechas bajo pedido para evitar stock y respetar el ritmo de cada mano.
+          Hoy cada bolso recuerda ese inicio: transformar una limitación en un objeto que acompaña.
+        </p>
+      </article>
     </section>
   `);
 }
 
+
 export function renderContact(){
   mount(`
-    <section class="max-w-2xl mx-auto px-4 py-12 text-center">
-      <h1 class="font-serif mb-4">${t('contact.title','Contacto')}</h1>
-      <p class="mb-6">${t('contact.intro','Escríbenos y cuéntanos qué bolso te interesa.')}</p>
-      <div class="mb-6">
-        <a class="inline-block rounded-full bg-primary text-white px-5 py-2"
-           href="${t('instagram.url','https://instagram.com/cro_and_txet')}" target="_blank" rel="noopener">
-           ${t('instagram.handle','@cro_and_txet')}
-        </a>
-      </div>
-      <form class="card p-5 space-y-4 text-left">
-        <sl-input required placeholder="${t('contact.form.name','Nombre')}"></sl-input>
-        <sl-input required type="email" placeholder="${t('contact.form.email','Email')}"></sl-input>
-        <sl-input placeholder="${t('contact.form.phone','Teléfono')}"></sl-input>
-        <sl-textarea placeholder="${t('contact.form.msg','Mensaje')}"></sl-textarea>
-        <div class="flex items-center gap-3 flex-wrap justify-center">
-          <sl-button variant="primary">${t('contact.form.send','Enviar')}</sl-button>
-          <a href="#" id="wa-btn" class="inline-block rounded-full bg-primary text-white px-4 py-2">WhatsApp</a>
+    <section class="max-w-6xl mx-auto px-4 py-16 space-y-12">
+      <!-- Título -->
+      <header class="text-center">
+        <h1 class="font-serif text-3xl mb-3">${t('contact.title','Contacto')}</h1>
+        <p class="text-neutral-700">${t('contact.intro','Elige cómo quieres ponerte en contacto con nosotros.')}</p>
+      </header>
+
+      <!-- Dos columnas -->
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <!-- Columna izquierda: Instagram -->
+        <div class="text-center md:text-left space-y-4">
+          <h2 class="font-serif text-2xl">${t('contact.social.title','Síguenos en Instagram')}</h2>
+          <p class="text-neutral-700">
+            ${t('contact.social.text','Descubre los nuevos bolsos, procesos y diseños en nuestra cuenta.')}
+          </p>
+          <a class="inline-block rounded-full bg-primary text-white px-6 py-2 mt-2"
+             href="${t('instagram.url','https://instagram.com/cro_and_txet')}"
+             target="_blank" rel="noopener">
+             ${t('instagram.handle','@cro_and_txet')}
+          </a>
+          <figure class="rounded-2xl overflow-hidden shadow mt-6">
+            <img
+              src="https://images.unsplash.com/photo-1520975867597-0f1a3f0a1f5b?q=80&w=1600&auto=format&fit=crop"
+              alt="Taller de bolsos Cro and Txet"
+              class="w-full h-full object-cover aspect-4-3"
+              loading="lazy"
+            />
+          </figure>
         </div>
-      </form>
+
+        <!-- Columna derecha: contacto directo -->
+        <div class="text-center md:text-left space-y-4">
+          <h2 class="font-serif text-2xl">${t('contact.direct.title','Escríbenos directamente')}</h2>
+          <p class="text-neutral-700">
+            ${t('contact.direct.text','Si prefieres un trato más personal, contáctanos por correo o por WhatsApp.')}
+          </p>
+
+          <form class="card p-6 space-y-4 text-left bg-white/70 backdrop-blur">
+            <sl-input required placeholder="${t('contact.form.name','Nombre')}"></sl-input>
+            <sl-input required type="email" placeholder="${t('contact.form.email','Email')}"></sl-input>
+            <sl-textarea placeholder="${t('contact.form.msg','Mensaje')}"></sl-textarea>
+            <div class="flex flex-wrap gap-3 justify-center md:justify-start mt-2">
+              <sl-button variant="primary">${t('contact.form.send','Enviar')}</sl-button>
+              <a id="wa-btn"
+                 class="inline-block rounded-full bg-green-600 text-white px-5 py-2 hover:bg-green-700 transition-colors"
+                 href="#"
+                 target="_blank" rel="noopener">
+                 WhatsApp
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
     </section>
   `);
   const wa = document.getElementById('wa-btn');
   wa.href = waLink();
 }
+
+
 
 export function renderLegal(hash){
   const page = hash.split('/').pop();
