@@ -5,14 +5,14 @@
     "nombre": "Barrel Aurora",
     "categoria": "Barrel",
     "precioDesde": 120,
-    "colores": ["hielo","lavanda","menta"],
+    "colores": ["hielo", "lavanda", "menta"],
     "animal": "golondrina",
-    "materiales": ["algodón reciclado","forro lino","pintura textil"],
-    "medidas": {"ancho": 28, "alto": 20, "fondo": 12},
+    "materiales": ["algodón reciclado", "forro lino", "pintura textil"],
+    "medidas": { "ancho": 28, "alto": 20, "fondo": 12 },
     "peso": 430,
-    "tags": ["hecho-a-mano","vegano"],
+    "tags": ["hecho-a-mano", "vegano"],
     "imagenPrincipal": "./assets/img/Bolso-Forma-1-Marron.png",
-    "variantesColor": ["Rosa","Marron","Blanco","Negro"],
+    "variantesColor": ["Rosa", "Marron", "Blanco", "Negro"],
     "imagenesAccesorias": [
       "./assets/img/bolsoFalç1.jpeg",
       "./assets/img/bolsoFalç2.jpeg",
@@ -34,14 +34,18 @@
     "nombre": "Clutch Nix",
     "categoria": "Clutch",
     "precioDesde": 65,
-    "colores": ["azul-niebla","menta"],
+    "colores": ["azul-niebla", "menta"],
     "animal": "zorro ártico",
-    "materiales": ["algodón orgánico","forro algodón"],
-    "medidas": {"ancho": 24, "alto": 14, "fondo": 3},
+    "materiales": ["algodón orgánico", "forro algodón"],
+    "medidas": { "ancho": 24, "alto": 14, "fondo": 3 },
     "peso": 180,
     "tags": ["ligero"],
     "imagenPrincipal": "./assets/img/BolsoVerd.png",
+    "variantesColor": ["Rosa", "Marron", "Blanco", "Negro"],
     "imagenesAccesorias": [
+      "./assets/img/bolsoFalç1.jpeg",
+      "./assets/img/bolsoFalç2.jpeg",
+      "./assets/img/bolsoFalç3.jpeg",
       "./assets/img/BolsoBlanc.png"
     ],
     "video": null,
@@ -56,17 +60,23 @@
     "nombre": "Frame Iskra",
     "categoria": "Frame",
     "precioDesde": 95,
-    "colores": ["lavanda","perla"],
+    "colores": ["lavanda", "perla"],
     "animal": "lechuza",
-    "materiales": ["mezcla algodón-lino","marco metálico"],
-    "medidas": {"ancho": 26, "alto": 18, "fondo": 7},
+    "materiales": ["mezcla algodón-lino", "marco metálico"],
+    "medidas": { "ancho": 26, "alto": 18, "fondo": 7 },
     "peso": 320,
-    "tags": ["marco","clásico"],
-    "imagenPrincipal": "https://images.unsplash.com/photo-1544441892-30a1b96b1905?q=80&w=1600&auto=format&fit=crop",
-    "imagenesAccesorias": [],
+    "tags": ["marco", "clásico"],
+    "imagenPrincipal": "./assets/img/Bolso-Forma-1-Marron.png",
+    "variantesColor": ["Rosa", "Marron", "Blanco"],
+    "imagenesAccesorias": [
+      "./assets/img/bolsoFalç1.jpeg",
+      "./assets/img/bolsoFalç2.jpeg",
+      "./assets/img/BolsoBlanc.png"
+    ],
     "video": null,
     "fotos": [
-      "https://images.unsplash.com/photo-1544441892-30a1b96b1905?q=80&w=1600&auto=format&fit=crop"
+      "./assets/img/Bolso-Forma-1-Marron.png",
+      "./assets/img/BolsoBlanc.png"
     ]
   },
   {
@@ -75,17 +85,22 @@
     "nombre": "Flap Boreal",
     "categoria": "Flap",
     "precioDesde": 110,
-    "colores": ["azul hielo","gris perla"],
+    "colores": ["azul hielo", "gris perla"],
     "animal": "lobo polar",
-    "materiales": ["algodón reciclado","imán oculto"],
-    "medidas": {"ancho": 27, "alto": 17, "fondo": 6},
+    "materiales": ["algodón reciclado", "imán oculto"],
+    "medidas": { "ancho": 27, "alto": 17, "fondo": 6 },
     "peso": 350,
-    "tags": ["tapa","urbano"],
-    "imagenPrincipal": "https://images.unsplash.com/photo-1520975922284-9e0ce8271d72?q=80&w=1600&auto=format&fit=crop",
-    "imagenesAccesorias": [],
+    "tags": ["tapa", "urbano"],
+    "imagenPrincipal": "./assets/img/BolsoBlanc.png",
+    "variantesColor": ["Gris", "Perla", "Negro"],
+    "imagenesAccesorias": [
+      "./assets/img/bolsoFalç1.jpeg",
+      "./assets/img/BolsoBlanc.png"
+    ],
     "video": null,
     "fotos": [
-      "https://images.unsplash.com/photo-1520975922284-9e0ce8271d72?q=80&w=1600&auto=format&fit=crop"
+      "./assets/img/BolsoBlanc.png",
+      "./assets/img/bolsoFalç1.jpeg"
     ]
   },
   {
@@ -94,17 +109,22 @@
     "nombre": "Barrel Fjord",
     "categoria": "Barrel",
     "precioDesde": 130,
-    "colores": ["menta","acero"],
+    "colores": ["menta", "acero"],
     "animal": "foca",
-    "materiales": ["algodón reciclado","asas cuerda"],
-    "medidas": {"ancho": 30, "alto": 22, "fondo": 14},
+    "materiales": ["algodón reciclado", "asas cuerda"],
+    "medidas": { "ancho": 30, "alto": 22, "fondo": 14 },
     "peso": 480,
     "tags": ["weekender"],
-    "imagenPrincipal": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1600&auto=format&fit=crop",
-    "imagenesAccesorias": [],
+    "imagenPrincipal": "./assets/img/Bolso-Forma-1-Marron.png",
+    "variantesColor": ["Azul", "Gris", "Negro"],
+    "imagenesAccesorias": [
+      "./assets/img/bolsoFalç1.jpeg",
+      "./assets/img/bolsoFalç2.jpeg"
+    ],
     "video": null,
     "fotos": [
-      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1600&auto=format&fit=crop"
+      "./assets/img/Bolso-Forma-1-Marron.png",
+      "./assets/img/bolsoFalç1.jpeg"
     ]
   },
   {
@@ -113,17 +133,22 @@
     "nombre": "Clutch Aurora",
     "categoria": "Clutch",
     "precioDesde": 70,
-    "colores": ["lavanda","hielo"],
+    "colores": ["lavanda", "hielo"],
     "animal": "golondrina",
     "materiales": ["algodón orgánico"],
-    "medidas": {"ancho": 25, "alto": 13, "fondo": 3},
+    "medidas": { "ancho": 25, "alto": 13, "fondo": 3 },
     "peso": 170,
     "tags": ["fiesta"],
-    "imagenPrincipal": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1600&auto=format&fit=crop",
-    "imagenesAccesorias": [],
+    "imagenPrincipal": "./assets/img/BolsoVerd.png",
+    "variantesColor": ["Rosa", "Blanco", "Negro"],
+    "imagenesAccesorias": [
+      "./assets/img/BolsoBlanc.png",
+      "./assets/img/bolsoFalç3.jpeg"
+    ],
     "video": null,
     "fotos": [
-      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1600&auto=format&fit=crop"
+      "./assets/img/BolsoVerd.png",
+      "./assets/img/BolsoBlanc.png"
     ]
   },
   {
@@ -132,17 +157,21 @@
     "nombre": "Frame Nord",
     "categoria": "Frame",
     "precioDesde": 100,
-    "colores": ["perla","azul humo"],
+    "colores": ["perla", "azul humo"],
     "animal": "alce",
-    "materiales": ["algodón-lino","marco níquel"],
-    "medidas": {"ancho": 26, "alto": 17, "fondo": 6},
+    "materiales": ["algodón-lino", "marco níquel"],
+    "medidas": { "ancho": 26, "alto": 17, "fondo": 6 },
     "peso": 340,
     "tags": ["marco"],
-    "imagenPrincipal": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop",
-    "imagenesAccesorias": [],
+    "imagenPrincipal": "./assets/img/Bolso-Forma-1-Marron.png",
+    "variantesColor": ["Perla", "Negro", "Blanco"],
+    "imagenesAccesorias": [
+      "./assets/img/bolsoFalç1.jpeg",
+      "./assets/img/BolsoBlanc.png"
+    ],
     "video": null,
     "fotos": [
-      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop"
+      "./assets/img/Bolso-Forma-1-Marron.png"
     ]
   },
   {
@@ -151,17 +180,22 @@
     "nombre": "Flap Glaze",
     "categoria": "Flap",
     "precioDesde": 115,
-    "colores": ["azul hielo","menta"],
+    "colores": ["azul hielo", "menta"],
     "animal": "pinguino",
-    "materiales": ["algodón reciclado","forro impermeable"],
-    "medidas": {"ancho": 28, "alto": 18, "fondo": 7},
+    "materiales": ["algodón reciclado", "forro impermeable"],
+    "medidas": { "ancho": 28, "alto": 18, "fondo": 7 },
     "peso": 360,
     "tags": ["diaria"],
-    "imagenPrincipal": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop",
-    "imagenesAccesorias": [],
+    "imagenPrincipal": "./assets/img/BolsoVerd.png",
+    "variantesColor": ["Azul", "Blanco", "Negro"],
+    "imagenesAccesorias": [
+      "./assets/img/bolsoFalç2.jpeg",
+      "./assets/img/BolsoBlanc.png"
+    ],
     "video": null,
     "fotos": [
-      "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop"
+      "./assets/img/BolsoVerd.png",
+      "./assets/img/bolsoFalç2.jpeg"
     ]
   }
 ]

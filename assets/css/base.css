@@ -39,6 +39,15 @@ h1{ font-size:clamp(2.2rem, 4vw, 3.4rem) }
 h2{ font-size:clamp(1.8rem, 3vw, 2.6rem) }
 h3{ font-size:clamp(1.4rem, 2vw, 1.8rem) }
 
+nav a:hover {
+  color: var(--primary) !important;
+}
+
+.bg-primary{
+  background-color: #645753 !important;
+  color: white;
+}
+
 /* ===== Hero ===== */
 .hero-full{ position:relative; min-height:100svh; overflow:hidden; background:#000 }
 .hero-full .hero-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none }
@@ -50,17 +59,38 @@ h3{ font-size:clamp(1.4rem, 2vw, 1.8rem) }
 .hero-full .hero-content h1,
 .hero-full .hero-content p{ color:#fff }
 
+.hero-content p, .hero-content a{
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+}
+
 /* ===== Presentación ===== */
-.intro{ text-wrap:balance }
+.intro{ text-wrap:balance;  }
 .intro .lead{ font-size:1.125rem; line-height:1.7 }
 .intro .card{
   background:#fff; border:1px solid rgba(17,24,39,.08);
   border-radius:var(--radius); box-shadow:var(--shadow);
+  font-family: var(--font-body);
 }
 
 /* ===== Sección de categorías ===== */
 .section-cats {
   padding-inline: 25%;
+}
+
+.section-cats h3{
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  padding-bottom: 5%;
+}
+
+.section-cats p, .section-cats a{
+  font-family: var(--font-body);
+}
+
+.section-cats a{
+  background-color: #645753;
+  color: white;
 }
 
 
@@ -109,8 +139,8 @@ h3{ font-size:clamp(1.4rem, 2vw, 1.8rem) }
   display:flex; align-items:center; justify-content:space-between;
   transition: opacity .25s ease, transform .25s ease;
 }
-.gcard-cap h3{ margin:0; font-weight:600; }
-.gcard-cap p{ margin:0; font-size:.95rem; }
+.gcard-cap h3{ margin:0; font-size: 1.5rem; font-weight: 600; }
+.gcard-cap p{ margin:0;  font-size: 1.2rem; font-size:.95rem; }
 
 /* Hover/focus: ocultar banda y expandir imagen */
 @media (hover:hover){
@@ -212,8 +242,52 @@ img{ display:block; max-width:100%; height:auto }
 
 
 
+/* ======== Pagina Catalogo ======== */
+.card-name{
+  font-size: 1.5rem;
+}
+
+.card-price{
+  font-size: 1.3rem;
+}
 
 
+
+/* ======== Pagina Sobre mi ======== */
+.about-me-title{
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+#aboutMeSection article h2{
+  margin-top: 5%;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+
+/* ======== Pagina Contacto ======== */
+#sectionContact header h1{
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+#sectionContact h2{
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+
+sl-button[variant="danger"],
+#wa-btn {
+  background-color: #645753 !important;
+  color: #fff !important;
+}
+
+sl-button[variant="danger"]:hover,
+#wa-btn:hover {
+  background-color: #4f4740 !important; /* tono más oscuro para hover */
+}
 
 
 /* ===== Breakpoints ===== */

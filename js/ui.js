@@ -37,7 +37,7 @@ function altRows(items){
         <div class="px-4">
           <h3 class="font-serif text-2xl mb-2">${title}</h3>
           <p class="mb-4">${copy}</p>
-          <a href="#/catalogo" class="inline-block px-4 py-2 rounded-full bg-success text-white" data-cat="${it.k}">
+          <a href="#/catalogo" class="inline-block px-4 py-2 rounded-full bg-success" data-cat="${it.k}">
             ${t('cta.viewCategory','Ver {{cat}}').replace('{{cat}}', title)}
           </a>
         </div>
@@ -60,7 +60,6 @@ export function renderHome(){
       <div class="overlay"></div>
       <div class="hero-content grid place-items-center min-h-[100svh] px-4 text-center">
         <div class="max-w-3xl">
-          <h2 class="text-white">VERSIÓ 3</h2>
           <h1 class="text-5xl md:text-6xl mb-3 text-white">${t('hero.title')}</h1>
           <p class="mx-auto max-w-2xl mb-6 text-white">${t('hero.subtitle')}</p>
           <a href="#/catalogo" class="inline-block rounded-full bg-primary text-white px-6 py-3 shadow-soft">
@@ -344,10 +343,10 @@ function parseBase(src){
 
 export function renderAbout(){
   mount(`
-    <section class="max-w-5xl mx-auto px-4 py-12 text-center space-y-10">
+    <section id="aboutMeSection" class="max-w-5xl mx-auto px-4 py-12 text-center space-y-10">
       <!-- Row 1: título + descripción breve -->
       <header>
-        <h1 class="font-serif text-3xl mb-3">Sobre Cro and Txet</h1>
+        <h1 class="about-me-title font-serif text-3xl mb-3">Sobre Cro and Txet</h1>
         <p class="text-neutral-700 max-w-2xl mx-auto">
           Bolsos hechos a mano que combinan crochet y pintura textil. Producción bajo pedido, materiales cuidados y atención al detalle.
         </p>
@@ -391,7 +390,7 @@ export function renderAbout(){
 
 export function renderContact(){
   mount(`
-    <section class="max-w-6xl mx-auto px-4 py-16 space-y-12">
+    <section id="sectionContact" class="max-w-6xl mx-auto px-4 py-16 space-y-12">
       <!-- Título -->
       <header class="text-center">
         <h1 class="font-serif text-3xl mb-3">${t('contact.title','Contacto')}</h1>
@@ -433,9 +432,9 @@ export function renderContact(){
             <sl-input required type="email" placeholder="${t('contact.form.email','Email')}"></sl-input>
             <sl-textarea placeholder="${t('contact.form.msg','Mensaje')}"></sl-textarea>
             <div class="flex flex-wrap gap-3 justify-center md:justify-start mt-2">
-              <sl-button variant="primary">${t('contact.form.send','Enviar')}</sl-button>
+              <sl-button variant="black">${t('contact.form.send','Enviar')}</sl-button>
               <a id="wa-btn"
-                 class="inline-block rounded-full bg-green-600 text-white px-5 py-2 hover:bg-green-700 transition-colors"
+                 class="inline-block rounded-full bg-black-600 text-white px-5 py-2 hover:bg-green-700 transition-colors"
                  href="#"
                  target="_blank" rel="noopener">
                  WhatsApp
@@ -462,7 +461,7 @@ export function renderLegal(hash){
   `);
 }
 
-function card(p){
+function card(p) {
   return `
   <a href="#/producto/${p.slug}" class="block card overflow-hidden hover:shadow-lg transition">
     <div class="aspect-4-3 overflow-hidden">
@@ -471,11 +470,15 @@ function card(p){
            sizes="(min-width:1280px) 20vw, (min-width:1024px) 25vw, (min-width:640px) 45vw, 90vw">
     </div>
     <div class="p-3">
-      <h3 class="font-semibold">${p.nombre}</h3>
-      <p class="text-sm">€${p.precioDesde}</p>
+      <div class="flex items-center justify-between">
+        <h3 class="card-name font-semibold">${p.nombre}</h3>
+        <p class="card-price text-sm">€${p.precioDesde}</p>
+      </div>
+      <!--
       <div class="mt-2 flex gap-2 flex-wrap">
         ${p.colores.slice(0,3).map(c=>`<span class="chip">${c}</span>`).join('')}
       </div>
+      -->
     </div>
   </a>`;
 }

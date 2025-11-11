@@ -1,16 +1,201 @@
 [
-  { "id": "barrel-aurora", "slug": "barrel-aurora", "nom": "Barrel Aurora", "categoria": "Barrel", "preuDesDe": 120,
-    "colors": ["gel","lavanda","menta"], "animal": "oreneta",
-    "materials": ["cotó reciclat","folre lli","pintura tèxtil"],
-    "mesures": {"ample": 28, "alt": 20, "fons": 12}, "pes": 430,
-    "etiquetes": ["fet-a-ma","vegà"],
-    "fotos": ["https://images.unsplash.com/photo-1544551763-7ef4200b1c5b?q=80&w=1600&auto=format&fit=crop"]
+  {
+    "id": "barrel-aurora",
+    "slug": "barrel-aurora",
+    "nom": "Barrel Aurora",
+    "categoria": "Barrel",
+    "preuDesDe": 120,
+    "colors": ["gel", "lavanda", "menta"],
+    "animal": "oreneta",
+    "materials": ["cotó reciclat", "folre lli", "pintura tèxtil"],
+    "mides": { "amplada": 28, "alçada": 20, "fons": 12 },
+    "pes": 430,
+    "etiquetes": ["fet-a-mà", "vegà"],
+    "imatgePrincipal": "./assets/img/Bolso-Forma-1-Marron.png",
+    "variantsColor": ["Rosa", "Marró", "Blanc", "Negre"],
+    "imatgesAddicionals": [
+      "./assets/img/bolsoFalç1.jpeg",
+      "./assets/img/bolsoFalç2.jpeg",
+      "./assets/img/bolsoFalç3.jpeg",
+      "./assets/img/BolsoBlanc.png"
+    ],
+    "video": null,
+    "fotos": [
+      "./assets/img/Bolso-Forma-1-Marron.png",
+      "./assets/img/bolsoFalç1.jpeg",
+      "./assets/img/bolsoFalç2.jpeg",
+      "./assets/img/bolsoFalç3.jpeg",
+      "./assets/img/BolsoBlanc.png"
+    ]
   },
-  { "id": "clutch-nix", "slug": "clutch-nix", "nom": "Clutch Nix", "categoria": "Clutch", "preuDesDe": 65,
-    "colors": ["blau-boira","menta"], "animal": "guineu àrtica",
-    "materials": ["cotó orgànic","folre cotó"],
-    "mesures": {"ample": 24, "alt": 14, "fons": 3}, "pes": 180,
+  {
+    "id": "clutch-nix",
+    "slug": "clutch-nix",
+    "nom": "Clutch Nix",
+    "categoria": "Clutch",
+    "preuDesDe": 65,
+    "colors": ["blau-boira", "menta"],
+    "animal": "guineu àrtica",
+    "materials": ["cotó orgànic", "folre cotó"],
+    "mides": { "amplada": 24, "alçada": 14, "fons": 3 },
+    "pes": 180,
     "etiquetes": ["lleuger"],
-    "fotos": ["https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?q=80&w=1600&auto=format&fit=crop"]
+    "imatgePrincipal": "./assets/img/BolsoVerd.png",
+    "variantsColor": ["Rosa", "Marró", "Blanc", "Negre"],
+    "imatgesAddicionals": [
+      "./assets/img/bolsoFalç1.jpeg",
+      "./assets/img/bolsoFalç2.jpeg",
+      "./assets/img/bolsoFalç3.jpeg",
+      "./assets/img/BolsoBlanc.png"
+    ],
+    "video": null,
+    "fotos": [
+      "./assets/img/BolsoVerd.png",
+      "./assets/img/BolsoBlanc.png"
+    ]
+  },
+  {
+    "id": "frame-iskra",
+    "slug": "frame-iskra",
+    "nom": "Frame Iskra",
+    "categoria": "Frame",
+    "preuDesDe": 95,
+    "colors": ["lavanda", "perla"],
+    "animal": "òliba",
+    "materials": ["barreja cotó-lli", "marc metàl·lic"],
+    "mides": { "amplada": 26, "alçada": 18, "fons": 7 },
+    "pes": 320,
+    "etiquetes": ["marc", "clàssic"],
+    "imatgePrincipal": "./assets/img/Bolso-Forma-1-Marron.png",
+    "variantsColor": ["Rosa", "Marró", "Blanc"],
+    "imatgesAddicionals": [
+      "./assets/img/bolsoFalç1.jpeg",
+      "./assets/img/bolsoFalç2.jpeg",
+      "./assets/img/BolsoBlanc.png"
+    ],
+    "video": null,
+    "fotos": [
+      "./assets/img/Bolso-Forma-1-Marron.png",
+      "./assets/img/BolsoBlanc.png"
+    ]
+  },
+  {
+    "id": "flap-boreal",
+    "slug": "flap-boreal",
+    "nom": "Flap Boreal",
+    "categoria": "Flap",
+    "preuDesDe": 110,
+    "colors": ["blau gel", "gris perla"],
+    "animal": "llop polar",
+    "materials": ["cotó reciclat", "imant ocult"],
+    "mides": { "amplada": 27, "alçada": 17, "fons": 6 },
+    "pes": 350,
+    "etiquetes": ["tapa", "urbà"],
+    "imatgePrincipal": "./assets/img/BolsoBlanc.png",
+    "variantsColor": ["Gris", "Perla", "Negre"],
+    "imatgesAddicionals": [
+      "./assets/img/bolsoFalç1.jpeg",
+      "./assets/img/BolsoBlanc.png"
+    ],
+    "video": null,
+    "fotos": [
+      "./assets/img/BolsoBlanc.png",
+      "./assets/img/bolsoFalç1.jpeg"
+    ]
+  },
+  {
+    "id": "barrel-fjord",
+    "slug": "barrel-fjord",
+    "nom": "Barrel Fjord",
+    "categoria": "Barrel",
+    "preuDesDe": 130,
+    "colors": ["menta", "acer"],
+    "animal": "foca",
+    "materials": ["cotó reciclat", "nanses corda"],
+    "mides": { "amplada": 30, "alçada": 22, "fons": 14 },
+    "pes": 480,
+    "etiquetes": ["viatge"],
+    "imatgePrincipal": "./assets/img/Bolso-Forma-1-Marron.png",
+    "variantsColor": ["Blau", "Gris", "Negre"],
+    "imatgesAddicionals": [
+      "./assets/img/bolsoFalç1.jpeg",
+      "./assets/img/bolsoFalç2.jpeg"
+    ],
+    "video": null,
+    "fotos": [
+      "./assets/img/Bolso-Forma-1-Marron.png",
+      "./assets/img/bolsoFalç1.jpeg"
+    ]
+  },
+  {
+    "id": "clutch-aurora",
+    "slug": "clutch-aurora",
+    "nom": "Clutch Aurora",
+    "categoria": "Clutch",
+    "preuDesDe": 70,
+    "colors": ["lavanda", "gel"],
+    "animal": "oreneta",
+    "materials": ["cotó orgànic"],
+    "mides": { "amplada": 25, "alçada": 13, "fons": 3 },
+    "pes": 170,
+    "etiquetes": ["festa"],
+    "imatgePrincipal": "./assets/img/BolsoVerd.png",
+    "variantsColor": ["Rosa", "Blanc", "Negre"],
+    "imatgesAddicionals": [
+      "./assets/img/BolsoBlanc.png",
+      "./assets/img/bolsoFalç3.jpeg"
+    ],
+    "video": null,
+    "fotos": [
+      "./assets/img/BolsoVerd.png",
+      "./assets/img/BolsoBlanc.png"
+    ]
+  },
+  {
+    "id": "frame-nord",
+    "slug": "frame-nord",
+    "nom": "Frame Nord",
+    "categoria": "Frame",
+    "preuDesDe": 100,
+    "colors": ["perla", "blau fum"],
+    "animal": "alç",
+    "materials": ["cotó-lli", "marc níquel"],
+    "mides": { "amplada": 26, "alçada": 17, "fons": 6 },
+    "pes": 340,
+    "etiquetes": ["marc"],
+    "imatgePrincipal": "./assets/img/Bolso-Forma-1-Marron.png",
+    "variantsColor": ["Perla", "Negre", "Blanc"],
+    "imatgesAddicionals": [
+      "./assets/img/bolsoFalç1.jpeg",
+      "./assets/img/BolsoBlanc.png"
+    ],
+    "video": null,
+    "fotos": [
+      "./assets/img/Bolso-Forma-1-Marron.png"
+    ]
+  },
+  {
+    "id": "flap-glaze",
+    "slug": "flap-glaze",
+    "nom": "Flap Glaze",
+    "categoria": "Flap",
+    "preuDesDe": 115,
+    "colors": ["blau gel", "menta"],
+    "animal": "pingüí",
+    "materials": ["cotó reciclat", "folre impermeable"],
+    "mides": { "amplada": 28, "alçada": 18, "fons": 7 },
+    "pes": 360,
+    "etiquetes": ["diària"],
+    "imatgePrincipal": "./assets/img/BolsoVerd.png",
+    "variantsColor": ["Blau", "Blanc", "Negre"],
+    "imatgesAddicionals": [
+      "./assets/img/bolsoFalç2.jpeg",
+      "./assets/img/BolsoBlanc.png"
+    ],
+    "video": null,
+    "fotos": [
+      "./assets/img/BolsoVerd.png",
+      "./assets/img/bolsoFalç2.jpeg"
+    ]
   }
 ]
