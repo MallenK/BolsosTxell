@@ -323,6 +323,13 @@ img{ display:block; max-width:100%; height:auto }
   }
 }
 
+@media (max-width: 768px){
+  .gallery-grid {
+    grid-template-columns: 1fr; /* 1x6 en móviles */
+    row-gap: 1.25rem;
+  }
+}
+
 /* Precio */
 .price strong{ font-size:1.2em; }
 
