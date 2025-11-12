@@ -178,25 +178,24 @@ export function renderHome(){
     <!-- Galería -->
     <section class="section-gallery pb-28">
       <h2 class="sr-only">${t('gallery.title','Galería')}</h2>
-      <div class="gallery-grid grid grid-cols-2 gap-4">
+      <div class="gallery-grid grid grid-cols-1 md:grid-cols-2 gap-4">
         ${store.products.slice(0,6).map(p=>`
           <a href="#/producto/${p.slug}" class="gallery-card block card overflow-hidden transition"
-             aria-label="${p.nombre} — €${p.precioDesde}">
+            aria-label="${p.nombre} — €${p.precioDesde}">
             <div class="gcard">
               <div class="gcard-media">
                 <img class="w-full h-full object-cover"
-                     src="${p.fotos[0]}" alt="${p.nombre}"
-                     loading="lazy" decoding="async"
-                     sizes="(min-width:1280px) 20vw, (min-width:1024px) 25vw, (min-width:768px) 30vw, 90vw">
+                    src="${p.fotos[0]}" alt="${p.nombre}"
+                    loading="lazy" decoding="async"
+                    sizes="(min-width:1280px) 20vw, (min-width:1024px) 25vw, (min-width:768px) 30vw, 90vw">
               </div>
               <div class="gcard-cap">
-                <h3 class="font-semibold">${p.nombre}</h3>
+                <h3 class="font-semibold text-base md:text-lg">${p.nombre}</h3>
                 <p class="text-sm">€${p.precioDesde}</p>
               </div>
             </div>
           </a>
         `).join('')}
-
       </div>
     </section>
 
