@@ -121,7 +121,7 @@ export function renderHome(){
     </section>
 
     <!-- Presentació del projecte -->
-    <section class="intro max-w-3xl mx-auto px-4 pt-20 pb-24 text-center w-75-desktop">
+    <section class="intro max-w-3xl mx-auto pt-20 pb-24 text-center w-75-desktop">
       <h2 class="intro-title text-4xl md:text-5xl mb-4 font-script">
         ${t('intro.title')}
       </h2>

@@ -75,7 +75,9 @@ nav a:hover {
 }
 
 /* ===== Presentación ===== */
-.intro{ text-wrap:balance;  }
+
+.intro .grid { gap: 1.5rem; text-wrap:balance; padding-inline: 1rem;} /* desktop por defecto */
+
 .intro .lead{ font-size:1.125rem; line-height:1.7 }
 .intro .card {
   border: none;
@@ -95,27 +97,61 @@ nav a:hover {
   transform: translateY(-2px);
 }
 
+@media (max-width: 767px) {
+  .intro .grid { row-gap: 2.25rem; }        /* + espacio vertical */
+  .intro .card { border-radius: 32px; }     /* radio algo menor en pantallas pequeñas */
+}
+
+/* Accesibilidad: reduce animación si procede */
+@media (prefers-reduced-motion: reduce) {
+  .intro .card { transition: none; transform: none; }
+}
+
+.intro {  } /* default desktop */
+
+@media (max-width: 768px){
+  .intro { padding-inline: 1.75rem; } /* px-7 ≈ 1.75rem */
+}
+
 
 /* ===== Sección de categorías ===== */
-.section-cats {
-  padding-inline: 25%;
-}
-
+.section-cats{ padding-inline:25%; }
 .section-cats h3{
   font-family: var(--font-heading);
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 2.2vw + 1rem, 2.5rem); /* reduce en móviles */
   padding-bottom: 5%;
 }
-
-.section-cats p, .section-cats a{
-  font-family: var(--font-body);
-}
-
+.section-cats p,
+.section-cats a{ font-family: var(--font-body); }
 .section-cats a{
-  background-color: #645753;
-  color: white;
-  font-weight: 900;
+  background-color:#645753;
+  color:#fff;
+  font-weight:900;
 }
+
+/* Más aire vertical entre imagen y texto cuando se apilan */
+.section-cats .grid{ row-gap: 1.5rem; }
+
+/* Breakpoints */
+@media (max-width: 1024px){
+  .section-cats{ padding-inline:12%; }
+}
+@media (max-width: 768px){
+  .section-cats{ padding-inline:6%; }
+  .section-cats h3{ padding-bottom: 8%; }    /* más espacio bajo el título */
+  .section-cats .grid{ row-gap: 2rem; }      /* más espacio entre imagen y texto */
+}
+@media (max-width: 480px){
+  .section-cats{ padding-inline:4%; }
+  .section-cats h3{ padding-bottom: 10%; }
+  .section-cats .grid{ row-gap: 2.5rem; }    /* aún más aire en móvil pequeño */
+}
+
+/* Respeta reduce-motion */
+@media (prefers-reduced-motion: reduce){
+  .section-cats *{ transition: none !important; }
+}
+
 
 
 /* ===== Sección Catálogo ===== */
@@ -405,7 +441,7 @@ sl-button[variant="danger"]:hover,
     padding-inline: 2rem;
   }
 
-  .gallery-card{border-radius: 0px; padding-bottom: 40%}
+  .gallery-card{border-radius: 0px;}
 
   .gallery-card:hover .img-zoom{ transform:scale(1.06); }
 }
