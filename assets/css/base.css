@@ -41,6 +41,11 @@ h3{ font-size:clamp(1.4rem, 2vw, 1.8rem) }
 
 nav a:hover {
   color: var(--primary) !important;
+  font-weight: 900;
+}
+
+#whats-cta{
+  font-weight: 900;
 }
 
 .bg-primary{
@@ -62,6 +67,10 @@ nav a:hover {
 .hero-content p, .hero-content a{
   font-family: var(--font-body);
   font-size: 1.3rem;
+}
+
+.hero-content a{
+  font-weight: 900;
 }
 
 /* ===== Presentación ===== */
@@ -91,6 +100,7 @@ nav a:hover {
 .section-cats a{
   background-color: #645753;
   color: white;
+  font-weight: 900;
 }
 
 
@@ -99,12 +109,21 @@ nav a:hover {
   padding-inline: 25%;
 }
 
+
 /* ===== Sección Instagram ===== */
 .card-instagram {
   border-radius: 0; /* sin esquinas redondeadas */
   box-shadow: 0 10px 20px rgba(17,24,39,.10); /* sombra solo eje Y */
 }
 
+.card-instagram h3{
+  font-weight: 900 !important;
+  font-size: 2rem;
+}
+
+.card-instagram a{
+  font-weight: 900;
+}
 
 /* ===== Sección Galería ===== */
 .section-gallery {
