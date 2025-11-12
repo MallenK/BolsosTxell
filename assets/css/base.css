@@ -67,6 +67,7 @@ nav a:hover {
 .hero-content p, .hero-content a{
   font-family: var(--font-body);
   font-size: 1.3rem;
+  margin-top: 5%;
 }
 
 .hero-content a{
@@ -76,11 +77,24 @@ nav a:hover {
 /* ===== Presentación ===== */
 .intro{ text-wrap:balance;  }
 .intro .lead{ font-size:1.125rem; line-height:1.7 }
-.intro .card{
-  background:#fff; border:1px solid rgba(17,24,39,.08);
-  border-radius:var(--radius); box-shadow:var(--shadow);
+.intro .card {
+  border: none;
   font-family: var(--font-body);
+  transition: all 0.2s ease-in-out;
+
+
+  border-radius: 50px;
+  background: #ebebeb;
+  box-shadow:  20px 20px 60px #c8c8c8,
+              -20px -20px 60px #ffffff;
 }
+
+.intro .card:hover {
+  box-shadow: 4px 4px 8px #bebebe,
+              -4px -4px 8px #ffffff;
+  transform: translateY(-2px);
+}
+
 
 /* ===== Sección de categorías ===== */
 .section-cats {
@@ -108,6 +122,46 @@ nav a:hover {
 .section-catalog {
   padding-inline: 25%;
 }
+
+.glare-img-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform .2s ease;
+}
+
+.glare-img-wrapper img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* capa del reflejo */
+.glare-layer {
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(150px 150px at var(--gx,50%) var(--gy,50%),
+              rgba(255,255,255,.35),
+              rgba(255,255,255,0) 60%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity .25s ease;
+  pointer-events: none;
+}
+
+.glare-img-wrapper:hover .glare-layer {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .glare-img-wrapper{transition:none;transform:none;}
+  .glare-layer{display:none;}
+}
+
+
 
 
 /* ===== Sección Instagram ===== */
@@ -365,3 +419,8 @@ sl-button[variant="danger"]:hover,
 /* ===== Limpieza ===== */
 /* Negro global fuera del hero */
 body, .intro, .card .p-3, .grid, section, p, h2, h3{ color:var(--ink) }
+
+
+.type-caret::after{content:"";display:inline-block;width:1px;height:1em;vertical-align:-0.15em;background:currentColor;margin-left:2px;animation:blink 1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+

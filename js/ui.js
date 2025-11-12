@@ -18,20 +18,28 @@ const CATS = [
 
 function altRows(items){
   return items.slice(0,6).map((it,i)=>{
-    const p   = store.products.find(x=>x.categoria=== (it.k.includes('Barrel')?'Barrel':it.k.includes('Clutch')?'Clutch':it.k.includes('Frame')?'Frame':'Flap'))
-             || store.products[i % store.products.length];
-    const img = p?.fotos?.[0] || './assets/img/placeholder.svg';
+    const p = store.products.find(x =>
+      x.categoria === (
+        it.k.includes('Barrel') ? 'Barrel' :
+        it.k.includes('Clutch') ? 'Clutch' :
+        it.k.includes('Frame')  ? 'Frame'  : 'Flap'
+      )
+    ) || store.products[i % store.products.length];
+
+    const img   = p?.fotos?.[0] || './assets/img/placeholder.svg';
     const title = t(`cats.${it.k}.title`, it.k);
     const copy  = t(`cats.${it.k}.copy`, '');
     const leftImg = i % 2 === 0;
 
     const ImageBlock = `
-      <div class="overflow-hidden w-full h-full">
-        <img src="${img}" alt="${title}" class="block w-full h-full object-cover md:aspect-4-3" loading="lazy"
+      <div class="glare-img-wrapper overflow-hidden w-full h-full relative">
+        <span class="glare-layer" aria-hidden="true"></span>
+        <img src="${img}" alt="${title}" 
+             class="block w-full h-full object-cover md:aspect-4-3 glare-target"
+             loading="lazy"
              sizes="(min-width:1024px) 45vw, 100vw">
       </div>`;
 
-    // NOTA: textos en negro (sin text-white)
     const TextBlock = `
       <div class="w-full h-full flex items-center justify-center text-center md:aspect-4-3">
         <div class="px-4">
@@ -45,11 +53,54 @@ function altRows(items){
 
     return `
       <div class="grid md:grid-cols-2 gap-0 items-stretch">
-        ${leftImg ? `${ImageBlock}${TextBlock}`
-                  : `<div class="order-2 md:order-1">${TextBlock}</div><div class="order-1 md:order-2">${ImageBlock}</div>`}
+        ${leftImg
+          ? `${ImageBlock}${TextBlock}`
+          : `<div class="order-2 md:order-1">${TextBlock}</div><div class="order-1 md:order-2">${ImageBlock}</div>`}
       </div>`;
   }).join('');
 }
+
+
+function initGlareOnImages(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wrappers = document.querySelectorAll('.glare-img-wrapper');
+  if (!wrappers.length) return;
+
+  const MAX_TILT = 8;
+
+  wrappers.forEach(wrapper=>{
+    const glare = wrapper.querySelector('.glare-layer');
+    let raf = null;
+
+    function onMove(e){
+      const r = wrapper.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top)  / r.height;
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(()=>{
+        if (!reduce){
+          const rx = (0.5 - y) * (MAX_TILT * 2);
+          const ry = (x - 0.5) * (MAX_TILT * 2);
+          wrapper.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+        }
+        if (glare){
+          glare.style.setProperty('--gx', (x * 100) + '%');
+          glare.style.setProperty('--gy', (y * 100) + '%');
+        }
+      });
+    }
+
+    function onLeave(){
+      if (raf) cancelAnimationFrame(raf);
+      wrapper.style.transform = '';
+    }
+
+    wrapper.addEventListener('mousemove', onMove);
+    wrapper.addEventListener('mouseleave', onLeave);
+  });
+}
+
+
 
 export function renderHome(){
   const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/placeholder.svg';
@@ -60,7 +111,7 @@ export function renderHome(){
       <div class="overlay"></div>
       <div class="hero-content grid place-items-center min-h-[100svh] px-4 text-center">
         <div class="max-w-3xl">
-          <h1 class="text-5xl md:text-6xl mb-3 text-white">${t('hero.title')}</h1>
+          <h1 id="heroTitle" class="text-5xl md:text-6xl mb-3 text-white type-caret" data-title="${t('hero.title')}"></h1>
           <p class="mx-auto max-w-2xl mb-6 text-white">${t('hero.subtitle')}</p>
           <a href="#/catalogo" class="inline-block rounded-full bg-primary text-white px-6 py-3 shadow-soft">
             ${t('cta.catalog')}
@@ -80,15 +131,15 @@ export function renderHome(){
       </p>
     
       <div class="grid md:grid-cols-3 gap-6 mt-10 text-left">
-        <div class="card p-5">
+        <div class="card p-5 text-center">
           <h3 class="font-script text-2xl mb-2">${t('intro.points.handmade.title')}</h3>
           <p>${t('intro.points.handmade.copy')}</p>
         </div>
-        <div class="card p-5">
+        <div class="card p-5 text-center">
           <h3 class="font-script text-2xl mb-2">${t('intro.points.custom.title')}</h3>
           <p>${t('intro.points.custom.copy')}</p>
         </div>
-        <div class="card p-5">
+        <div class="card p-5 text-center">
           <h3 class="font-script text-2xl mb-2">${t('intro.points.materials.title')}</h3>
           <p>${t('intro.points.materials.copy')}</p>
         </div>
@@ -150,6 +201,38 @@ export function renderHome(){
     </section>
 
   `);
+
+  // Después de mount(...)
+  const h1 = document.getElementById('heroTitle');
+  if (h1) {
+    const full = h1.dataset.title?.toString() || h1.textContent || '';
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      h1.textContent = full;
+      h1.classList.remove('type-caret');
+    } else {
+      h1.textContent = '';
+      // Evita animaciones duplicadas si navegas por SPA
+      if (window.__heroAnime) window.__heroAnime.pause();
+      window.__heroAnime = anime({
+        targets: { i: 0 },
+        i: full.length,
+        duration: 2400,     // más lento -> sube este valor
+        delay: 300,
+        easing: 'linear',
+        round: 1,
+        update: (a) => {
+          const n = a.animations[0].currentValue;
+          h1.textContent = full.slice(0, n);
+        },
+        complete: () => h1.classList.remove('type-caret')
+      });
+    }
+  }
+
+  // 2. Efectos neomórficos y glare hover
+  initGlareOnImages();
+
 
   document.querySelectorAll('[data-cat]').forEach(btn=>{
     btn.addEventListener('click', ()=> sessionStorage.setItem('prefCat', btn.getAttribute('data-cat')));
