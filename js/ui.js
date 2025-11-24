@@ -66,7 +66,7 @@ function initGlareOnImages(){
   const wrappers = document.querySelectorAll('.glare-img-wrapper');
   if (!wrappers.length) return;
 
-  const MAX_TILT = 8;
+  const MAX_TILT = 18;
 
   wrappers.forEach(wrapper=>{
     const glare = wrapper.querySelector('.glare-layer');
@@ -230,7 +230,7 @@ export function renderHome(){
   }
 
   // 2. Efectos neomórficos y glare hover
-  initGlareOnImages();
+  //initGlareOnImages();
 
 
   document.querySelectorAll('[data-cat]').forEach(btn=>{

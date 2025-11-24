@@ -1,8 +1,8 @@
 /* ===== Base y tokens ===== */
 :root{
   /* Tipografías */
-  --font-body: 'Jost', sans-serif;
-  --font-heading: 'Dancing Script', cursive;
+  --font-body: 'Merriweather', sans-serif;
+  --font-heading: 'DM Serif Display', cursive;
 
   --cap-h: clamp(64px, 10vw, 96px);
 
@@ -107,8 +107,6 @@ nav a:hover {
   .intro .card { transition: none; transform: none; }
 }
 
-.intro {  } /* default desktop */
-
 @media (max-width: 768px){
   .intro { padding-inline: 1.75rem; } /* px-7 ≈ 1.75rem */
 }
@@ -165,6 +163,7 @@ nav a:hover {
   overflow: hidden;
   transform-style: preserve-3d;
   transition: transform .2s ease;
+  border-radius: 0px;
 }
 
 .glare-img-wrapper img {
@@ -209,6 +208,7 @@ nav a:hover {
 .card-instagram h3{
   font-weight: 900 !important;
   font-size: 2rem;
+  font-family: var(--font-body);
 }
 
 .card-instagram a{
