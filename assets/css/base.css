@@ -284,6 +284,15 @@ nav a:hover {
 }
 
 
+.card-neo-soft{
+  background: #f7f9fb;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow:
+      4px 4px 12px rgba(163,177,198,0.25),
+     -4px -4px 12px rgba(255,255,255,1);
+}
+
 
 
 
@@ -422,6 +431,28 @@ sl-button[variant="danger"]:hover,
 #wa-btn:hover {
   background-color: #4f4740 !important; /* tono más oscuro para hover */
 }
+
+
+.card-neo{
+  background: #f5f7fa;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow:
+      8px 8px 20px rgba(163, 177, 198, 0.35),
+     -8px -8px 20px rgba(255, 255, 255, 1);
+}
+
+
+
+.card-neo-soft{
+  background: #f7f9fb;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow:
+      4px 4px 12px rgba(163, 177, 198, 0.25),
+     -4px -4px 12px rgba(255, 255, 255, 1);
+}
+
 
 
 /* ===== Breakpoints ===== */
