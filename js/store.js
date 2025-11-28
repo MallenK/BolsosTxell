@@ -3,5 +3,12 @@ export const store = {
   products: [],
   productsCA: [],
   filters: { category: 'all', min: 50, max: 150, q: '' },
-  setLang(l) { this.lang = l; localStorage.setItem('lang', l); }
+
+  // NUEVO: imagen del hero
+  heroImage: './assets/img/Cro-and-Txet.png',
+
+  setLang(l) { 
+    this.lang = l; 
+    localStorage.setItem('lang', l); 
+  }
 };

@@ -103,7 +103,9 @@ function initGlareOnImages(){
 
 
 export function renderHome(){
-  const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/placeholder.svg';
+  const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/Cro-and-Txet.png';
+  const CroAndtxetImg = store.heroImage;
+
   mount(`
     <!-- HERO a pantalla completa: SOLO aquí el texto va en blanco -->
     <section class="hero-full pin-on-scroll">
@@ -149,7 +151,6 @@ export function renderHome(){
         ${t('intro.closing')}
       </p>
     </section>
-
 
 
     <!-- Categorías con más separación inferior -->
@@ -198,6 +199,9 @@ export function renderHome(){
         `).join('')}
       </div>
     </section>
+
+        <img class="cro-and-txet-img" src="${CroAndtxetImg}" alt="Cro and Txet hero">
+
 
   `);
 
@@ -306,7 +310,6 @@ export function renderProduct(hash){
   const accesorias = Array.isArray(p.imagenesAccesorias) ? p.imagenesAccesorias : (Array.isArray(p.fotos) ? p.fotos.slice(1) : []);
   const variantes = Array.isArray(p.variantesColor) ? p.variantesColor : [];
 
-  // Parse base y extensión desde la principal: ./assets/img/Bolso-Forma-1-Marron.png
 function parseBase(src){
   // Captura todo hasta el último guion antes de la extensión
   const m = src.match(/^(.*\/)?(.+)-([^-\/.]+)(\.[a-z0-9]+)$/i);
