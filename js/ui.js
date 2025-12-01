@@ -103,7 +103,7 @@ function initGlareOnImages(){
 
 
 export function renderHome(){
-  const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/Cro-and-Txet.png';
+  const heroImg = (store.products[0]?.fotos?.[0]) || './assets/img/Cro_Txet.png';
   const CroAndTxetImg = store.heroImage || './assets/img/Cro-and-Txet.png';
 
   mount(`
@@ -114,9 +114,10 @@ export function renderHome(){
 
       <div class="hero-content grid place-items-center min-h-[100svh] px-4 text-center">
         <div class="max-w-3xl">
-          <h1 id="heroTitle"
-              class="text-5xl md:text-6xl mb-4 text-white type-caret"
-              data-title="${t('hero.title')}"></h1>
+        <!-- LOGOTIPO / FOTO ESPECIAL -->
+        <div class="max-w-xl mx-auto mb-20">
+          <img class="cro-and-txet-img w-full" src="${CroAndTxetImg}" alt="Cro and Txet marca"  style="filter: invert(1);">
+        </div>
 
           <p class="mx-auto max-w-2xl mb-6 text-white text-lg opacity-95">
             ${t('hero.subtitle')}
@@ -203,7 +204,7 @@ export function renderHome(){
       <div class="gallery-grid grid grid-cols-1 md:grid-cols-2 gap-4">
         ${store.products.slice(0,6).map(p=>`
           <a href="#/producto/${p.slug}"
-             class="gallery-card block card-neo-soft overflow-hidden transition"
+             class="gallery-card block overflow-hidden transition"
              aria-label="${p.nombre} — €${p.precioDesde}">
             <div class="gcard">
               <div class="gcard-media">
@@ -223,7 +224,7 @@ export function renderHome(){
 
 
     <!-- LOGOTIPO / FOTO ESPECIAL -->
-    <div class="max-w-xl mx-auto mb-20">
+    <div class="max-w-xl mx-auto mb-20 cro-and-txet-img-div">
       <img class="cro-and-txet-img w-full opacity-95"
            src="${CroAndTxetImg}"
            alt="Cro and Txet marca">
@@ -325,13 +326,13 @@ export function renderCatalog(){
     const slice = list.slice(0, page * pageSize);
 
     grid.innerHTML = slice.map(p => `
-      <a href="#/producto/${p.slug}" class="block card-neo-soft overflow-hidden hover:shadow-lg transition">
-        <div class="aspect-4-3 overflow-hidden rounded-xl">
+      <a href="#/producto/${p.slug}" class="block overflow-hidden hover:shadow-lg transition">
+        <div class="aspect-4-3 overflow-hidden">
           <img class="w-full h-full object-cover" src="${p.fotos[0]}" alt="${p.nombre}">
         </div>
-        <div class="mt-3">
+        <div class="catalog-product-info">
           <h3 class="font-serif text-lg">${p.nombre}</h3>
-          <p class="text-primary mt-1">Desde €${p.precioDesde}</p>
+          <p>${p.precioDesde}€</p>
         </div>
       </a>
     `).join('');
@@ -395,90 +396,91 @@ export function renderProduct(hash){
     </a>` : '';
 
   mount(`
-<section class="max-w-6xl mx-auto px-4 pt-8 pb-16 grid md:grid-cols-2 gap-10">
+    <section class="max-w-6xl mx-auto px-4 pt-8 pb-16 grid md:grid-cols-2 gap-10">
 
-  <!-- GALERÍA -->
-  <div class="space-y-6">
+      <!-- GALERÍA -->
+      <div class="space-y-6">
 
-    <div class="card-neo-soft p-2">
-      <div id="gallery" class="rounded-xl overflow-hidden">
-        <a id="main-link" href="${principal}" class="block aspect-4-3">
-          <img id="main-img" src="${principal}" alt="${p.nombre}"
-            class="w-full h-full object-cover">
-        </a>
-        ${videoHtml}
-      </div>
-    </div>
-
-    ${variantes.length ? `
-      <div class="card-neo-soft p-4 flex gap-2 flex-wrap" id="color-picker">
-        ${variantes.map(c => `
-          <a href="${makeSrc(c)}" class="chip color-btn">${c}</a>
-        `).join('')}
-      </div>
-    ` : ''}
-
-    ${accesorias.length ? `
-      <div class="card-neo-soft p-4">
-        <h3 class="font-serif text-xl mb-3">Más imágenes</h3>
-        <div id="acc-gallery" class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-          ${accesorias.map((src,i)=>`
-            <a href="${src}" class="block aspect-4-3 rounded-xl overflow-hidden">
-              <img src="${src}" alt="${p.nombre} ${i+2}" class="w-full h-full object-cover">
+        <div class="card-neo-soft p-2">
+          <div id="gallery" class="rounded-xl overflow-hidden">
+            <a id="main-link" href="${principal}" class="block aspect-4-3">
+              <img id="main-img" src="${principal}" alt="${p.nombre}"
+                class="w-full h-full object-cover">
             </a>
-          `).join('')}
+            ${videoHtml}
+          </div>
+          ${variantes.length ? `
+            <div class="p-4 flex gap-2 flex-wrap" id="color-picker">
+              ${variantes.map(c => `
+                <a href="${makeSrc(c)}" class="chip color-btn">${c}</a>
+              `).join('')}
+            </div>
+          ` : ''}
         </div>
-      </div>
-    ` : ''}
 
-  </div>
+        ${accesorias.length ? `
+          <div class="card-neo-soft p-4">
+            <h3 class="font-serif text-xl mb-3">Más imágenes</h3>
+            <div id="acc-gallery" class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              ${accesorias.map((src,i)=>`
+                <a href="${src}" class="block aspect-4-3 rounded-xl overflow-hidden">
+                  <img src="${src}" alt="${p.nombre} ${i+2}" class="w-full h-full object-cover">
+                </a>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
 
-
-  <!-- INFO DEL PRODUCTO -->
-  <div class="space-y-6">
-
-    <div class="card-neo-soft p-6 space-y-3">
-      <h1 class="font-serif text-3xl">${p.nombre}</h1>
-      <p class="text-lg"><span>Desde</span> <strong>€${p.precioDesde}</strong></p>
-      <p><strong>Categoría:</strong> ${p.categoria}</p>
-
-      <div class="flex gap-2 flex-wrap">
-        ${p.colores.map(c=>`<span class="chip">${c}</span>`).join('')}
       </div>
 
-      <div class="flex gap-3 flex-wrap pt-3">
-        <a href="${waLink(p.nombre)}" class="rounded-full bg-primary text-white px-4 py-2">
-          WhatsApp
-        </a>
-        <sl-button variant="default" onclick="document.querySelector('#contact-sheet').show()">
-          Enviar consulta
-        </sl-button>
+
+      <!-- INFO DEL PRODUCTO -->
+      <div class="space-y-6">
+
+        <div class="card-neo-soft p-6 space-y-3">
+          <h1 class="font-serif text-3xl">${p.nombre}</h1>
+          <p class="text-lg"><span>Desde</span> <strong>€${p.precioDesde}</strong></p>
+          <p><strong>Categoría:</strong> ${p.categoria}</p>
+
+          <!--<div class="flex gap-2 flex-wrap">
+            ${p.colores.map(c=>`<span class="chip">${c}</span>`).join('')}
+          </div>-->
+
+          <div class="flex gap-3 flex-wrap pt-3">
+            <a href="${waLink(p.nombre)}" class="rounded-full bg-primary text-white px-4 py-2">
+              WhatsApp
+            </a>
+            <sl-button variant="default" onclick="document.querySelector('#contact-sheet').show()">
+              Enviar consulta
+            </sl-button>
+          </div>
+        </div>
+
+        <!--
+        <div class="card-neo-soft p-6">
+          <h3 class="font-serif text-xl mb-3">Relacionados</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            ${store.products
+              .filter(x=>x.categoria===p.categoria && x.id!==p.id)
+              .slice(0,4)
+              .map(card)
+              .join('')}
+          </div>
+        </div>
+        
+
       </div>
-    </div>
 
-    <div class="card-neo-soft p-6">
-      <h3 class="font-serif text-xl mb-3">Relacionados</h3>
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-        ${store.products
-          .filter(x=>x.categoria===p.categoria && x.id!==p.id)
-          .slice(0,4)
-          .map(card)
-          .join('')}
-      </div>
-    </div>
+    </section>
 
-  </div>
-
-</section>
-
-<sl-dialog label="Consulta" id="contact-sheet">
-  <form class="space-y-3" id="contact-form">
-    <sl-input name="name" placeholder="Nombre"></sl-input>
-    <sl-input name="email" type="email" placeholder="Email"></sl-input>
-    <sl-textarea name="msg" placeholder="Mensaje"></sl-textarea>
-    <sl-button type="primary" submit>Enviar</sl-button>
-  </form>
-</sl-dialog>
+    <sl-dialog label="Consulta" id="contact-sheet">
+      <form class="space-y-3" id="contact-form">
+        <sl-input name="name" placeholder="Nombre"></sl-input>
+        <sl-input name="email" type="email" placeholder="Email"></sl-input>
+        <sl-textarea name="msg" placeholder="Mensaje"></sl-textarea>
+        <sl-button type="primary" submit>Enviar</sl-button>
+      </form>
+    </sl-dialog>
   `);
 
   const plugins = p.video ? [lgZoom, lgVideo] : [lgZoom];
@@ -509,145 +511,148 @@ export function renderProduct(hash){
 
 
 export function renderAbout(){
+  const CroAndtxetImg = store.heroImage;
   mount(`
-    <section id="aboutMeSection" class="max-w-5xl mx-auto px-4 py-12 space-y-16">
+    <section id="aboutMeSection" class="max-w-5xl mx-auto px-4 py-16 space-y-24">
 
-      <!-- TÍTULO -->
-      <header class="text-center card-neo-soft">
-        <h1 class="about-me-title font-serif text-3xl mb-3">Sobre Cro and Txet</h1>
-        <p class="text-neutral-700 max-w-2xl mx-auto">
-          Bolsos tejidos a mano, pintados con dedicación y creados uno a uno.  
-          Cada pieza nace desde la calma y la intención, sin prisas y con materiales de calidad.
-        </p>
-      </header>
+    <!-- HERO ABOUT -->
+    <header class="text-center space-y-4 card-neo-soft p-10">
+      <h1 class="about-me-title font-serif text-4xl tracking-tight">Sobre Cro and Txet</h1>
+      <p class="text-neutral-700 max-w-2xl mx-auto">
+        Bolsos tejidos a mano, pintados con dedicación y creados uno a uno.  
+        Cada pieza nace desde la calma, con materiales de calidad y un proceso que respira artesanía.
+      </p>
+    </header>
 
 
-      <!-- IMÁGENES PRINCIPALES -->
-      <div class="grid sm:grid-cols-2 gap-6">
-        <figure class="rounded-2xl overflow-hidden card-neo-soft">
-          <img
-            src="https://images.unsplash.com/photo-1520975867597-0f1a3f0a1f5b?q=80&w=1600&auto=format&fit=crop"
-            alt="Persona trabajando con hilo de algodón en una mesa"
-            class="w-full h-full object-cover aspect-4-3"
-            loading="lazy"
-          />
-        </figure>
+    <!-- BLOQUE PRINCIPAL: IMÁGENES + HISTORIA -->
+    <div class="card-neo-soft p-10 grid lg:grid-cols-2 gap-12 items-start">
 
-        <figure class="rounded-2xl overflow-hidden card-neo-soft">
+      <!-- IMÁGENES LATERALES -->
+      <div class="space-y-6">
+        <figure class="rounded-2xl overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1600&auto=format&fit=crop"
-            alt="Primer plano de manos tejiendo a crochet"
+            alt="Manos tejiendo a crochet"
             class="w-full h-full object-cover aspect-4-3"
             loading="lazy"
           />
         </figure>
       </div>
 
-
       <!-- HISTORIA PERSONAL -->
-      <article class="card-neo-soft max-w-3xl mx-auto text-center space-y-4">
-        <h2 class="font-serif text-2xl">Por qué empezamos</h2>
-        <p class="text-neutral-800">
-          Cro and Txet nació durante un proceso de recuperación tras una lesión.
-          El reposo trajo serenidad, pero también necesidad de crear. Así aparecieron
+      <article class="space-y-6 text-center lg:text-left">
+        <h2 class="font-serif text-3xl">Nuestra historia</h2>
+
+        <p class="text-neutral-800 leading-relaxed">
+          Cro and Txet nació durante un proceso de recuperación tras una lesión.  
+          El reposo trajo calma, pero también la necesidad de crear. Así surgieron
           los primeros puntos de crochet, hechos sin prisa y con ilusión.
         </p>
-        <p class="text-neutral-800">
-          Poco a poco, esos ensayos se convirtieron en bolsos que combinan tejido
-          y pintura. Cada pieza se hace a mano, bajo pedido, respetando el tiempo
-          de cada creación.  
-          Hoy seguimos trabajando con la misma filosofía: transformar momentos
-          de calma en algo que acompañe a quien lo lleva.
+
+        <p class="text-neutral-800 leading-relaxed">
+          Aquellos primeros ensayos se transformaron en bolsos que combinan tejido  
+          y pintura. Cada pieza se realiza a mano, bajo pedido, respetando el ritmo  
+          de cada creación.
+        </p>
+
+        <p class="text-neutral-800 leading-relaxed">
+          Hoy seguimos con la misma filosofía: convertir momentos de calma en piezas  
+          con alma, hechas para acompañar a quien las lleva.
         </p>
       </article>
 
-
-      <!-- MATERIALES -->
-      <section class="card-neo-soft max-w-4xl mx-auto space-y-4 text-center">
-        <h2 class="font-serif text-2xl">Materiales seleccionados</h2>
-        <p class="text-neutral-700">
-          Utilizamos algodón de alta calidad, hilos resistentes y pinturas textiles
-          de larga duración. Cada material es elegido para asegurar que el bolso
-          mantenga su forma, suavidad y color con el paso del tiempo.
-        </p>
-        <p class="text-neutral-700">
-          Las asas se pueden personalizar con cuero vegano, algodón trenzado o
-          tiras especiales según la necesidad de cada diseño.
-        </p>
-      </section>
+    </div>
 
 
-      <!-- PROCESO DE CREACIÓN -->
-      <section class="grid md:grid-cols-3 gap-6">
-        <div class="card-neo-soft p-6 text-center space-y-3">
-          <h3 class="font-serif text-xl">1. Diseño</h3>
-          <p class="text-neutral-700 text-sm">
-            Bocetos personalizados según tus colores, referencias o ideas.
-          </p>
-        </div>
-
-        <div class="card-neo-soft p-6 text-center space-y-3">
-          <h3 class="font-serif text-xl">2. Tejido</h3>
-          <p class="text-neutral-700 text-sm">
-            Cada bolso se teje a mano con técnica de crochet precisa y uniforme.
-          </p>
-        </div>
-
-        <div class="card-neo-soft p-6 text-center space-y-3">
-          <h3 class="font-serif text-xl">3. Pintura</h3>
-          <p class="text-neutral-700 text-sm">
-            Animales, detalles y formas pintadas a pincel sobre la superficie textil.
-          </p>
-        </div>
-      </section>
-
-
-      <!-- FILOSOFÍA -->
-      <section class="card-neo-soft max-w-3xl mx-auto space-y-4 text-center">
-        <h2 class="font-serif text-2xl">Filosofía artesanal</h2>
-        <p class="text-neutral-700">
-          Creemos en un ritmo de trabajo que respete el proceso, no en la producción en masa.
-          Cada bolso es único y es imposible que existan dos iguales.
-        </p>
-        <p class="text-neutral-700">
-          Nuestro objetivo es crear piezas que duren, que emocionen y que cuenten una historia.
-        </p>
-      </section>
-
-
-      <!-- VALORES -->
-      <section class="grid md:grid-cols-3 gap-6">
-        <div class="card-neo-soft p-6 text-center space-y-2">
-          <h3 class="font-serif text-xl">Hecho a mano</h3>
-          <p class="text-neutral-700 text-sm">Cada pieza está creada sin prisas.</p>
-        </div>
-
-        <div class="card-neo-soft p-6 text-center space-y-2">
-          <h3 class="font-serif text-xl">Sostenible</h3>
-          <p class="text-neutral-700 text-sm">Materiales responsables y duraderos.</p>
-        </div>
-
-        <div class="card-neo-soft p-6 text-center space-y-2">
-          <h3 class="font-serif text-xl">Personalizado</h3>
-          <p class="text-neutral-700 text-sm">Diseños únicos para cada persona.</p>
-        </div>
-      </section>
-
-
-      <!-- ENCARGOS ESPECIALES -->
-      <section class="card-neo-soft max-w-3xl mx-auto space-y-4 text-center">
-        <h2 class="font-serif text-2xl">Encargos especiales</h2>
-        <p class="text-neutral-700">
-          Si tienes una idea concreta —como un dibujo personalizado, un bolso en honor
-          a tu mascota o un regalo especial— podemos crear un diseño exclusivo.
-        </p>
-        <p class="text-neutral-700">
-          Escríbenos desde la sección de contacto y prepararemos un diseño a medida
-          solo para ti.
-        </p>
-      </section>
-
+    <!-- MATERIALES -->
+    <section class="card-neo-soft p-10 space-y-4 text-center">
+      <h2 class="font-serif text-3xl">Materiales seleccionados</h2>
+      <p class="text-neutral-700 max-w-3xl mx-auto leading-relaxed">
+        Utilizamos algodón de alta calidad, hilos resistentes y pinturas textiles duraderas.  
+        Cada material se elige para asegurar suavidad, forma y color a lo largo del tiempo.
+      </p>
+      <p class="text-neutral-700 max-w-3xl mx-auto leading-relaxed">
+        Las asas pueden personalizarse con cuero vegano, algodón trenzado o tiras especiales  
+        según el estilo de cada diseño.
+      </p>
     </section>
+
+
+    <!-- PROCESO ARTESANAL -->
+    <section class="grid md:grid-cols-3 gap-8">
+      <div class="card-neo-soft p-8 text-center space-y-3">
+        <h3 class="font-serif text-xl">1. Diseño</h3>
+        <p class="text-neutral-700 text-sm leading-relaxed">
+          Bocetos personalizados creados a partir de tus ideas, referencias o colores favoritos.
+        </p>
+      </div>
+
+      <div class="card-neo-soft p-8 text-center space-y-3">
+        <h3 class="font-serif text-xl">2. Tejido</h3>
+        <p class="text-neutral-700 text-sm leading-relaxed">
+          Cada bolsa se teje a mano con técnica de crochet uniforme y precisa.
+        </p>
+      </div>
+
+      <div class="card-neo-soft p-8 text-center space-y-3">
+        <h3 class="font-serif text-xl">3. Pintura</h3>
+        <p class="text-neutral-700 text-sm leading-relaxed">
+          Animales, detalles y motivos pintados a mano sobre el tejido.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- FILOSOFÍA -->
+    <section class="card-neo-soft p-10 space-y-4 text-center">
+      <h2 class="font-serif text-3xl">Filosofía artesanal</h2>
+      <p class="text-neutral-700 max-w-3xl mx-auto leading-relaxed">
+        Creemos en un ritmo que respete cada proceso, lejos de la producción en masa.  
+        Cada bolso es irrepetible: no existe otro igual.
+      </p>
+      <p class="text-neutral-700 max-w-3xl mx-auto leading-relaxed">
+        Nuestro objetivo es crear piezas que duren, que emocionen y que cuenten una historia.
+      </p>
+    </section>
+
+
+    <!-- VALORES -->
+    <section class="grid md:grid-cols-3 gap-8">
+      <div class="card-neo-soft p-6 text-center space-y-2">
+        <h3 class="font-serif text-xl">Hecho a mano</h3>
+        <p class="text-neutral-700 text-sm">Cada pieza se crea sin prisas.</p>
+      </div>
+
+      <div class="card-neo-soft p-6 text-center space-y-2">
+        <h3 class="font-serif text-xl">Sostenible</h3>
+        <p class="text-neutral-700 text-sm">Materiales responsables y duraderos.</p>
+      </div>
+
+      <div class="card-neo-soft p-6 text-center space-y-2">
+        <h3 class="font-serif text-xl">Personalizado</h3>
+        <p class="text-neutral-700 text-sm">Diseños únicos para cada persona.</p>
+      </div>
+    </section>
+
+
+    <!-- ENCARGOS ESPECIALES -->
+    <section class="card-neo-soft p-10 space-y-4 text-center">
+      <h2 class="font-serif text-3xl">Encargos especiales</h2>
+      <p class="text-neutral-700 max-w-3xl mx-auto leading-relaxed">
+        Si tienes una idea concreta —como un dibujo personalizado, un bolso en honor  
+        a tu mascota o un regalo especial— podemos crear un diseño exclusivo.
+      </p>
+      <p class="text-neutral-700 max-w-3xl mx-auto leading-relaxed">
+        Escríbenos desde la sección de contacto y prepararemos un diseño a medida.
+      </p>
+    </section>
+
+    <img class="cro-and-txet-img" src="${CroAndtxetImg}" alt="Cro and Txet hero">
+
+
+  </section>
+
   `);
 }
 
@@ -656,184 +661,185 @@ export function renderAbout(){
 export function renderContact(){
     const CroAndtxetImg = store.heroImage;
   mount(`
-    <section id="sectionContact" class="max-w-6xl mx-auto px-4 py-16 space-y-20">
+    <section id="sectionContact" class="max-w-6xl mx-auto px-4 py-16 space-y-24">
 
-      <!-- Título -->
-      <header class="text-center card-neo-soft">
-        <h1 class="font-serif text-3xl mb-3">Contacto</h1>
-        <p class="text-neutral-700 max-w-2xl mx-auto">
-          Estamos aquí para ayudarte a crear un bolso único. Puedes escribirnos,
-          enviarnos una idea o solicitar un diseño personalizado.
+    <!-- HERO CONTACTO -->
+    <header class="text-center space-y-4">
+      <h1 class="font-serif text-4xl tracking-tight">Contacto</h1>
+      <p class="text-neutral-700 max-w-2xl mx-auto">
+        Cuéntanos tu idea y crearemos un bolso único contigo.  
+        Resolvemos dudas, personalizaciones o pedidos a medida.
+      </p>
+    </header>
+
+    <!-- INFO: TIEMPOS / ENVÍOS / PACK -->
+    <section class="grid md:grid-cols-3 gap-10 max-w-4xl mx-auto">
+
+      <div class="card-neo-soft text-center p-6 space-y-2">
+        <h2 class="font-serif text-2xl">Tiempos</h2>
+        <p class="text-neutral-700 text-sm">
+          Hecho a mano.  
+          Entrega media: <strong>7–15 días</strong>.
         </p>
-      </header>
+      </div>
+
+      <div class="card-neo-soft text-center p-6 space-y-2">
+        <h2 class="font-serif text-2xl">Envíos</h2>
+        <p class="text-neutral-700 text-sm">
+          Envíos a España 24–72h.  
+          Devoluciones solo por defecto.
+        </p>
+      </div>
+
+      <div class="card-neo-soft text-center p-6 space-y-2">
+        <h2 class="font-serif text-2xl">Pack regalo</h2>
+        <p class="text-neutral-700 text-sm">
+          Envoltorio artesanal + nota personalizada.  
+          sin coste.
+        </p>
+      </div>
+
+    </section>
 
 
-      <!-- SECCIÓN PRINCIPAL -->
-      <div class="grid md:grid-cols-2 gap-12 items-start">
+    <!-- BLOQUE PRINCIPAL -->
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+
+      <!-- COLUMNA IZQUIERDA -->
+      <div class="space-y-10 card-neo-soft">
+
+        <!-- Atención -->
+        <div class="p-6 space-y-2">
+          <h3 class="font-serif text-xl">Atención personalizada</h3>
+          <p class="text-neutral-700 text-sm">
+            Te ayudamos a elegir colores, tamaños y detalles.  
+            Diseñamos contigo paso a paso.
+          </p>
+        </div>
 
         <!-- Instagram -->
-        <div class="space-y-6">
-
-          <div class="card-neo-soft text-center md:text-left space-y-4">
-            <h2 class="font-serif text-2xl">Síguenos en Instagram</h2>
-            <p class="text-neutral-700">
-              Descubre nuevas piezas, colecciones limitadas y procesos reales de creación.
-            </p>
-            <a class="inline-block rounded-full bg-primary text-white px-6 py-2"
-               href="https://instagram.com/cro_and_txet" target="_blank" rel="noopener">
-               @cro_and_txet
-            </a>
-          </div>
-
-          <figure class="rounded-2xl overflow-hidden card-neo-soft">
-            <img
-              src="https://images.unsplash.com/photo-1530112307634-705b2c4ba9b5?q=80&w=1600&auto=format&fit=crop"
-              alt="Taller Cro and Txet"
-              class="w-full h-full object-cover aspect-4-3"
-              loading="lazy"
-            />
-          </figure>
-
-          <div class="card-neo-soft space-y-2">
-            <h3 class="font-serif text-xl">Atención personalizada</h3>
-            <p class="text-neutral-700 text-sm">
-              Si necesitas ayuda para elegir colores, tamaño o diseño,
-              te guiamos paso a paso. Tu bolso será completamente único.
-            </p>
-          </div>
-
+        <div class="p-6 space-y-3">
+          <h2 class="font-serif text-2xl">Instagram</h2>
+          <p class="text-neutral-700 text-sm">
+            Mira encargos reales, colecciones limitadas y cómo cosemos cada pieza.
+          </p>
+          <a class="inline-block rounded-full bg-primary text-white px-6 py-2"
+            href="https://instagram.com/cro_and_txet" target="_blank" rel="noopener">
+            @cro_and_txet
+          </a>
         </div>
 
-
-        <!-- Formulario directo -->
-        <div class="space-y-6">
-
-          <div class="card-neo-soft text-center md:text-left space-y-4">
-            <h2 class="font-serif text-2xl">Encargos y contacto directo</h2>
-            <p class="text-neutral-700">
-              Cuéntanos tu idea, pidenos una personalización o envíanos un boceto.
-            </p>
-          </div>
-
-          <form class="card-neo-soft space-y-4 text-left">
-
-            <sl-input required placeholder="Nombre completo"></sl-input>
-            <sl-input required type="email" placeholder="Email"></sl-input>
-            <sl-textarea placeholder="Cuéntanos qué tipo de bolso quieres"></sl-textarea>
-
-            <sl-select placeholder="Tipo de bolso">
-              <sl-option>Clutch</sl-option>
-              <sl-option>Barrel</sl-option>
-              <sl-option>Frame</sl-option>
-              <sl-option>Flap</sl-option>
-              <sl-option>Mini Bag</sl-option>
-              <sl-option>Edición especial</sl-option>
-            </sl-select>
-
-            <sl-select placeholder="Color principal">
-              <sl-option>Beige</sl-option>
-              <sl-option>Arena</sl-option>
-              <sl-option>Negro carbón</sl-option>
-              <sl-option>Marrón tierra</sl-option>
-              <sl-option>Azul pastel</sl-option>
-              <sl-option>Personalizado</sl-option>
-            </sl-select>
-
-            <sl-input placeholder="Dibujo o motivo (opcional)"></sl-input>
-
-            <div class="flex flex-wrap gap-3 justify-center md:justify-start mt-2">
-              <sl-button variant="black">Enviar</sl-button>
-
-              <a id="wa-btn"
-                 class="inline-block rounded-full bg-black-600 text-white px-5 py-2 hover:bg-green-700 transition-colors"
-                 href="#"
-                 target="_blank" rel="noopener">
-                 WhatsApp
-              </a>
-            </div>
-          </form>
-
-          <div class="card-neo-soft space-y-2">
-            <h3 class="font-serif text-xl">Horario de atención</h3>
-            <p class="text-sm text-neutral-700">
-              Lunes a Viernes: 10:00 - 18:00  
-              Sábados: 10:00 - 14:00  
-              Domingos: Cerrado
-            </p>
-          </div>
-        </div>
+        <!-- Imagen -->
+        <figure class="rounded-2xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1530112307634-705b2c4ba9b5?q=80&w=1600&auto=format&fit=crop"
+            alt="Taller Cro and Txet"
+            class="w-full h-full object-cover aspect-4-3"
+            loading="lazy"
+          />
+        </figure>
 
       </div>
 
 
-      <!-- TIEMPOS / ENVÍOS / PACK -->
-      <section class="space-y-10 max-w-4xl mx-auto">
+      <!-- COLUMNA DERECHA – FORMULARIO -->
+      <div class="space-y-8 card-neo-soft ">
 
-        <div class="card-neo-soft text-center">
-          <h2 class="font-serif text-2xl mb-2">Tiempos de entrega</h2>
-          <p class="text-neutral-700">
-            Cada bolso se realiza completamente a mano.  
-            Tiempo medio: <strong>7–15 días</strong>.
+        <div class="p-6 space-y-3">
+          <h2 class="font-serif text-2xl">Encargos y mensajes directos</h2>
+          <p class="text-neutral-700 text-sm">
+            Escríbenos tu idea, tu diseño o cualquier personalización especial.
           </p>
         </div>
 
-        <div class="card-neo-soft text-center">
-          <h2 class="font-serif text-2xl mb-2">Envíos y devoluciones</h2>
-          <p class="text-neutral-700">
-            Enviamos a toda España (24–72h).  
-            Devoluciones solo por defecto, al ser piezas únicas.
+        <form class="p-6 space-y-4">
+          <sl-input required placeholder="Nombre completo"></sl-input>
+          <sl-input required type="email" placeholder="Email"></sl-input>
+
+          <sl-select placeholder="Tipo de bolso">
+            <sl-option>Clutch</sl-option>
+            <sl-option>Barrel</sl-option>
+            <sl-option>Frame</sl-option>
+            <sl-option>Flap</sl-option>
+            <sl-option>Mini Bag</sl-option>
+            <sl-option>Edición especial</sl-option>
+          </sl-select>
+
+          <sl-select placeholder="Color principal">
+            <sl-option>Beige</sl-option>
+            <sl-option>Arena</sl-option>
+            <sl-option>Negro carbón</sl-option>
+            <sl-option>Marrón tierra</sl-option>
+            <sl-option>Azul pastel</sl-option>
+            <sl-option>Personalizado</sl-option>
+          </sl-select>
+
+          <sl-input placeholder="Dibujo o motivo (opcional)"></sl-input>
+          <sl-textarea placeholder="Cuéntanos qué tipo de bolso quieres"></sl-textarea>
+
+          <div class="flex flex-wrap gap-3 justify-start mt-3">
+            <sl-button variant="black">Enviar</sl-button>
+
+            <a id="wa-btn"
+              class="inline-block rounded-full bg-black text-white px-5 py-2 hover:bg-green-600 transition-colors"
+              href="#"
+              target="_blank" rel="noopener">
+              WhatsApp
+            </a>
+          </div>
+        </form>
+
+        <div class="p-6 space-y-2">
+          <h3 class="font-serif text-xl">Horario</h3>
+          <p class="text-sm text-neutral-700 leading-relaxed">
+            Lunes a Viernes: 10:00 – 18:00  
+            Sábados: 10:00 – 14:00  
+            Domingos: Cerrado
           </p>
         </div>
 
-        <div class="card-neo-soft text-center">
-          <h2 class="font-serif text-2xl mb-2">Pack regalo</h2>
-          <p class="text-neutral-700">
-            Incluimos tarjeta, envoltorio artesanal y nota personalizada.  
-            Sin coste adicional.
-          </p>
-        </div>
+      </div>
 
-      </section>
+    </div>
 
 
-      <!-- FAQ -->
-      <section class="space-y-6 max-w-3xl mx-auto">
-        <h2 class="font-serif text-2xl text-center">Preguntas frecuentes</h2>
+    <!-- FAQ -->
+    <section class="space-y-6 max-w-3xl mx-auto">
+      <h2 class="font-serif text-2xl text-center">Preguntas frecuentes</h2>
 
-        <details class="card-neo-soft p-4">
-          <summary class="font-semibold cursor-pointer">¿Puedo pedir un bolso totalmente personalizado?</summary>
-          <p class="mt-2 text-sm text-neutral-700">
-            Sí. Colores, tamaño, asas, dibujo… Lo que imagines, lo creamos.
-          </p>
-        </details>
+      <details class="card-neo-soft p-4">
+        <summary class="cursor-pointer font-medium">¿Bolso totalmente personalizado?</summary>
+        <p class="mt-2 text-sm text-neutral-700">
+          Sí. Colores, asas, medidas y dibujos a tu gusto.
+        </p>
+      </details>
 
-        <details class="card-neo-soft p-4">
-          <summary class="font-semibold cursor-pointer">¿Puedo ver ejemplos antes?</summary>
-          <p class="mt-2 text-sm text-neutral-700">
-            En Instagram mostramos encargos reales. También enviamos ejemplos por WhatsApp.
-          </p>
-        </details>
+      <details class="card-neo-soft p-4">
+        <summary class="cursor-pointer font-medium">¿Puedo ver ejemplos?</summary>
+        <p class="mt-2 text-sm text-neutral-700">
+          En Instagram mostramos encargos reales. También por WhatsApp.
+        </p>
+      </details>
 
-        <details class="card-neo-soft p-4">
-          <summary class="font-semibold cursor-pointer">¿Qué materiales usáis?</summary>
-          <p class="mt-2 text-sm text-neutral-700">
-            Algodón premium, hilos resistentes y materiales duraderos.
-          </p>
-        </details>
+      <details class="card-neo-soft p-4">
+        <summary class="cursor-pointer font-medium">Materiales usados</summary>
+        <p class="mt-2 text-sm text-neutral-700">
+          Algodón premium e hilos resistentes.
+        </p>
+      </details>
 
-        <details class="card-neo-soft p-4">
-          <summary class="font-semibold cursor-pointer">¿Cómo elegir tamaño?</summary>
-          <p class="mt-2 text-sm text-neutral-700">
-            Te aconsejamos según lo que quieras llevar: móvil, cartera, llaves, accesorios…
-          </p>
-        </details>
-
-      </section>
-
-      <img class="cro-and-txet-img" src="${CroAndtxetImg}" alt="Cro and Txet hero">
-
-
+      <details class="card-neo-soft p-4">
+        <summary class="cursor-pointer font-medium">¿Qué tamaño elegir?</summary>
+        <p class="mt-2 text-sm text-neutral-700">
+          Te ayudamos según lo que quieras llevar.
+        </p>
+      </details>
     </section>
+
+    <img class="cro-and-txet-img" src="${CroAndtxetImg}" alt="Cro and Txet hero">
+
+  </section>
+
   `);
 
   const wa = document.getElementById('wa-btn');

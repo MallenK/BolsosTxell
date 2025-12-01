@@ -5,7 +5,7 @@ export const store = {
   filters: { category: 'all', min: 50, max: 150, q: '' },
 
   // NUEVO: imagen del hero
-  heroImage: './assets/img/Cro-and-Txet.png',
+  heroImage: './assets/img/Cro_Txet.png',
 
   setLang(l) { 
     this.lang = l; 
